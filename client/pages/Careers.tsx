@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Briefcase, MapPin, Clock, DollarSign, Loader2, Sparkles, Send, X, CheckCircle, Building2, Users } from "lucide-react";
+import { Briefcase, MapPin, Loader2, Sparkles, Send, X, CheckCircle, Building2, Users, FileText, Upload, DollarSign } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,12 +25,14 @@ export default function Careers() {
   const [showApplicationForm, setShowApplicationForm] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [applicationSuccess, setApplicationSuccess] = useState(false);
+  const [cvFileName, setCvFileName] = useState<string>("");
   
   const [applicationForm, setApplicationForm] = useState({
     fullName: "",
     email: "",
     phone: "",
     coverLetter: "",
+    resume: "",
   });
 
   useEffect(() => {
@@ -52,12 +54,48 @@ export default function Careers() {
     }
   };
 
+  const handleCvUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const maxSize = 5 * 1024 * 1024;
+    if (file.size > maxSize) {
+      toast.error("File size must be less than 5MB");
+      return;
+    }
+
+    const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Please upload a PDF or Word document");
+      return;
+    }
+
+    setCvFileName(file.name);
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const base64String = event.target?.result as string;
+      setApplicationForm({ ...applicationForm, resume: base64String });
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const removeCv = () => {
+    setCvFileName("");
+    setApplicationForm({ ...applicationForm, resume: "" });
+  };
+
   const handleApply = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedJob) return;
 
     if (!applicationForm.fullName || !applicationForm.email || !applicationForm.phone) {
       toast.error("Please fill all required fields");
+      return;
+    }
+
+    if (!applicationForm.resume) {
+      toast.error("Please upload your CV/Resume");
       return;
     }
 
@@ -79,11 +117,13 @@ export default function Careers() {
           setShowApplicationForm(false);
           setSelectedJob(null);
           setApplicationSuccess(false);
+          setCvFileName("");
           setApplicationForm({
             fullName: "",
             email: "",
             phone: "",
             coverLetter: "",
+            resume: "",
           });
         }, 2000);
       } else {
@@ -111,7 +151,7 @@ export default function Careers() {
       <div className="min-h-screen flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0a0a 0%, #0a1a0a 25%, #0a0a0a 50%, #1a1a0a 75%, #0a0a0a 100%)' }}>
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl animate-pulse delay-1000" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
@@ -146,29 +186,6 @@ export default function Careers() {
         <div className="absolute inset-0" style={{
           background: 'linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(10,10,10,0.7) 60%, rgba(10,10,10,1) 100%)',
         }} />
-        
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(15)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-primary/30 rounded-full"
-              initial={{ 
-                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
-                y: Math.random() * 500,
-                opacity: 0 
-              }}
-              animate={{ 
-                y: [null, -100],
-                opacity: [0, 0.5, 0]
-              }}
-              transition={{
-                duration: Math.random() * 3 + 2,
-                repeat: Infinity,
-                delay: Math.random() * 2
-              }}
-            />
-          ))}
-        </div>
         
         <div className="relative z-10 h-full flex items-center justify-center">
           <motion.div 
@@ -364,11 +381,19 @@ export default function Careers() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto"
             onClick={() => {
               if (!submitting) {
                 setShowApplicationForm(false);
                 setSelectedJob(null);
+                setCvFileName("");
+                setApplicationForm({
+                  fullName: "",
+                  email: "",
+                  phone: "",
+                  coverLetter: "",
+                  resume: "",
+                });
               }
             }}
           >
@@ -377,7 +402,7 @@ export default function Careers() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-lg rounded-2xl border border-white/10 bg-gradient-to-br from-gray-900 to-gray-950 p-6 md:p-8 relative overflow-hidden"
+              className="w-full max-w-lg rounded-2xl border border-white/10 bg-gradient-to-br from-gray-900 to-gray-950 p-6 md:p-8 relative overflow-hidden my-8"
             >
               {applicationSuccess ? (
                 <motion.div
@@ -389,7 +414,7 @@ export default function Careers() {
                     <CheckCircle className="w-10 h-10 text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">Application Submitted!</h3>
-                  <p className="text-gray-400">Thank you for applying. We'll be in touch soon.</p>
+                  <p className="text-gray-400">Thank you for applying. We'll review your CV and be in touch soon.</p>
                 </motion.div>
               ) : (
                 <>
@@ -397,6 +422,14 @@ export default function Careers() {
                     onClick={() => {
                       setShowApplicationForm(false);
                       setSelectedJob(null);
+                      setCvFileName("");
+                      setApplicationForm({
+                        fullName: "",
+                        email: "",
+                        phone: "",
+                        coverLetter: "",
+                        resume: "",
+                      });
                     }}
                     className="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/10 transition"
                   >
@@ -406,6 +439,7 @@ export default function Careers() {
                   <div className="mb-6">
                     <h3 className="text-xl font-bold text-white mb-1">Apply for Position</h3>
                     <p className="text-primary font-medium">{selectedJob.jobTitle}</p>
+                    <p className="text-gray-400 text-sm mt-1">{selectedJob.department} • {selectedJob.location}</p>
                   </div>
                   
                   <form onSubmit={handleApply} className="space-y-4">
@@ -447,10 +481,52 @@ export default function Careers() {
                         className="bg-white/5 border-white/10 text-white placeholder:text-gray-500"
                       />
                     </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">
+                        Upload CV/Resume <span className="text-red-400">*</span>
+                      </label>
+                      {!cvFileName ? (
+                        <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-white/20 rounded-xl cursor-pointer hover:border-primary/50 hover:bg-white/5 transition-all group">
+                          <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                            <Upload className="w-8 h-8 text-gray-400 group-hover:text-primary mb-2 transition-colors" />
+                            <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                              <span className="font-semibold text-primary">Click to upload</span> or drag and drop
+                            </p>
+                            <p className="text-xs text-gray-500 mt-1">PDF or Word document (Max 5MB)</p>
+                          </div>
+                          <input 
+                            type="file" 
+                            className="hidden" 
+                            accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                            onChange={handleCvUpload}
+                          />
+                        </label>
+                      ) : (
+                        <div className="flex items-center justify-between p-4 rounded-xl bg-primary/10 border border-primary/30">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                              <FileText className="w-5 h-5 text-primary" />
+                            </div>
+                            <div>
+                              <p className="text-sm font-medium text-white truncate max-w-[200px]">{cvFileName}</p>
+                              <p className="text-xs text-gray-400">CV uploaded successfully</p>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={removeCv}
+                            className="p-2 rounded-lg hover:bg-white/10 transition text-gray-400 hover:text-red-400"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      )}
+                    </div>
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-300 mb-2">
-                        Cover Letter
+                        Cover Letter <span className="text-gray-500">(Optional)</span>
                       </label>
                       <textarea
                         placeholder="Tell us why you're interested in this position..."
