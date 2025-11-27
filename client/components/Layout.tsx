@@ -42,6 +42,9 @@ export default function Layout() {
               <Link to="/po-projects" className="hover:text-primary transition">
                 P/O Projects
               </Link>
+              <Link to="/careers" className="hover:text-primary transition">
+                Careers
+              </Link>
               <Link to="/admin" className="hover:text-primary transition">
                 Admin Panel
               </Link>
@@ -104,6 +107,13 @@ export default function Layout() {
                 onClick={() => setMenuOpen(false)}
               >
                 P/O Projects
+              </Link>
+              <Link
+                to="/careers"
+                className="block px-2 py-2 hover:bg-muted rounded transition"
+                onClick={() => setMenuOpen(false)}
+              >
+                Careers
               </Link>
               <Link
                 to="/admin"

@@ -3,6 +3,8 @@ import {
   projectsStorage,
   equipmentStorage,
   poProjectsStorage,
+  careersStorage,
+  jobApplicationsStorage,
 } from "../storage";
 
 export const getProjects: RequestHandler = (_req, res) => {
@@ -142,5 +144,164 @@ export const deletePOProject: RequestHandler = (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ error: "Failed to delete P/O project" });
+  }
+};
+
+export const getCareers: RequestHandler = (_req, res) => {
+  try {
+    const careers = careersStorage.getAll();
+    res.json(careers);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch careers" });
+  }
+};
+
+export const getActiveCareers: RequestHandler = (_req, res) => {
+  try {
+    const careers = careersStorage.getActive();
+    res.json(careers);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch active careers" });
+  }
+};
+
+export const getCareerById: RequestHandler = (req, res) => {
+  try {
+    const { id } = req.params;
+    const career = careersStorage.getById(id);
+    if (career) {
+      res.json(career);
+    } else {
+      res.status(404).json({ error: "Career not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch career" });
+  }
+};
+
+export const addCareer: RequestHandler = (req, res) => {
+  try {
+    const { jobTitle, department, location, employmentType, description, requirements, salary, isActive } = req.body;
+    
+    if (!jobTitle || !department || !location || !employmentType || !description || !requirements) {
+      res.status(400).json({ error: "Missing required fields" });
+      return;
+    }
+    
+    const career = careersStorage.add({
+      jobTitle,
+      department,
+      location,
+      employmentType,
+      description,
+      requirements,
+      salary,
+      isActive: isActive ?? true,
+    });
+    
+    res.status(201).json(career);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to add career" });
+  }
+};
+
+export const updateCareer: RequestHandler = (req, res) => {
+  try {
+    const { id } = req.params;
+    const career = careersStorage.update(id, req.body);
+    
+    if (career) {
+      res.json(career);
+    } else {
+      res.status(404).json({ error: "Career not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update career" });
+  }
+};
+
+export const deleteCareer: RequestHandler = (req, res) => {
+  try {
+    const { id } = req.params;
+    const success = careersStorage.delete(id);
+    
+    if (success) {
+      res.json({ message: "Career deleted" });
+    } else {
+      res.status(404).json({ error: "Career not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete career" });
+  }
+};
+
+export const getJobApplications: RequestHandler = (_req, res) => {
+  try {
+    const applications = jobApplicationsStorage.getAll();
+    res.json(applications);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch job applications" });
+  }
+};
+
+export const addJobApplication: RequestHandler = (req, res) => {
+  try {
+    const { careerId, jobTitle, fullName, email, phone, resume, coverLetter } = req.body;
+    
+    if (!careerId || !jobTitle || !fullName || !email || !phone) {
+      res.status(400).json({ error: "Missing required fields" });
+      return;
+    }
+    
+    const application = jobApplicationsStorage.add({
+      careerId,
+      jobTitle,
+      fullName,
+      email,
+      phone,
+      resume,
+      coverLetter,
+    });
+    
+    res.status(201).json(application);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to submit application" });
+  }
+};
+
+export const updateApplicationStatus: RequestHandler = (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    
+    if (!status) {
+      res.status(400).json({ error: "Status is required" });
+      return;
+    }
+    
+    const application = jobApplicationsStorage.updateStatus(id, status);
+    
+    if (application) {
+      res.json(application);
+    } else {
+      res.status(404).json({ error: "Application not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update application status" });
+  }
+};
+
+export const deleteJobApplication: RequestHandler = (req, res) => {
+  try {
+    const { id } = req.params;
+    const success = jobApplicationsStorage.delete(id);
+    
+    if (success) {
+      res.json({ message: "Application deleted" });
+    } else {
+      res.status(404).json({ error: "Application not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete application" });
   }
 };

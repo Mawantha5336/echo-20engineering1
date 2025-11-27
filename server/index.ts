@@ -12,6 +12,16 @@ import {
   getPOProjects,
   addPOProject,
   deletePOProject,
+  getCareers,
+  getActiveCareers,
+  getCareerById,
+  addCareer,
+  updateCareer,
+  deleteCareer,
+  getJobApplications,
+  addJobApplication,
+  updateApplicationStatus,
+  deleteJobApplication,
 } from "./routes/data";
 
 export function createServer() {
@@ -44,6 +54,20 @@ export function createServer() {
   app.get("/api/po-projects", getPOProjects);
   app.post("/api/po-projects", addPOProject);
   app.delete("/api/po-projects/:id", deletePOProject);
+
+  // Careers API
+  app.get("/api/careers", getCareers);
+  app.get("/api/careers/active", getActiveCareers);
+  app.get("/api/careers/:id", getCareerById);
+  app.post("/api/careers", addCareer);
+  app.put("/api/careers/:id", updateCareer);
+  app.delete("/api/careers/:id", deleteCareer);
+
+  // Job Applications API
+  app.get("/api/job-applications", getJobApplications);
+  app.post("/api/job-applications", addJobApplication);
+  app.put("/api/job-applications/:id/status", updateApplicationStatus);
+  app.delete("/api/job-applications/:id", deleteJobApplication);
 
   return app;
 }
