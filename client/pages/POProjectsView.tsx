@@ -58,20 +58,75 @@ export default function POProjectsView() {
 
   return (
     <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #0a0a1a 0%, #0d1033 50%, #0a0a1a 100%)' }}>
-      <div className="border-b border-indigo-900/50" style={{ background: 'linear-gradient(to right, rgba(20, 20, 60, 0.8), rgba(15, 15, 45, 0.6))' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <FileText className="w-6 h-6 text-primary-foreground" />
-            </div>
-            <div>
-              <h1 className="text-4xl font-bold text-white">P/O Projects</h1>
-              <p className="text-gray-400">
-                View all purchase order projects and their status
-              </p>
-            </div>
+      {/* Hero Banner Section */}
+      <div className="relative h-[320px] md:h-[400px] overflow-hidden">
+        {/* Background with gradient overlay simulating sunset sky */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to bottom, #f97316 0%, #fb923c 15%, #fcd34d 30%, #fef3c7 45%, #a5b4fc 60%, #6366f1 75%, #1e1b4b 100%)',
+          }}
+        />
+        {/* Silhouette overlay for mountains and towers */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `
+              linear-gradient(to top, rgba(10, 10, 26, 1) 0%, rgba(10, 10, 26, 0.9) 15%, transparent 40%),
+              linear-gradient(to bottom, transparent 60%, rgba(30, 41, 59, 0.8) 100%)
+            `,
+          }}
+        />
+        {/* Tower silhouettes using CSS shapes */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 md:h-48">
+          {/* Left tower */}
+          <div className="absolute left-[15%] bottom-0 w-1 md:w-1.5 h-24 md:h-36 bg-slate-900" />
+          <div className="absolute left-[14%] bottom-[60px] md:bottom-[90px] w-3 md:w-4 h-3 md:h-4 border-2 border-slate-900 rotate-45" />
+          <div className="absolute left-[12%] bottom-0 w-8 md:w-12 h-16 md:h-24 bg-gradient-to-t from-slate-900 to-slate-800 rounded-t-sm" style={{ clipPath: 'polygon(20% 100%, 80% 100%, 90% 0%, 10% 0%)' }} />
+          
+          {/* Center tower (main) */}
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-1.5 md:w-2 h-32 md:h-44 bg-slate-900" />
+          <div className="absolute left-1/2 -translate-x-1/2 bottom-[100px] md:bottom-[140px] w-6 md:w-8 h-4 md:h-6 border-2 border-slate-900 transform" style={{ clipPath: 'polygon(0% 100%, 100% 100%, 80% 0%, 20% 0%)' }} />
+          <div className="absolute left-[48%] bottom-[70px] md:bottom-[100px] w-12 md:w-16 h-1 bg-slate-900" />
+          
+          {/* Right tower */}
+          <div className="absolute right-[20%] bottom-0 w-1 md:w-1.5 h-20 md:h-32 bg-slate-900" />
+          <div className="absolute right-[18%] bottom-0 w-6 md:w-10 h-12 md:h-20 bg-gradient-to-t from-slate-900 to-slate-800 rounded-t-sm" style={{ clipPath: 'polygon(15% 100%, 85% 100%, 95% 0%, 5% 0%)' }} />
+          
+          {/* Mountain silhouettes */}
+          <div 
+            className="absolute bottom-0 left-0 right-0 h-20 md:h-28"
+            style={{
+              background: 'linear-gradient(135deg, #1e293b 0%, #334155 50%, #1e293b 100%)',
+              clipPath: 'polygon(0% 100%, 0% 60%, 10% 40%, 25% 70%, 35% 30%, 50% 50%, 65% 20%, 80% 60%, 90% 35%, 100% 55%, 100% 100%)',
+            }}
+          />
+          <div 
+            className="absolute bottom-0 left-0 right-0 h-16 md:h-20"
+            style={{
+              background: 'linear-gradient(to right, #0f172a, #1e293b, #0f172a)',
+              clipPath: 'polygon(0% 100%, 0% 50%, 15% 30%, 30% 60%, 45% 25%, 55% 45%, 70% 20%, 85% 55%, 100% 40%, 100% 100%)',
+            }}
+          />
+        </div>
+        
+        {/* Content overlay */}
+        <div className="relative z-10 h-full flex items-center justify-center">
+          <div className="text-center px-4">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-light text-slate-800 tracking-wide">
+              Purchase Order Projects
+            </h1>
+            <p className="mt-3 text-lg md:text-xl text-slate-700/80">
+              Managing Your Project Orders Efficiently
+            </p>
           </div>
-          <div className="mt-6 flex items-center gap-4">
+        </div>
+      </div>
+      
+      {/* Stats bar */}
+      <div className="border-b border-indigo-900/50" style={{ background: 'linear-gradient(to right, rgba(20, 20, 60, 0.8), rgba(15, 15, 45, 0.6))' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center gap-4">
             <div className="backdrop-blur rounded-lg px-4 py-2 border border-indigo-900/50" style={{ background: 'rgba(15, 15, 45, 0.6)' }}>
               <span className="text-gray-400 text-sm">Total Projects:</span>
               <span className="ml-2 font-bold text-primary">{poProjects.length}</span>
