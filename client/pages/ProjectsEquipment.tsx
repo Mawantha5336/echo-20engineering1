@@ -57,26 +57,26 @@ export default function ProjectsEquipment() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #0a0a1a 0%, #0d1033 50%, #0a0a1a 100%)' }}>
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Loading data...</p>
+          <p className="text-gray-400">Loading data...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="bg-gradient-to-r from-card to-muted border-b border-border">
+    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #0a0a1a 0%, #0d1033 50%, #0a0a1a 100%)' }}>
+      <div className="border-b border-indigo-900/50" style={{ background: 'linear-gradient(to right, rgba(20, 20, 60, 0.8), rgba(15, 15, 45, 0.6))' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <Building2 className="w-6 h-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold">Projects & Equipment</h1>
-              <p className="text-muted-foreground">
+              <h1 className="text-4xl font-bold text-white">Projects & Equipment</h1>
+              <p className="text-gray-400">
                 View all our projects and specialized equipment
               </p>
             </div>
@@ -85,13 +85,13 @@ export default function ProjectsEquipment() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex gap-4 mb-8 border-b border-border overflow-x-auto">
+        <div className="flex gap-4 mb-8 border-b border-indigo-900/50 overflow-x-auto">
           <button
             onClick={() => setActiveTab("projects")}
             className={`px-6 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
               activeTab === "projects"
                 ? "border-primary text-primary"
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                : "border-transparent text-gray-400 hover:text-white"
             }`}
           >
             <Building2 size={20} />
@@ -102,7 +102,7 @@ export default function ProjectsEquipment() {
             className={`px-6 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
               activeTab === "equipment"
                 ? "border-primary text-primary"
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                : "border-transparent text-gray-400 hover:text-white"
             }`}
           >
             <Wrench size={20} />
@@ -113,10 +113,10 @@ export default function ProjectsEquipment() {
         {activeTab === "projects" && (
           <div>
             {projects.length === 0 ? (
-              <div className="text-center py-16 bg-card rounded-xl border border-border">
-                <Building2 className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">No Projects Yet</h3>
-                <p className="text-muted-foreground">
+              <div className="text-center py-16 rounded-xl border border-indigo-900/50" style={{ background: 'rgba(15, 15, 45, 0.6)' }}>
+                <Building2 className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2 text-white">No Projects Yet</h3>
+                <p className="text-gray-400">
                   Projects will appear here once added through the admin panel.
                 </p>
               </div>
@@ -187,10 +187,10 @@ export default function ProjectsEquipment() {
         {activeTab === "equipment" && (
           <div>
             {equipment.length === 0 ? (
-              <div className="text-center py-16 bg-card rounded-xl border border-border">
-                <Wrench className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">No Equipment Yet</h3>
-                <p className="text-muted-foreground">
+              <div className="text-center py-16 rounded-xl border border-indigo-900/50" style={{ background: 'rgba(15, 15, 45, 0.6)' }}>
+                <Wrench className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2 text-white">No Equipment Yet</h3>
+                <p className="text-gray-400">
                   Equipment will appear here once added through the admin panel.
                 </p>
               </div>
@@ -199,7 +199,8 @@ export default function ProjectsEquipment() {
                 {equipment.map((item) => (
                   <div
                     key={item.id}
-                    className="bg-card rounded-xl border border-border overflow-hidden hover:border-primary transition group"
+                    className="rounded-xl border border-indigo-900/50 overflow-hidden hover:border-primary transition group"
+                    style={{ background: 'rgba(15, 15, 45, 0.6)' }}
                   >
                     {item.image ? (
                       <div className="aspect-video overflow-hidden">
@@ -210,13 +211,13 @@ export default function ProjectsEquipment() {
                         />
                       </div>
                     ) : (
-                      <div className="aspect-video bg-muted flex items-center justify-center">
-                        <ImageIcon className="w-12 h-12 text-muted-foreground" />
+                      <div className="aspect-video flex items-center justify-center" style={{ background: 'rgba(20, 20, 60, 0.8)' }}>
+                        <ImageIcon className="w-12 h-12 text-gray-500" />
                       </div>
                     )}
                     <div className="p-6">
-                      <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                      <p className="text-muted-foreground text-sm">
+                      <h3 className="font-bold text-lg mb-2 text-white">{item.title}</h3>
+                      <p className="text-gray-400 text-sm">
                         {item.description}
                       </p>
                     </div>

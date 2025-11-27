@@ -47,33 +47,33 @@ export default function POProjectsView() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #0a0a1a 0%, #0d1033 50%, #0a0a1a 100%)' }}>
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Loading P/O Projects...</p>
+          <p className="text-gray-400">Loading P/O Projects...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="bg-gradient-to-r from-card to-muted border-b border-border">
+    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #0a0a1a 0%, #0d1033 50%, #0a0a1a 100%)' }}>
+      <div className="border-b border-indigo-900/50" style={{ background: 'linear-gradient(to right, rgba(20, 20, 60, 0.8), rgba(15, 15, 45, 0.6))' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex items-center gap-4 mb-4">
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
               <FileText className="w-6 h-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold">P/O Projects</h1>
-              <p className="text-muted-foreground">
+              <h1 className="text-4xl font-bold text-white">P/O Projects</h1>
+              <p className="text-gray-400">
                 View all purchase order projects and their status
               </p>
             </div>
           </div>
           <div className="mt-6 flex items-center gap-4">
-            <div className="bg-card/50 backdrop-blur rounded-lg px-4 py-2 border border-border">
-              <span className="text-muted-foreground text-sm">Total Projects:</span>
+            <div className="backdrop-blur rounded-lg px-4 py-2 border border-indigo-900/50" style={{ background: 'rgba(15, 15, 45, 0.6)' }}>
+              <span className="text-gray-400 text-sm">Total Projects:</span>
               <span className="ml-2 font-bold text-primary">{poProjects.length}</span>
             </div>
           </div>
@@ -82,10 +82,10 @@ export default function POProjectsView() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {poProjects.length === 0 ? (
-          <div className="text-center py-16 bg-card rounded-xl border border-border">
-            <FileText className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-xl font-semibold mb-2">No P/O Projects Yet</h3>
-            <p className="text-muted-foreground">
+          <div className="text-center py-16 rounded-xl border border-indigo-900/50" style={{ background: 'rgba(15, 15, 45, 0.6)' }}>
+            <FileText className="w-16 h-16 text-gray-500 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold mb-2 text-white">No P/O Projects Yet</h3>
+            <p className="text-gray-400">
               P/O Projects will appear here once added through the admin panel.
             </p>
           </div>
@@ -157,12 +157,13 @@ export default function POProjectsView() {
               {poProjects.map((project) => (
                 <div
                   key={project.id}
-                  className="bg-card rounded-xl border border-border p-6 hover:border-primary transition"
+                  className="rounded-xl border border-indigo-900/50 p-6 hover:border-primary transition"
+                  style={{ background: 'rgba(15, 15, 45, 0.6)' }}
                 >
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <p className="text-sm text-muted-foreground mb-1">Client</p>
-                      <h3 className="font-bold text-lg">{project.client}</h3>
+                      <p className="text-sm text-gray-400 mb-1">Client</p>
+                      <h3 className="font-bold text-lg text-white">{project.client}</h3>
                     </div>
                     <span
                       className={`px-3 py-1.5 rounded-full text-xs border ${getStatusColor(
@@ -177,14 +178,14 @@ export default function POProjectsView() {
                   
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-sm">
-                      <Calendar size={16} className="text-muted-foreground" />
-                      <span className="text-muted-foreground">P/O Date:</span>
-                      <span className="font-medium">{project.poDate}</span>
+                      <Calendar size={16} className="text-gray-400" />
+                      <span className="text-gray-400">P/O Date:</span>
+                      <span className="font-medium text-white">{project.poDate}</span>
                     </div>
                     <div className="flex items-start gap-2 text-sm">
-                      <Package size={16} className="text-muted-foreground mt-0.5" />
-                      <span className="text-muted-foreground">Product:</span>
-                      <span className="font-medium">{project.product}</span>
+                      <Package size={16} className="text-gray-400 mt-0.5" />
+                      <span className="text-gray-400">Product:</span>
+                      <span className="font-medium text-white">{project.product}</span>
                     </div>
                   </div>
                 </div>
