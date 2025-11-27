@@ -14,12 +14,15 @@ This is a complete full-stack application featuring:
 
 ## Recent Changes
 
-### November 27, 2025 - Dark Navy Theme for Public Interfaces
+### November 27, 2025 - Dark Navy Theme and Footer for Public Interfaces
 - Applied dark navy blue gradient background theme to Projects & Equipment page
 - Applied same dark navy blue theme to P/O Projects page
 - Theme features: gradient background (#0a0a1a to #0d1033), indigo-tinted cards/sections
 - Table colors remain unchanged as requested
 - Admin panel interface remains unchanged as requested
+- Added reusable Footer component (client/components/Footer.tsx)
+- Footer includes: EC/Eco logo with description, social media icons, Quick Links, Contact Us section
+- Footer includes: copyright notice, Privacy Policy/Terms of Service links, scroll-to-top button
 
 ### November 27, 2025 - Data Persistence and User Interfaces
 - Added file-based JSON storage system for persistent data (server/storage.ts)

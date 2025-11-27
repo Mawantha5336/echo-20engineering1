@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Wrench, Building2, Image as ImageIcon, Loader2 } from "lucide-react";
+import Footer from "@/components/Footer";
 
 interface ProjectData {
   id: string;
@@ -228,6 +229,8 @@ export default function ProjectsEquipment() {
           </div>
         )}
       </div>
+
+      <Footer />
     </div>
   );
 }
