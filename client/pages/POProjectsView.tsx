@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { FileText, Loader2, Calendar, Building, Package, CheckCircle } from "lucide-react";
-import Footer from "@/components/Footer";
 
 interface POProjectData {
   id: string;
@@ -195,8 +194,6 @@ export default function POProjectsView() {
           </>
         )}
       </div>
-
-      <Footer />
     </div>
   );
 }

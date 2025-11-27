@@ -3,6 +3,7 @@ import { Menu, X, LogOut, LogIn } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
+import Footer from "@/components/Footer";
 
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -143,69 +144,7 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      <footer className="bg-card border-t border-border mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <h3 className="font-bold mb-4">Eco Engineering</h3>
-              <p className="text-muted-foreground text-sm">
-                Sustainable telecommunications infrastructure solutions for the
-                digital future.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link
-                    to="/"
-                    className="text-muted-foreground hover:text-primary transition"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/projects-equipment"
-                    className="text-muted-foreground hover:text-primary transition"
-                  >
-                    Projects & Equipment
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/po-projects"
-                    className="text-muted-foreground hover:text-primary transition"
-                  >
-                    P/O Projects
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/admin"
-                    className="text-muted-foreground hover:text-primary transition"
-                  >
-                    Admin Panel
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Contact</h4>
-              <p className="text-muted-foreground text-sm">
-                Waliwita Junction, Kaduwela
-                <br />
-                011 234 5678
-                <br />
-                info@ecoengineering.com
-              </p>
-            </div>
-          </div>
-          <div className="border-t border-border pt-8 text-center text-muted-foreground text-sm">
-            <p>&copy; 2024 Eco Engineering. All Rights Reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
