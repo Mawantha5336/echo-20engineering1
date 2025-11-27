@@ -113,12 +113,9 @@ export default function POProjectsView() {
         {/* Content overlay */}
         <div className="relative z-10 h-full flex items-center justify-center">
           <div className="text-center px-4">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-light text-slate-800 tracking-wide">
-              Purchase Order Projects
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-light text-slate-800 tracking-wide">
+              Supplying Testing Analytical Instrument
             </h1>
-            <p className="mt-3 text-lg md:text-xl text-slate-700/80">
-              Managing Your Project Orders Efficiently
-            </p>
           </div>
         </div>
       </div>

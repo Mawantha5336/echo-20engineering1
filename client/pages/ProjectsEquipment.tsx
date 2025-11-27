@@ -123,12 +123,12 @@ export default function ProjectsEquipment() {
         {/* Content overlay */}
         <div className="relative z-10 h-full flex items-center justify-center">
           <div className="text-center px-4">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-light text-slate-800 tracking-wide">
-              Telecommunication Infrastructure
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-light text-slate-800 tracking-wide">
+              Install & Maintenance
             </h1>
-            <p className="mt-3 text-lg md:text-xl text-slate-700/80">
-              Building Tomorrow's Connectivity Today
-            </p>
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-slate-800 tracking-wide mt-2">
+              Telecommunication Infrastructure System
+            </h2>
           </div>
         </div>
       </div>
