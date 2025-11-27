@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, Trash2, Image as ImageIcon, Loader2, Briefcase, Eye, EyeOff, Users, CheckCircle, XCircle, Clock } from "lucide-react";
+import { Plus, Trash2, Image as ImageIcon, Loader2, Briefcase, Eye, EyeOff, Users, FileText, Download, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -50,6 +50,7 @@ interface JobApplicationData {
   fullName: string;
   email: string;
   phone: string;
+  resume?: string;
   coverLetter?: string;
   status: "pending" | "reviewed" | "shortlisted" | "rejected";
   createdAt: string;
@@ -1039,6 +1040,7 @@ export default function Admin() {
                         <th className="px-6 py-4 text-left text-sm font-semibold">Applicant</th>
                         <th className="px-6 py-4 text-left text-sm font-semibold">Position</th>
                         <th className="px-6 py-4 text-left text-sm font-semibold">Contact</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold">CV/Resume</th>
                         <th className="px-6 py-4 text-left text-sm font-semibold">Status</th>
                         <th className="px-6 py-4 text-left text-sm font-semibold">Applied</th>
                         <th className="px-6 py-4 text-left text-sm font-semibold">Actions</th>
@@ -1052,8 +1054,49 @@ export default function Admin() {
                           </td>
                           <td className="px-6 py-4 text-sm">{application.jobTitle}</td>
                           <td className="px-6 py-4 text-sm">
-                            <div>{application.email}</div>
-                            <div className="text-muted-foreground">{application.phone}</div>
+                            <div className="flex items-center gap-1.5 mb-1">
+                              <Mail size={14} className="text-muted-foreground" />
+                              <span>{application.email}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-muted-foreground">
+                              <Phone size={14} />
+                              <span>{application.phone}</span>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4">
+                            {application.resume ? (
+                              <div className="flex items-center gap-2">
+                                <a
+                                  href={application.resume}
+                                  download={`CV_${application.fullName.replace(/\s+/g, '_')}.pdf`}
+                                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition text-sm font-medium"
+                                >
+                                  <Download size={14} />
+                                  Download
+                                </a>
+                                <button
+                                  onClick={() => {
+                                    const newWindow = window.open();
+                                    if (newWindow) {
+                                      newWindow.document.write(`
+                                        <html>
+                                          <head><title>CV - ${application.fullName}</title></head>
+                                          <body style="margin:0;padding:0;">
+                                            <embed src="${application.resume}" type="application/pdf" width="100%" height="100%" style="position:absolute;top:0;left:0;right:0;bottom:0;" />
+                                          </body>
+                                        </html>
+                                      `);
+                                    }
+                                  }}
+                                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition text-sm font-medium"
+                                >
+                                  <FileText size={14} />
+                                  View
+                                </button>
+                              </div>
+                            ) : (
+                              <span className="text-muted-foreground text-sm">No CV uploaded</span>
+                            )}
                           </td>
                           <td className="px-6 py-4">
                             <select
