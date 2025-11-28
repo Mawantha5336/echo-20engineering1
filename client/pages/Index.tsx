@@ -14,15 +14,15 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
-              Install & Maintenance
+              Welcome to Your
               <br />
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Telecommunication Infrastructure
+                Admin Control Center
               </span>
             </h1>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Building sustainable connectivity for the digital future with
-              cutting-edge telecommunications solutions
+              Manage your projects, equipment, and team efficiently with
+              powerful administrative tools
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
