@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut, LogIn, Plus } from "lucide-react";
+import { Menu, X, LogOut, LogIn } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -46,13 +46,6 @@ export default function Layout() {
               <Link to="/admin" className="hover:text-primary transition">
                 Admin Panel
               </Link>
-              <a 
-                href="/echo/index1.html" 
-                className="inline-flex items-center gap-1 px-3 py-1.5 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition font-medium"
-              >
-                <Plus size={16} />
-                Add
-              </a>
               {isAuthenticated ? (
                 <div className="flex items-center gap-4">
                   <span className="text-sm text-muted-foreground">
@@ -127,14 +120,6 @@ export default function Layout() {
               >
                 Admin Panel
               </Link>
-              <a
-                href="/echo/index1.html"
-                className="flex items-center gap-2 px-2 py-2 bg-primary text-primary-foreground rounded transition"
-                onClick={() => setMenuOpen(false)}
-              >
-                <Plus size={16} />
-                Add
-              </a>
               {isAuthenticated ? (
                 <>
                   <div className="px-2 py-2 text-sm text-muted-foreground">
