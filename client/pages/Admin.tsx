@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { Plus, Trash2, Image as ImageIcon, Loader2, Briefcase, Eye, EyeOff, Users, FileText, Download, Mail, Phone } from "lucide-react";
+import { Plus, Trash2, Image as ImageIcon, Loader2, Briefcase, Eye, EyeOff, Users, FileText, Download, Mail, Phone, Printer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 interface ProjectData {
   id: string;
@@ -503,6 +505,316 @@ export default function Admin() {
     }
   };
 
+  const generateProjectsPDF = () => {
+    const doc = new jsPDF({ orientation: "landscape" });
+    doc.setFontSize(20);
+    doc.text("Projects Report", 14, 22);
+    doc.setFontSize(10);
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 30);
+    doc.text(`Total Projects: ${projects.length}`, 14, 36);
+
+    autoTable(doc, {
+      startY: 42,
+      head: [["#", "Project Name", "Customer", "OEM", "Operator", "Activity", "No. of Sites"]],
+      body: projects.map((p, idx) => [
+        idx + 1,
+        p.projectName,
+        p.customer,
+        p.oem,
+        p.operator,
+        p.activity,
+        p.noOfSites,
+      ]),
+      styles: { fontSize: 9 },
+      headStyles: { fillColor: [139, 195, 74] },
+    });
+
+    doc.save("projects-report.pdf");
+    toast.success("Projects PDF downloaded");
+  };
+
+  const printProjects = () => {
+    const printContent = `
+      <html>
+        <head>
+          <title>Projects Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            h1 { color: #333; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #333; padding: 8px; text-align: left; }
+            th { background-color: #8bc34a; color: white; }
+            .meta { color: #666; margin-bottom: 10px; }
+          </style>
+        </head>
+        <body>
+          <h1>Projects Report</h1>
+          <p class="meta">Generated on: ${new Date().toLocaleDateString()} | Total Projects: ${projects.length}</p>
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Project Name</th>
+                <th>Customer</th>
+                <th>OEM</th>
+                <th>Operator</th>
+                <th>Activity</th>
+                <th>No. of Sites</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${projects.map((p, idx) => `
+                <tr>
+                  <td>${idx + 1}</td>
+                  <td>${p.projectName}</td>
+                  <td>${p.customer}</td>
+                  <td>${p.oem}</td>
+                  <td>${p.operator}</td>
+                  <td>${p.activity}</td>
+                  <td>${p.noOfSites}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </body>
+      </html>
+    `;
+    const printWindow = window.open("", "_blank");
+    if (printWindow) {
+      printWindow.document.write(printContent);
+      printWindow.document.close();
+      printWindow.print();
+    }
+  };
+
+  const generateEquipmentPDF = () => {
+    const doc = new jsPDF({ orientation: "landscape" });
+    doc.setFontSize(20);
+    doc.text("Equipment Report", 14, 22);
+    doc.setFontSize(10);
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 30);
+    doc.text(`Total Equipment: ${equipment.length}`, 14, 36);
+
+    autoTable(doc, {
+      startY: 42,
+      head: [["#", "Title", "Description"]],
+      body: equipment.map((e, idx) => [idx + 1, e.title, e.description]),
+      styles: { fontSize: 9 },
+      headStyles: { fillColor: [139, 195, 74] },
+      columnStyles: { 2: { cellWidth: 150 } },
+    });
+
+    doc.save("equipment-report.pdf");
+    toast.success("Equipment PDF downloaded");
+  };
+
+  const printEquipment = () => {
+    const printContent = `
+      <html>
+        <head>
+          <title>Equipment Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            h1 { color: #333; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #333; padding: 8px; text-align: left; }
+            th { background-color: #8bc34a; color: white; }
+            .meta { color: #666; margin-bottom: 10px; }
+          </style>
+        </head>
+        <body>
+          <h1>Equipment Report</h1>
+          <p class="meta">Generated on: ${new Date().toLocaleDateString()} | Total Equipment: ${equipment.length}</p>
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${equipment.map((e, idx) => `
+                <tr>
+                  <td>${idx + 1}</td>
+                  <td>${e.title}</td>
+                  <td>${e.description}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </body>
+      </html>
+    `;
+    const printWindow = window.open("", "_blank");
+    if (printWindow) {
+      printWindow.document.write(printContent);
+      printWindow.document.close();
+      printWindow.print();
+    }
+  };
+
+  const generatePOProjectsPDF = () => {
+    const doc = new jsPDF({ orientation: "landscape" });
+    doc.setFontSize(20);
+    doc.text("P/O Projects Report", 14, 22);
+    doc.setFontSize(10);
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 30);
+    doc.text(`Total P/O Projects: ${poProjects.length}`, 14, 36);
+
+    autoTable(doc, {
+      startY: 42,
+      head: [["#", "P/O Date", "Client", "Product", "Status"]],
+      body: poProjects.map((p, idx) => [idx + 1, p.poDate, p.client, p.product, p.projectStatus]),
+      styles: { fontSize: 9 },
+      headStyles: { fillColor: [139, 195, 74] },
+    });
+
+    doc.save("po-projects-report.pdf");
+    toast.success("P/O Projects PDF downloaded");
+  };
+
+  const printPOProjects = () => {
+    const printContent = `
+      <html>
+        <head>
+          <title>P/O Projects Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            h1 { color: #333; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #333; padding: 8px; text-align: left; }
+            th { background-color: #8bc34a; color: white; }
+            .meta { color: #666; margin-bottom: 10px; }
+          </style>
+        </head>
+        <body>
+          <h1>P/O Projects Report</h1>
+          <p class="meta">Generated on: ${new Date().toLocaleDateString()} | Total P/O Projects: ${poProjects.length}</p>
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>P/O Date</th>
+                <th>Client</th>
+                <th>Product</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${poProjects.map((p, idx) => `
+                <tr>
+                  <td>${idx + 1}</td>
+                  <td>${p.poDate}</td>
+                  <td>${p.client}</td>
+                  <td>${p.product}</td>
+                  <td>${p.projectStatus}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </body>
+      </html>
+    `;
+    const printWindow = window.open("", "_blank");
+    if (printWindow) {
+      printWindow.document.write(printContent);
+      printWindow.document.close();
+      printWindow.print();
+    }
+  };
+
+  const generateApplicationsPDF = () => {
+    const doc = new jsPDF({ orientation: "landscape" });
+    doc.setFontSize(20);
+    doc.text("Job Applications Report", 14, 22);
+    doc.setFontSize(10);
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 30);
+    doc.text(`Total Applications: ${applications.length}`, 14, 36);
+    doc.text(`Pending: ${applications.filter(a => a.status === "pending").length} | Reviewed: ${applications.filter(a => a.status === "reviewed").length} | Shortlisted: ${applications.filter(a => a.status === "shortlisted").length} | Rejected: ${applications.filter(a => a.status === "rejected").length}`, 14, 42);
+
+    autoTable(doc, {
+      startY: 48,
+      head: [["#", "Applicant Name", "Position", "Email", "Phone", "Status", "Applied Date"]],
+      body: applications.map((a, idx) => [
+        idx + 1,
+        a.fullName,
+        a.jobTitle,
+        a.email,
+        a.phone,
+        a.status.charAt(0).toUpperCase() + a.status.slice(1),
+        new Date(a.createdAt).toLocaleDateString(),
+      ]),
+      styles: { fontSize: 9 },
+      headStyles: { fillColor: [139, 195, 74] },
+    });
+
+    doc.save("applications-report.pdf");
+    toast.success("Applications PDF downloaded");
+  };
+
+  const printApplications = () => {
+    const printContent = `
+      <html>
+        <head>
+          <title>Job Applications Report</title>
+          <style>
+            body { font-family: Arial, sans-serif; padding: 20px; }
+            h1 { color: #333; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #333; padding: 8px; text-align: left; }
+            th { background-color: #8bc34a; color: white; }
+            .meta { color: #666; margin-bottom: 10px; }
+            .stats { margin-bottom: 10px; }
+            .stats span { margin-right: 15px; }
+          </style>
+        </head>
+        <body>
+          <h1>Job Applications Report</h1>
+          <p class="meta">Generated on: ${new Date().toLocaleDateString()} | Total Applications: ${applications.length}</p>
+          <p class="stats">
+            <span>Pending: ${applications.filter(a => a.status === "pending").length}</span>
+            <span>Reviewed: ${applications.filter(a => a.status === "reviewed").length}</span>
+            <span>Shortlisted: ${applications.filter(a => a.status === "shortlisted").length}</span>
+            <span>Rejected: ${applications.filter(a => a.status === "rejected").length}</span>
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Applicant Name</th>
+                <th>Position</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Applied Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${applications.map((a, idx) => `
+                <tr>
+                  <td>${idx + 1}</td>
+                  <td>${a.fullName}</td>
+                  <td>${a.jobTitle}</td>
+                  <td>${a.email}</td>
+                  <td>${a.phone}</td>
+                  <td>${a.status.charAt(0).toUpperCase() + a.status.slice(1)}</td>
+                  <td>${new Date(a.createdAt).toLocaleDateString()}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </body>
+      </html>
+    `;
+    const printWindow = window.open("", "_blank");
+    if (printWindow) {
+      printWindow.document.write(printContent);
+      printWindow.document.close();
+      printWindow.print();
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -660,6 +972,25 @@ export default function Admin() {
               </div>
             </div>
             <div className="lg:col-span-2">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold">Projects List</h2>
+                <div className="flex gap-2">
+                  <button
+                    onClick={generateProjectsPDF}
+                    className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition"
+                    title="Download PDF"
+                  >
+                    <Download size={18} />
+                  </button>
+                  <button
+                    onClick={printProjects}
+                    className="p-2 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition"
+                    title="Print Report"
+                  >
+                    <Printer size={18} />
+                  </button>
+                </div>
+              </div>
               <div className="bg-card rounded-xl border border-border overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full">
@@ -753,6 +1084,25 @@ export default function Admin() {
               </div>
             </div>
             <div className="lg:col-span-2">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold">Equipment List</h2>
+                <div className="flex gap-2">
+                  <button
+                    onClick={generateEquipmentPDF}
+                    className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition"
+                    title="Download PDF"
+                  >
+                    <Download size={18} />
+                  </button>
+                  <button
+                    onClick={printEquipment}
+                    className="p-2 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition"
+                    title="Print Report"
+                  >
+                    <Printer size={18} />
+                  </button>
+                </div>
+              </div>
               <div className="grid md:grid-cols-2 gap-6">
                 {equipment.length === 0 ? (
                   <div className="col-span-2 text-center py-16 bg-card rounded-xl border border-border">
@@ -842,6 +1192,25 @@ export default function Admin() {
               </div>
             </div>
             <div className="lg:col-span-2">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold">P/O Projects List</h2>
+                <div className="flex gap-2">
+                  <button
+                    onClick={generatePOProjectsPDF}
+                    className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition"
+                    title="Download PDF"
+                  >
+                    <Download size={18} />
+                  </button>
+                  <button
+                    onClick={printPOProjects}
+                    className="p-2 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition"
+                    title="Print Report"
+                  >
+                    <Printer size={18} />
+                  </button>
+                </div>
+              </div>
               <div className="bg-card rounded-xl border border-border overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full">
@@ -1026,6 +1395,25 @@ export default function Admin() {
 
         {activeTab === "applications" && (
           <div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">Job Applications</h2>
+              <div className="flex gap-2">
+                <button
+                  onClick={generateApplicationsPDF}
+                  className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition"
+                  title="Download PDF"
+                >
+                  <Download size={18} />
+                </button>
+                <button
+                  onClick={printApplications}
+                  className="p-2 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition"
+                  title="Print Report"
+                >
+                  <Printer size={18} />
+                </button>
+              </div>
+            </div>
             {applications.length === 0 ? (
               <div className="text-center py-16 bg-card rounded-xl border border-border">
                 <Users className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
