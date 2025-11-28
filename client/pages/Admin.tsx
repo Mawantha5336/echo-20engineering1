@@ -1069,10 +1069,10 @@ export default function Admin() {
                                 <a
                                   href={application.resume}
                                   download={`CV_${application.fullName.replace(/\s+/g, '_')}.pdf`}
-                                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition text-sm font-medium"
+                                  className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition"
+                                  title="Download CV"
                                 >
-                                  <Download size={14} />
-                                  Download
+                                  <Download size={16} />
                                 </a>
                                 <button
                                   onClick={() => {
@@ -1088,10 +1088,10 @@ export default function Admin() {
                                       `);
                                     }
                                   }}
-                                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition text-sm font-medium"
+                                  className="p-2 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition"
+                                  title="View CV"
                                 >
-                                  <FileText size={14} />
-                                  View
+                                  <FileText size={16} />
                                 </button>
                               </div>
                             ) : (
