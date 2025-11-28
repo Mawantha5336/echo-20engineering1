@@ -14,6 +14,22 @@ This is a complete full-stack application featuring:
 
 ## Recent Changes
 
+### November 28, 2025 - New Landing Page (Home.tsx)
+- Converted index1.html to a React TSX component (Home.tsx)
+- Features animated slideshow banner with 3 slides (auto-advance every 5 seconds)
+- Includes Services section with 3 service cards (Network Infrastructure, Tower Construction, Smart City Solutions)
+- About section with animated image slider
+- Featured Projects showcase section
+- Call-to-action section
+- Uses PageNavigation and PageFooter components for consistent navigation
+- Framer Motion animations throughout
+- All navigation links use React Router's Link component
+
+### November 28, 2025 - Fixed Careers Navigation
+- Updated Careers.tsx to use React Router's Link component instead of HTML anchor tags
+- Navigation now matches all other interfaces with proper routing
+- Added active state highlighting for current page
+
 ### November 28, 2025 - PDF Export and Print Report Functionality
 - Added PDF export and print report functionality to Admin panel
 - Projects tab: Download PDF or print full projects report
