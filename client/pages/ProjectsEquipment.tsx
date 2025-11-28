@@ -127,7 +127,7 @@ export default function ProjectsEquipment() {
                       Install & Maintenance Telecommunications Infrastructure System
                     </a>
                     <a 
-                      href="/echo/Supplying_Testing_Analytical_Instrument.html" 
+                      href="/po-projects" 
                       className="block px-5 py-2.5 text-white transition-all duration-300 hover:bg-[#4CAF50] hover:text-[#030a3a]"
                     >
                       Supplying Testing Analytical Instrument
@@ -199,7 +199,7 @@ export default function ProjectsEquipment() {
                       Install & Maintenance Telecommunications
                     </a>
                     <a 
-                      href="/echo/Supplying_Testing_Analytical_Instrument.html" 
+                      href="/po-projects" 
                       className="block py-2 text-white/80 transition-all duration-300 hover:text-[#4CAF50] text-sm"
                     >
                       Supplying Testing Analytical Instrument
