@@ -495,6 +495,58 @@ export default function POProjectsView() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Footer - same style as ProjectsEquipment */}
+      <footer style={{ backgroundColor: '#030a3a' }} className="border-t border-[#4CAF50]/20 mt-16">
+        <div className="max-w-[1200px] mx-auto px-5 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <img src={logoImage} alt="Eco Engineering Logo" className="h-16 w-auto mb-4" />
+              <p className="text-[#e0e0e0] text-sm leading-relaxed">
+                Innovative engineering solutions with a commitment to sustainability and environmental responsibility.
+              </p>
+              <div className="flex gap-4 mt-4">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#4CAF50] transition-colors duration-300">
+                  <span className="text-white text-sm">f</span>
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#4CAF50] transition-colors duration-300">
+                  <span className="text-white text-sm">t</span>
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#4CAF50] transition-colors duration-300">
+                  <span className="text-white text-sm">in</span>
+                </a>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li><a href="/echo/index1.html" className="text-[#bbbbbb] hover:text-[#4CAF50] transition-colors duration-300 text-sm">Home</a></li>
+                <li><a href="/echo/aboutUs.html" className="text-[#bbbbbb] hover:text-[#4CAF50] transition-colors duration-300 text-sm">About Us</a></li>
+                <li><a href="#" className="text-[#bbbbbb] hover:text-[#4CAF50] transition-colors duration-300 text-sm">Services</a></li>
+                <li><a href="/echo/projects.html" className="text-[#bbbbbb] hover:text-[#4CAF50] transition-colors duration-300 text-sm">Projects</a></li>
+                <li><a href="/echo/contact.html" className="text-[#bbbbbb] hover:text-[#4CAF50] transition-colors duration-300 text-sm">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4">Contact Us</h3>
+              <ul className="space-y-2 text-[#bbbbbb] text-sm">
+                <li className="flex items-center gap-2">
+                  <span>Waliwita Junction, Kaduwela</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span>011 234 5678</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span>ecoengineering@.com</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-[#4CAF50]/20 mt-8 pt-8 text-center">
+            <p className="text-[#bbbbbb]/60 text-sm">&copy; 2023 Eco Engineering. All Rights Reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
