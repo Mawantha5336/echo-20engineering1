@@ -14,6 +14,17 @@ This is a complete full-stack application featuring:
 
 ## Recent Changes
 
+### November 28, 2025 - PDF Export and Print Report Functionality
+- Added PDF export and print report functionality to Admin panel
+- Projects tab: Download PDF or print full projects report
+- Equipment tab: Download PDF or print full equipment report
+- P/O Projects tab: Download PDF or print full P/O projects report
+- Applications tab: Download PDF or print full job applications report
+- Reports include metadata (generated date, total counts, status summaries)
+- Uses jsPDF with autotable for professional PDF generation
+- Print function opens formatted report in new window for browser printing
+- CV buttons in Applications now show only icons (download/view) without text
+
 ### November 27, 2025 - Dark Navy Theme and Footer for Public Interfaces
 - Applied dark navy blue gradient background theme to Projects & Equipment page
 - Applied same dark navy blue theme to P/O Projects page
