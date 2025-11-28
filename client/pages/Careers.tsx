@@ -217,7 +217,7 @@ export default function Careers() {
                       Install & Maintenance Telecommunications Infrastructure System
                     </a>
                     <a 
-                      href="/echo/Supply_Telecommunication_Equipment" 
+                      href="/echo/Supply_Telecommunication_Equipment.html" 
                       className="block px-5 py-2.5 text-white transition-all duration-300 hover:bg-[#4CAF50] hover:text-[#030a3a]"
                     >
                       Supply Telecommunication Equipment
@@ -283,7 +283,7 @@ export default function Careers() {
                       Install & Maintenance Telecommunications
                     </a>
                     <a 
-                      href="/echo/Supply_Telecommunication_Equipment" 
+                      href="/echo/Supply_Telecommunication_Equipment.html" 
                       className="block py-2 text-white/80 transition-all duration-300 hover:text-[#4CAF50] text-sm"
                     >
                       Supply Telecommunication Equipment
