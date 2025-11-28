@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FileText, Loader2, Calendar, Building, Package, CheckCircle, TrendingUp, Sparkles, BarChart3, Wrench, FolderOpen } from "lucide-react";
+import { FileText, Loader2, Calendar, Building, Package, CheckCircle, TrendingUp, Sparkles, BarChart3 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface POProjectData {
@@ -11,20 +11,8 @@ interface POProjectData {
   createdAt: string;
 }
 
-interface EquipmentData {
-  id: string;
-  name: string;
-  category: string;
-  status: string;
-  description: string;
-}
-
-type TabType = "projects" | "equipment";
-
 export default function POProjectsView() {
-  const [activeTab, setActiveTab] = useState<TabType>("projects");
   const [poProjects, setPOProjects] = useState<POProjectData[]>([]);
-  const [equipment, setEquipment] = useState<EquipmentData[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -34,22 +22,13 @@ export default function POProjectsView() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const [projectsResponse, equipmentResponse] = await Promise.all([
-        fetch("/api/po-projects"),
-        fetch("/api/equipment")
-      ]);
-      
-      if (projectsResponse.ok) {
-        const data = await projectsResponse.json();
+      const response = await fetch("/api/po-projects");
+      if (response.ok) {
+        const data = await response.json();
         setPOProjects(data);
       }
-      
-      if (equipmentResponse.ok) {
-        const data = await equipmentResponse.json();
-        setEquipment(data);
-      }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching P/O projects:", error);
     } finally {
       setLoading(false);
     }
@@ -106,7 +85,7 @@ export default function POProjectsView() {
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[80px]" />
       </div>
 
-      <div className="relative h-[300px] md:h-[350px] overflow-hidden">
+      <div className="relative h-[400px] md:h-[500px] overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
           style={{
@@ -168,106 +147,73 @@ export default function POProjectsView() {
         
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
       </div>
-
-      {/* Tab Navigation */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 relative z-10">
-        <div className="flex justify-center">
-          <div className="inline-flex rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-1.5">
-            <button
-              onClick={() => setActiveTab("projects")}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                activeTab === "projects"
-                  ? "bg-gradient-to-r from-primary to-yellow-500 text-black shadow-lg shadow-primary/25"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
-              }`}
+      
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="relative z-10 -mt-16"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <motion.div 
+              whileHover={{ scale: 1.02, y: -2 }}
+              className="p-5 rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl"
             >
-              <FolderOpen className="w-4 h-4" />
-              Projects
-            </button>
-            <button
-              onClick={() => setActiveTab("equipment")}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                activeTab === "equipment"
-                  ? "bg-gradient-to-r from-primary to-yellow-500 text-black shadow-lg shadow-primary/25"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
-              }`}
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-yellow-500 flex items-center justify-center">
+                  <BarChart3 className="w-5 h-5 text-black" />
+                </div>
+                <span className="text-gray-400 text-sm">Total Projects</span>
+              </div>
+              <p className="text-3xl font-bold text-white">{poProjects.length}</p>
+            </motion.div>
+            
+            <motion.div 
+              whileHover={{ scale: 1.02, y: -2 }}
+              className="p-5 rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 to-transparent backdrop-blur-xl"
             >
-              <Wrench className="w-4 h-4" />
-              Equipment
-            </button>
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
+                  <CheckCircle className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-gray-400 text-sm">Completed</span>
+              </div>
+              <p className="text-3xl font-bold text-emerald-400">{stats.completed}</p>
+            </motion.div>
+            
+            <motion.div 
+              whileHover={{ scale: 1.02, y: -2 }}
+              className="p-5 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-transparent backdrop-blur-xl"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-gray-400 text-sm">In Progress</span>
+              </div>
+              <p className="text-3xl font-bold text-blue-400">{stats.inProgress}</p>
+            </motion.div>
+            
+            <motion.div 
+              whileHover={{ scale: 1.02, y: -2 }}
+              className="p-5 rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 to-transparent backdrop-blur-xl"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
+                  <Package className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-gray-400 text-sm">Pending</span>
+              </div>
+              <p className="text-3xl font-bold text-amber-400">{stats.pending}</p>
+            </motion.div>
           </div>
         </div>
-      </div>
-      
-      {/* Projects Tab Content */}
-      {activeTab === "projects" && (
-        <>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="relative z-10"
-          >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <motion.div 
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  className="p-5 rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-yellow-500 flex items-center justify-center">
-                      <BarChart3 className="w-5 h-5 text-black" />
-                    </div>
-                    <span className="text-gray-400 text-sm">Total Projects</span>
-                  </div>
-                  <p className="text-3xl font-bold text-white">{poProjects.length}</p>
-                </motion.div>
-                
-                <motion.div 
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  className="p-5 rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 to-transparent backdrop-blur-xl"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
-                      <CheckCircle className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-gray-400 text-sm">Completed</span>
-                  </div>
-                  <p className="text-3xl font-bold text-emerald-400">{stats.completed}</p>
-                </motion.div>
-                
-                <motion.div 
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  className="p-5 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-transparent backdrop-blur-xl"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                      <TrendingUp className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-gray-400 text-sm">In Progress</span>
-                  </div>
-                  <p className="text-3xl font-bold text-blue-400">{stats.inProgress}</p>
-                </motion.div>
-                
-                <motion.div 
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  className="p-5 rounded-2xl border border-amber-500/20 bg-gradient-to-br from-amber-500/10 to-transparent backdrop-blur-xl"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
-                      <Package className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-gray-400 text-sm">Pending</span>
-                  </div>
-                  <p className="text-3xl font-bold text-amber-400">{stats.pending}</p>
-                </motion.div>
-              </div>
-            </div>
-          </motion.div>
+      </motion.div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-            <AnimatePresence mode="wait">
-              {poProjects.length === 0 ? (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
+        <AnimatePresence mode="wait">
+          {poProjects.length === 0 ? (
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -409,131 +355,8 @@ export default function POProjectsView() {
               </div>
             </>
           )}
-            </AnimatePresence>
-          </div>
-        </>
-      )}
-
-      {/* Equipment Tab Content */}
-      {activeTab === "equipment" && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-8"
-          >
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-              <motion.div 
-                whileHover={{ scale: 1.02, y: -2 }}
-                className="p-5 rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-yellow-500 flex items-center justify-center">
-                    <Wrench className="w-5 h-5 text-black" />
-                  </div>
-                  <span className="text-gray-400 text-sm">Total Equipment</span>
-                </div>
-                <p className="text-3xl font-bold text-white">{equipment.length}</p>
-              </motion.div>
-              
-              <motion.div 
-                whileHover={{ scale: 1.02, y: -2 }}
-                className="p-5 rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 to-transparent backdrop-blur-xl"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center">
-                    <CheckCircle className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-gray-400 text-sm">Available</span>
-                </div>
-                <p className="text-3xl font-bold text-emerald-400">
-                  {equipment.filter(e => e.status.toLowerCase().includes("available")).length}
-                </p>
-              </motion.div>
-              
-              <motion.div 
-                whileHover={{ scale: 1.02, y: -2 }}
-                className="p-5 rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/10 to-transparent backdrop-blur-xl"
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                    <TrendingUp className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-gray-400 text-sm">In Use</span>
-                </div>
-                <p className="text-3xl font-bold text-blue-400">
-                  {equipment.filter(e => e.status.toLowerCase().includes("use")).length}
-                </p>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          <AnimatePresence mode="wait">
-            {equipment.length === 0 ? (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-20 rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-xl relative overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
-                <div className="relative z-10">
-                  <div className="w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                    <Wrench className="w-12 h-12 text-primary" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-3 text-white">No Equipment Yet</h3>
-                  <p className="text-gray-400 max-w-md mx-auto">
-                    Equipment will appear here once added through the admin panel.
-                  </p>
-                </div>
-              </motion.div>
-            ) : (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {equipment.map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group rounded-2xl border border-white/10 p-6 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-xl hover:border-primary/50 transition-all duration-300"
-                  >
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">
-                        <Wrench className="w-6 h-6 text-primary" />
-                      </div>
-                      <span
-                        className={`px-3 py-1.5 rounded-full text-xs border ${
-                          item.status.toLowerCase().includes("available")
-                            ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/30"
-                            : item.status.toLowerCase().includes("use")
-                            ? "bg-blue-500/10 text-blue-400 border-blue-500/30"
-                            : "bg-amber-500/10 text-amber-400 border-amber-500/30"
-                        }`}
-                      >
-                        {item.status}
-                      </span>
-                    </div>
-                    
-                    <h3 className="font-bold text-lg text-white group-hover:text-primary transition-colors mb-2">
-                      {item.name}
-                    </h3>
-                    
-                    <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
-                      <Package size={14} />
-                      <span>{item.category}</span>
-                    </div>
-                    
-                    {item.description && (
-                      <p className="text-sm text-gray-500 line-clamp-2">
-                        {item.description}
-                      </p>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
-            )}
-          </AnimatePresence>
-        </div>
-      )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
