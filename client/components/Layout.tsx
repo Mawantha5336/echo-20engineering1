@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut, LogIn } from "lucide-react";
+import { Menu, X, LogOut, LogIn, Eye } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -40,10 +40,10 @@ export default function Layout() {
               <a href="/echo/index1.html">
                 <Button
                   variant="outline"
-                  size="sm"
-                  className="text-xs px-3 py-1"
+                  size="icon"
+                  className="h-8 w-8"
                 >
-                  Contact
+                  <Eye size={16} />
                 </Button>
               </a>
               {isAuthenticated ? (
@@ -102,10 +102,10 @@ export default function Layout() {
               <a href="/echo/index1.html" onClick={() => setMenuOpen(false)}>
                 <Button
                   variant="outline"
-                  size="sm"
-                  className="text-xs px-3 py-1 w-fit"
+                  size="icon"
+                  className="h-8 w-8"
                 >
-                  Contact
+                  <Eye size={16} />
                 </Button>
               </a>
               {isAuthenticated ? (
