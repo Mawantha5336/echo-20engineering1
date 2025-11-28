@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
+import logoImage from "@assets/4_1764310807924.png";
 
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,14 +23,11 @@ export default function Layout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <span className="text-sm font-bold text-primary-foreground">
-                  EC
-                </span>
-              </div>
-              <span className="font-bold text-lg hidden sm:inline">
-                Eco Engineering
-              </span>
+              <img 
+                src={logoImage} 
+                alt="Eco Engineers Logo" 
+                className="h-10 w-auto object-contain"
+              />
             </Link>
 
             <nav className="hidden md:flex items-center gap-6">

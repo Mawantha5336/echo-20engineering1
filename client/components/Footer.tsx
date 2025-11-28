@@ -1,5 +1,6 @@
 import { Facebook, Twitter, Linkedin, Instagram, MapPin, Phone, Mail, ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
+import logoImage from "@assets/4_1764310807924.png";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -12,10 +13,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">EC</span>
-              </div>
-              <span className="text-xl font-bold text-white">Eco</span>
+              <img 
+                src={logoImage} 
+                alt="Eco Engineers Logo" 
+                className="h-14 w-auto object-contain"
+              />
             </div>
             <p className="text-gray-400 text-sm mb-6 leading-relaxed">
               Innovative engineering solutions with a commitment to sustainability and environmental responsibility.
