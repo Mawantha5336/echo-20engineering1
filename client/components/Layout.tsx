@@ -26,7 +26,7 @@ export default function Layout() {
               <img 
                 src={logoImage} 
                 alt="Eco Engineers Logo" 
-                className="h-10 w-auto object-contain"
+                className="h-20 w-auto object-contain"
               />
             </Link>
 
