@@ -3,33 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Eco Engineering</title>
-    <meta name="description" content="Get in touch with Eco Engineering for sustainable telecommunications solutions.">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>Supply Telecommunication Equipment | Eco Engineering</title>
+    <meta name="description" content="Eco Engineering supplies comprehensive telecommunication equipment for Huawei and ZTE projects.">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/button-fix.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Additional styles for centered contact info */
-        .contact-info-full {
-            width: 100%;
-            text-align: center;
-            padding: 30px 0;
+        /* Hero Banner Styles */
+        .telecom-hero {
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, rgba(255, 140, 50, 0.3), rgba(100, 50, 80, 0.5)), 
+                        url('images/telecom-equipment-hero.jpg') center center / cover no-repeat;
+            padding-top: 80px;
         }
-        
-        .contact-info-full .info-card {
+
+        .telecom-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10, 22, 40, 0.4) 0%, rgba(10, 22, 40, 0.7) 100%);
+        }
+
+        .telecom-hero .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .telecom-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .telecom-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Projects Section */
+        .projects-equipment-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #0a1628 0%, #0d1f3c 100%);
+            position: relative;
+        }
+
+        .projects-equipment-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(76, 175, 80, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 188, 212, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            position: relative;
             display: inline-block;
-            margin: 15px 30px;
-            vertical-align: top;
-            max-width: 250px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #4CAF50, #00bcd4);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .equipment-column {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .equipment-column:hover {
+            border-color: rgba(76, 175, 80, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .equipment-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .equipment-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+        }
+
+        .equipment-list li:last-child {
+            border-bottom: none;
+        }
+
+        .equipment-list li:hover {
+            color: #ffffff;
+            padding-left: 10px;
+        }
+
+        .equipment-list li::before {
+            content: '\f0da';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #4CAF50;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .equipment-list li:hover::before {
+            color: #00bcd4;
+        }
+
+        /* Map Section */
+        .map-section-unique {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #0d1f3c 0%, #030a3a 100%);
+        }
+
+        .map-section-unique h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 40px;
+        }
+
+        .map-container-unique {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .map-container-unique iframe {
+            width: 100%;
+            height: 450px;
+            display: block;
+        }
+
+        /* Contact Info Section */
+        .contact-info-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #030a3a 0%, #0c0250 100%);
+        }
+
+        .contact-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .contact-card-unique {
+            text-align: center;
+            padding: 40px 25px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .contact-card-unique:hover {
+            border-color: rgba(76, 175, 80, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-card-unique i {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .contact-card-unique h3 {
+            color: #ffffff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-card-unique p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .telecom-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .telecom-hero {
+                min-height: 400px;
+            }
+            
+            .telecom-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
     <header class="header">
         <div class="container">
             <div class="logo">
@@ -40,18 +288,17 @@
             <nav class="navbar">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="aboutUs.html">About Us</a></li>
                     <li class="dropdown">
-                        <a href="services.html" class="dropbtn">Services <i class="fas fa-chevron-down"></i></a>
-                        
+                        <a href="#" class="dropbtn active">Services <i class="fas fa-chevron-down"></i></a>
                         <div class="dropdown-content">
                             <a href="telecommunication.html">Install & Maintenance Telecommunications Infrastructure System</a>
                             <a href="Supplying_Testing_Analytical_Instrument.html">Supplying Testing Analytical Instrument</a>
-                            <a href="Supply_Telecommunication_Equipment">Supply Telecommunication Equipment</a>
+                            <a href="Supply_Telecommunication_Equipment.html" class="active">Supply Telecommunication Equipment</a>
                         </div>
                     </li>
                     <li><a href="projects.html">Projects</a></li>
-                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
             <div class="mobile-menu">
@@ -60,35 +307,88 @@
         </div>
     </header>
 
-    <!-- Contact Banner Section -->
-    <section class="contact-banner">
+    <section class="telecom-hero">
         <div class="container">
-            <h1>Contact Us</h1>
-            <p>We'd love to hear from you. Get in touch with our team for inquiries or collaborations.</p>
+            <h1>Supply Telecommunication Equipment</h1>
+            <p>Comprehensive telecommunications equipment solutions for infrastructure projects across Sri Lanka</p>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact-section">
+    <section class="projects-equipment-section">
         <div class="container">
-            <div class="contact-info-full">
-                <h2>Our Office</h2>
-                <div class="info-card">
+            <div class="section-header">
+                <h2>Huawei and ZTE Projects</h2>
+                <p>We supply a complete range of telecommunications equipment and accessories for major projects</p>
+            </div>
+            
+            <div class="equipment-grid">
+                <div class="equipment-column">
+                    <ul class="equipment-list">
+                        <li>All Kinds of Fiber Cables</li>
+                        <li>HDPE Silicon Duct Pipes All Sizes</li>
+                        <li>Conduit Metal Shielded 8/12/24/48/64/96/128/256 Core, Fiber Optic Cables</li>
+                        <li>OM2/3/4, SM & MM Patch Cords, & CPRI Cables</li>
+                        <li>Ariel & UG Fiber Optic Cables</li>
+                        <li>Indoor/Outdoor ODFs all sizes of any Terminal Configurations</li>
+                        <li>Fiber Optic Transmitters/Receivers</li>
+                        <li>SFP Transceiver Modules All types up to 10/100/200/400G</li>
+                        <li>Media Converters</li>
+                        <li>Optical Sources & Testing Equipments</li>
+                        <li>Outdoor Fiber Optic Clamps</li>
+                    </ul>
+                </div>
+
+                <div class="equipment-column">
+                    <ul class="equipment-list">
+                        <li>Repeaters Full Turn Key Solutions</li>
+                        <li>Antennas (Indoor / Outdoor) All Bands & Beams & Ports (RFS)</li>
+                        <li>Splitters / Combiners /Attenuators/and Accessories</li>
+                        <li>All Types of R. F. & I. F. Cables, Connectors, Clamps, Grounding Kits etc.</li>
+                        <li>All Kinds of Tapes: Cold Shrink Tubes/Mastic/Insulating/Vinal</li>
+                        <li>Cable Ties All Types & Sizes</li>
+                        <li>G. I. Flexible Conduits all sizes</li>
+                        <li>PVC Conduit, Flexible & Accessories</li>
+                        <li>Fabrication of all types of Brackets, Cable Ladders & Stripes</li>
+                    </ul>
+                </div>
+
+                <div class="equipment-column">
+                    <ul class="equipment-list">
+                        <li>All Electrical Items : SPD's, MCBs, MCCBs, RCCBs, needed for Sites</li>
+                        <li>RRU Power Cables</li>
+                        <li>Network Cables (Indoor & Outdoor)</li>
+                        <li>All Battery Types (VRLA, AGM, Li-ion)</li>
+                        <li>UPS systems</li>
+                        <li>Rectifiers</li>
+                        <li>Invertors</li>
+                        <li>Generators & Spares up to 2000kVA</li>
+                        <li>Server Racks</li>
+                        <li>19" Racks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-info-section">
+        <div class="container">
+            <div class="contact-cards-grid">
+                <div class="contact-card-unique">
                     <i class="fas fa-map-marker-alt"></i>
                     <h3>Address</h3>
                     <p>Weliwita Junction, Kaduwela, Sri Lanka</p>
                 </div>
-                <div class="info-card">
+                <div class="contact-card-unique">
                     <i class="fas fa-phone"></i>
                     <h3>Phone</h3>
                     <p>+94 11 234 5678</p>
                 </div>
-                <div class="info-card">
+                <div class="contact-card-unique">
                     <i class="fas fa-envelope"></i>
                     <h3>Email</h3>
                     <p>info@ecoengineering.com</p>
                 </div>
-                <div class="info-card">
+                <div class="contact-card-unique">
                     <i class="fas fa-clock"></i>
                     <h3>Working Hours</h3>
                     <p>Monday - Friday: 8:30 AM - 5:30 PM</p>
@@ -97,18 +397,16 @@
         </div>
     </section>
 
-    <!-- Map Section -->
-    <section class="map-section">
+    <section class="map-section-unique">
         <div class="container">
             <h2>Find Us on Map</h2>
-            <div class="map-container">
+            <div class="map-container-unique">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.207664062502!2d79.960278!3d6.933472!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTYnMDAuNSJOIDc5wrA1Nyc0My44IkU!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" 
                         width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -126,8 +424,7 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Services</a></li>
+                        <li><a href="aboutUs.html">About Us</a></li>
                         <li><a href="projects.html">Projects</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -136,9 +433,9 @@
                 <div class="footer-col">
                     <h3>Contact Us</h3>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> Waliwita Junction,Kaduwela</li>
-                        <li><i class="fas fa-phone"></i> 011 234 5678</li>
-                        <li><i class="fas fa-envelope"></i> ecoengineering@.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Waliwita Junction, Kaduwela</li>
+                        <li><i class="fas fa-phone"></i> +94 11 234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@ecoengineering.com</li>
                     </ul>
                 </div>
             </div>
