@@ -34,15 +34,9 @@ export default function Layout() {
               <Link to="/" className="hover:text-primary transition">
                 Home
               </Link>
-              <Link to="/projects-equipment" className="hover:text-primary transition">
+              <a href="/echo/index1.html" className="hover:text-primary transition">
                 Projects & Equipment
-              </Link>
-              <Link to="/po-projects" className="hover:text-primary transition">
-                P/O Projects
-              </Link>
-              <Link to="/careers" className="hover:text-primary transition">
-                Careers
-              </Link>
+              </a>
               <Link to="/admin" className="hover:text-primary transition">
                 Admin Panel
               </Link>
@@ -92,27 +86,13 @@ export default function Layout() {
               >
                 Home
               </Link>
-              <Link
-                to="/projects-equipment"
+              <a
+                href="/echo/index1.html"
                 className="block px-2 py-2 hover:bg-muted rounded transition"
                 onClick={() => setMenuOpen(false)}
               >
                 Projects & Equipment
-              </Link>
-              <Link
-                to="/po-projects"
-                className="block px-2 py-2 hover:bg-muted rounded transition"
-                onClick={() => setMenuOpen(false)}
-              >
-                P/O Projects
-              </Link>
-              <Link
-                to="/careers"
-                className="block px-2 py-2 hover:bg-muted rounded transition"
-                onClick={() => setMenuOpen(false)}
-              >
-                Careers
-              </Link>
+              </a>
               <Link
                 to="/admin"
                 className="block px-2 py-2 hover:bg-muted rounded transition"

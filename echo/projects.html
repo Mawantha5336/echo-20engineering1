@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects | Eco Engineering</title>
+    <meta name="description" content="Explore Eco Engineering's portfolio of sustainable projects in telecommunications, energy, and construction.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/button-fix.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/4.png" alt="Eco Engineering Logo" class="logo-img   ">
+
+                </a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="services.html" class="dropbtn">Services <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="telecommunication.html">Install & Maintenance Telecommunications Infrastructure System</a>
+                            <a href="Supplying_Testing_Analytical_Instrument.html">Supplying Testing Analytical Instrument</a>
+                            <a href="Supply_Telecommunication_Equipment">Supply Telecommunication Equipment</a>
+                        </div>
+                    </li>
+                    <li><a href="projects.html" class="active">Projects</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Projects Banner Section -->
+    <section class="projects-banner">
+        <div class="container">
+            <h1>Our Projects</h1>
+            <p>Showcasing our sustainable engineering solutions in action</p>
+        </div>
+    </section>
+
+    <!-- Projects Filter -->
+    <section class="projects-filter">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="telecom">Telecommunications</button>
+                <button class="filter-btn" data-filter="energy">Energy Solutions</button>
+                <button class="filter-btn" data-filter="construction">Construction</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid -->
+    <section class="projects-grid-section">
+        <div class="container">
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-category="telecom">
+                    <div class="project-image">
+                        <img src="images/7.jpg" alt="Urban 5G Network">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <h3>Urban 5G Network</h3>
+                                <p>Sustainable 5G deployment in Colombo</p>
+                                <a href="project-details.html" class="btn-view">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Telecommunications</span>
+                        <h3>Colombo 5G Network</h3>
+                        <p>Deployed energy-efficient 5G infrastructure across Colombo with minimal environmental impact.</p>
+                        <div class="project-stats">
+                            <span><i class="fas fa-calendar-alt"></i> 6 Months</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Colombo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-category="energy">
+                    <div class="project-image">
+                        <img src="images/6.jpeg" alt="Solar Farm">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <h3>Solar Farm</h3>
+                                <p>10MW renewable energy solution</p>
+                                <a href="project-details.html" class="btn-view">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Energy Solutions</span>
+                        <h3>Hambantota Solar Farm</h3>
+                        <p>Designed and installed a 10MW solar farm providing clean energy to 8,000 homes.</p>
+                        <div class="project-stats">
+                            <span><i class="fas fa-calendar-alt"></i> 8 Months</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Hambantota</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-category="construction">
+                    <div class="project-image">
+                        <img src="images/4.jpg" alt="Green Office Complex">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <h3>Green Office Complex</h3>
+                                <p>LEED Platinum certified building</p>
+                                <a href="project-details.html" class="btn-view">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Construction</span>
+                        <h3>Colombo Green Tower</h3>
+                        <p>Sustainable office complex with energy-efficient systems and recycled materials.</p>
+                        <div class="project-stats">
+                            <span><i class="fas fa-calendar-alt"></i> 14 Months</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Colombo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-category="telecom">
+                    <div class="project-image">
+                        <img src="images/1.jpg" alt="Rural Connectivity">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <h3>Rural Connectivity</h3>
+                                <p>Expanding telecom access</p>
+                                <a href="project-details.html" class="btn-view">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Telecommunications</span>
+                        <h3>Rural Network Expansion</h3>
+                        <p>Extended telecom access to remote areas with solar-powered towers.</p>
+                        <div class="project-stats">
+                            <span><i class="fas fa-calendar-alt"></i> 5 Months</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Anuradhapura</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card" data-category="energy">
+                    <div class="project-image">
+                        <img src="images/2.jpg" alt="Wind Farm">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <h3>Wind Farm</h3>
+                                <p>Clean energy generation</p>
+                                <a href="project-details.html" class="btn-view">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Energy Solutions</span>
+                        <h3>Mannar Wind Farm</h3>
+                        <p>15MW wind energy project providing sustainable power to the region.</p>
+                        <div class="project-stats">
+                            <span><i class="fas fa-calendar-alt"></i> 10 Months</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Mannar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card" data-category="construction">
+                    <div class="project-image">
+                        <img src="images/2.jpg" alt="Eco Resort">
+                        <div class="project-overlay">
+                            <div class="overlay-content">
+                                <h3>Eco Resort</h3>
+                                <p>Sustainable tourism development</p>
+                                <a href="project-details.html" class="btn-view">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Construction</span>
+                        <h3>Southern Eco Resort</h3>
+                        <p>Designed and built a sustainable resort with minimal environmental impact.</p>
+                        <div class="project-stats">
+                            <span><i class="fas fa-calendar-alt"></i> 12 Months</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Galle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="load-more">
+                <button id="loadMore" class="btn">Load More Projects</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Stats -->
+    <section class="project-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>150+</h3>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat-card">
+                    <h3>25+</h3>
+                    <p>Cities Covered</p>
+                </div>
+                <div class="stat-card">
+                    <h3>50MW</h3>
+                    <p>Renewable Energy Installed</p>
+                </div>
+                <div class="stat-card">
+                    <h3>100%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="projects-cta">
+        <div class="container">
+            <h2>Have a Project in Mind?</h2>
+            <p>Let's discuss how we can bring sustainable engineering solutions to your next project.</p>
+            <a href="contact.html" class="btn">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="images/4.png" alt="Eco Engineering Logo" class="footer-logo">
+                    <p>Innovative engineering solutions with a commitment to sustainability and environmental responsibility.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Waliwita Junction,Kaduwela</li>
+                        <li><i class="fas fa-phone"></i> 011 234 5678</li>
+                        <li><i class="fas fa-envelope"></i> ecoengineering@.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Eco Engineering. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/projects.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/advanced-features.js"></script>
+</body>
+</html>

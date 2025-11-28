@@ -1,0 +1,408 @@
+/* ========================================
+   COMPREHENSIVE TEXT VISIBILITY FIX
+   Applied to entire website
+   ======================================== */
+
+/* Force dark background on body */
+body {
+    background-color: #030a3a !important;
+    color: #ffffff !important;
+}
+
+/* All main sections get dark background */
+section {
+    background-color: #030a3a !important;
+}
+
+/* Alternating section backgrounds for visual variety */
+section:nth-child(even) {
+    background-color: #0c2049 !important;
+}
+
+/* Services Section - CRITICAL FIX */
+.telecom-services {
+    background-color: #030a3a !important;
+    padding: 100px 0 !important;
+}
+
+/* Section Titles - Make them VERY visible */
+.section-title h2 {
+    color: #ffffff !important;
+    font-size: 42px !important;
+    font-weight: 700 !important;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8), 
+                 0 0 30px rgba(76, 175, 80, 0.4) !important;
+    margin-bottom: 20px !important;
+    letter-spacing: 0.5px !important;
+}
+
+.section-title p {
+    color: #e8e8e8 !important;
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+    line-height: 1.8 !important;
+}
+
+/* All headings - crystal clear */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8),
+                 0 0 20px rgba(76, 175, 80, 0.3) !important;
+    font-weight: 600 !important;
+}
+
+/* All paragraph text */
+p {
+    color: #e8e8e8 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+    line-height: 1.9 !important;
+    font-size: 16px !important;
+}
+
+/* List items */
+li {
+    color: #e8e8e8 !important;
+}
+
+/* Service Cards */
+.service-card {
+    background: #0c2049 !important;
+    border: 2px solid #4CAF50 !important;
+}
+
+.service-card h3 {
+    color: #ffffff !important;
+    font-size: 24px !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+.service-card p {
+    color: #d0d0d0 !important;
+    font-size: 16px !important;
+}
+
+/* Project Cards */
+.project-card {
+    background: #0c2049 !important;
+}
+
+.project-info h3 {
+    color: #ffffff !important;
+    font-size: 24px !important;
+}
+
+.project-info p {
+    color: #d0d0d0 !important;
+}
+
+/* About Section */
+.about-telecom {
+    background-color: #0c2049 !important;
+    padding: 100px 0 !important;
+}
+
+.about-content h2 {
+    color: #ffffff !important;
+    font-size: 38px !important;
+}
+
+.about-content p {
+    color: #d0d0d0 !important;
+    font-size: 17px !important;
+}
+
+.about-content ul li {
+    color: #e8e8e8 !important;
+    font-size: 16px !important;
+}
+
+/* Projects Section */
+.telecom-projects {
+    background-color: #030a3a !important;
+    padding: 100px 0 !important;
+}
+
+/* CTA Section */
+.telecom-cta {
+    background: linear-gradient(135deg, #030a3a 0%, #0c2049 100%) !important;
+}
+
+.telecom-cta h2 {
+    color: #ffffff !important;
+    font-size: 40px !important;
+}
+
+.telecom-cta p {
+    color: #e8e8e8 !important;
+    font-size: 20px !important;
+}
+
+/* Banner Sections */
+.telecom-banner,
+.contact-banner,
+.about-banner,
+.projects-banner,
+.services-banner {
+    background-color: #030a3a !important;
+    padding: 150px 0 100px !important;
+}
+
+.telecom-banner h1,
+.contact-banner h1,
+.about-banner h1,
+.projects-banner h1,
+.services-banner h1 {
+    color: #ffffff !important;
+    font-size: 48px !important;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.9),
+                 0 0 40px rgba(76, 175, 80, 0.5) !important;
+}
+
+.telecom-banner p,
+.contact-banner p,
+.about-banner p,
+.projects-banner p,
+.services-banner p {
+    color: #e8e8e8 !important;
+    font-size: 22px !important;
+}
+
+/* Slide Content */
+.slide-content h1 {
+    color: #ffffff !important;
+    font-size: 52px !important;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 1),
+                 0 0 50px rgba(76, 175, 80, 0.6) !important;
+}
+
+.slide-content p {
+    color: #ffffff !important;
+    font-size: 24px !important;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: #030a3a !important;
+    padding: 80px 0 !important;
+}
+
+.contact-info h2,
+.contact-form h2 {
+    color: #ffffff !important;
+    font-size: 32px !important;
+}
+
+.info-card h3 {
+    color: #ffffff !important;
+    font-size: 20px !important;
+}
+
+.info-card p {
+    color: #e0e0e0 !important;
+    font-size: 16px !important;
+}
+
+/* Footer */
+.footer {
+    background-color: #020820 !important;
+}
+
+.footer h3 {
+    color: #ffffff !important;
+}
+
+.footer p,
+.footer li,
+.footer a {
+    color: #d0d0d0 !important;
+}
+
+.footer-bottom p {
+    color: #c0c0c0 !important;
+}
+
+/* Team Members */
+.team-section {
+    background-color: #030a3a !important;
+    padding: 80px 0 !important;
+}
+
+.team-member h3 {
+    color: #ffffff !important;
+    font-size: 22px !important;
+}
+
+.team-member p {
+    color: #d0d0d0 !important;
+}
+
+/* Milestones */
+.milestones {
+    background-color: #0c2049 !important;
+}
+
+.milestone-card h4 {
+    color: #4CAF50 !important;
+    font-size: 48px !important;
+    text-shadow: 0 0 30px rgba(76, 175, 80, 0.6) !important;
+}
+
+.milestone-card p {
+    color: #ffffff !important;
+    font-size: 18px !important;
+}
+
+/* Feature Cards */
+.feature-card {
+    background: #0c2049 !important;
+}
+
+.feature-card h4 {
+    color: #ffffff !important;
+    font-size: 22px !important;
+}
+
+.feature-card p {
+    color: #d0d0d0 !important;
+}
+
+/* Story Section */
+.our-story {
+    background-color: #030a3a !important;
+    padding: 80px 0 !important;
+}
+
+.story-text h3 {
+    color: #ffffff !important;
+    font-size: 32px !important;
+}
+
+.story-text p {
+    color: #d0d0d0 !important;
+    font-size: 17px !important;
+}
+
+/* Intro Sections */
+.about-intro,
+.service-intro,
+.energy-intro,
+.construction-intro {
+    background-color: #0c2049 !important;
+}
+
+.intro-content h2,
+.service-intro-content h2,
+.energy-intro-content h2,
+.construction-intro-content h2 {
+    color: #ffffff !important;
+    font-size: 40px !important;
+}
+
+.intro-content p,
+.service-intro-content p,
+.energy-intro-content p,
+.construction-intro-content p {
+    color: #d0d0d0 !important;
+    font-size: 18px !important;
+}
+
+/* Service Details */
+.service-details {
+    background-color: #030a3a !important;
+}
+
+.service-details h3 {
+    color: #ffffff !important;
+    font-size: 34px !important;
+}
+
+.service-details p,
+.service-details li {
+    color: #d0d0d0 !important;
+    font-size: 17px !important;
+}
+
+/* Projects Filter */
+.projects-filter {
+    background: #0c2049 !important;
+}
+
+/* Add strong contrast everywhere */
+* {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Make sure all backgrounds are dark */
+.container {
+    background: transparent !important;
+}
+
+/* Override any light backgrounds */
+[style*="background: #f"] {
+    background: #030a3a !important;
+}
+
+[style*="background-color: #f"] {
+    background-color: #030a3a !important;
+}
+
+/* Enhanced readability for all text */
+span, label, strong, em, small {
+    color: #e8e8e8 !important;
+}
+
+/* Links */
+a {
+    color: #4CAF50 !important;
+}
+
+a:hover {
+    color: #66BB6A !important;
+}
+
+/* Input placeholders */
+::placeholder {
+    color: #999999 !important;
+    opacity: 1 !important;
+}
+
+:-ms-input-placeholder {
+    color: #999999 !important;
+}
+
+::-ms-input-placeholder {
+    color: #999999 !important;
+}
+
+/* Ensure no white/light sections */
+.white-bg,
+.light-bg,
+.bg-light {
+    background-color: #030a3a !important;
+}
+
+/* Mobile menu text */
+.navbar ul li a {
+    color: #ffffff !important;
+    font-size: 16px !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Breadcrumbs if any */
+.breadcrumb li {
+    color: #d0d0d0 !important;
+}
+
+/* Make absolutely sure section titles are visible */
+#services h2,
+#projects h2,
+.services-grid + .section-title h2 {
+    color: #ffffff !important;
+    background: rgba(3, 10, 58, 0.8) !important;
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    display: inline-block !important;
+}
