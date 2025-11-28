@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
-import logoImage from "@assets/4_1764310807924.png";
+import logoImage from "@assets/echo logo_1764343027663.png";
 
 export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
