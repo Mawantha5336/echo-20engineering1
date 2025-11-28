@@ -34,9 +34,6 @@ export default function Layout() {
               <Link to="/" className="hover:text-primary transition">
                 Home
               </Link>
-              <Link to="/po-projects" className="hover:text-primary transition">
-                P/O Projects
-              </Link>
               <Link to="/careers" className="hover:text-primary transition">
                 Careers
               </Link>
@@ -97,13 +94,6 @@ export default function Layout() {
                 onClick={() => setMenuOpen(false)}
               >
                 Home
-              </Link>
-              <Link
-                to="/po-projects"
-                className="block px-2 py-2 hover:bg-muted rounded transition"
-                onClick={() => setMenuOpen(false)}
-              >
-                P/O Projects
               </Link>
               <Link
                 to="/careers"
