@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { Menu, X, LogOut, LogIn, Eye } from "lucide-react";
+import { Menu, X, LogOut, LogIn } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -31,21 +31,9 @@ export default function Layout() {
             </Link>
 
             <nav className="hidden md:flex items-center gap-6">
-              <Link to="/" className="hover:text-primary transition">
-                Home
-              </Link>
               <Link to="/admin" className="hover:text-primary transition">
                 Admin Panel
               </Link>
-              <a href="/echo/index1.html">
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8"
-                >
-                  <Eye size={16} />
-                </Button>
-              </a>
               {isAuthenticated ? (
                 <div className="flex items-center gap-4">
                   <span className="text-sm text-muted-foreground">
@@ -86,28 +74,12 @@ export default function Layout() {
           {menuOpen && (
             <nav className="md:hidden pb-4 flex flex-col gap-3 border-t border-border pt-4">
               <Link
-                to="/"
-                className="block px-2 py-2 hover:bg-muted rounded transition"
-                onClick={() => setMenuOpen(false)}
-              >
-                Home
-              </Link>
-              <Link
                 to="/admin"
                 className="block px-2 py-2 hover:bg-muted rounded transition"
                 onClick={() => setMenuOpen(false)}
               >
                 Admin Panel
               </Link>
-              <a href="/echo/index1.html" onClick={() => setMenuOpen(false)}>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="h-8 w-8"
-                >
-                  <Eye size={16} />
-                </Button>
-              </a>
               {isAuthenticated ? (
                 <>
                   <div className="px-2 py-2 text-sm text-muted-foreground">

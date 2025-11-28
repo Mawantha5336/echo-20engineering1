@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, Trash2, Image as ImageIcon, Loader2, Briefcase, Eye, EyeOff, Users, FileText, Download, Mail, Phone, Printer } from "lucide-react";
+import { Plus, Trash2, Image as ImageIcon, Loader2, Briefcase, Eye, EyeOff, Users, FileText, Download, Mail, Phone, Printer, LayoutDashboard, FolderKanban, Wrench, ClipboardList, TrendingUp, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -68,8 +68,8 @@ export default function Admin() {
   const [submitting, setSubmitting] = useState(false);
 
   const [activeTab, setActiveTab] = useState<
-    "projects" | "equipment" | "poProjects" | "careers" | "applications"
-  >("projects");
+    "welcome" | "projects" | "equipment" | "poProjects" | "careers" | "applications"
+  >("welcome");
   
   const [projectForm, setProjectForm] = useState({
     projectName: "",
@@ -840,33 +840,47 @@ export default function Admin() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex gap-4 mb-8 border-b border-border overflow-x-auto">
           <button
+            onClick={() => setActiveTab("welcome")}
+            className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
+              activeTab === "welcome"
+                ? "border-primary text-primary"
+                : "border-transparent text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <LayoutDashboard size={18} />
+            Dashboard
+          </button>
+          <button
             onClick={() => setActiveTab("projects")}
-            className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap ${
+            className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
               activeTab === "projects"
                 ? "border-primary text-primary"
                 : "border-transparent text-muted-foreground hover:text-foreground"
             }`}
           >
+            <FolderKanban size={18} />
             Projects
           </button>
           <button
             onClick={() => setActiveTab("equipment")}
-            className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap ${
+            className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
               activeTab === "equipment"
                 ? "border-primary text-primary"
                 : "border-transparent text-muted-foreground hover:text-foreground"
             }`}
           >
+            <Wrench size={18} />
             Equipment
           </button>
           <button
             onClick={() => setActiveTab("poProjects")}
-            className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap ${
+            className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
               activeTab === "poProjects"
                 ? "border-primary text-primary"
                 : "border-transparent text-muted-foreground hover:text-foreground"
             }`}
           >
+            <ClipboardList size={18} />
             P/O Projects
           </button>
           <button
@@ -897,6 +911,143 @@ export default function Admin() {
             )}
           </button>
         </div>
+
+        {activeTab === "welcome" && (
+          <div className="space-y-8">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-2">Welcome to Admin Dashboard</h2>
+              <p className="text-muted-foreground">Manage your projects, equipment, careers, and applications from here</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div 
+                className="bg-card rounded-xl border border-border p-6 cursor-pointer hover:border-primary transition-all hover:shadow-lg"
+                onClick={() => setActiveTab("projects")}
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                    <FolderKanban className="w-6 h-6 text-blue-500" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{projects.length}</p>
+                    <p className="text-sm text-muted-foreground">Total Projects</p>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground">Click to manage projects</p>
+              </div>
+              
+              <div 
+                className="bg-card rounded-xl border border-border p-6 cursor-pointer hover:border-primary transition-all hover:shadow-lg"
+                onClick={() => setActiveTab("equipment")}
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center">
+                    <Wrench className="w-6 h-6 text-green-500" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{equipment.length}</p>
+                    <p className="text-sm text-muted-foreground">Equipment Items</p>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground">Click to manage equipment</p>
+              </div>
+              
+              <div 
+                className="bg-card rounded-xl border border-border p-6 cursor-pointer hover:border-primary transition-all hover:shadow-lg"
+                onClick={() => setActiveTab("poProjects")}
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                    <ClipboardList className="w-6 h-6 text-purple-500" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{poProjects.length}</p>
+                    <p className="text-sm text-muted-foreground">P/O Projects</p>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground">Click to manage P/O projects</p>
+              </div>
+              
+              <div 
+                className="bg-card rounded-xl border border-border p-6 cursor-pointer hover:border-primary transition-all hover:shadow-lg"
+                onClick={() => setActiveTab("careers")}
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                    <Briefcase className="w-6 h-6 text-amber-500" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{careers.filter(c => c.isActive).length}</p>
+                    <p className="text-sm text-muted-foreground">Active Openings</p>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground">Click to manage careers</p>
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div 
+                className="bg-card rounded-xl border border-border p-6 cursor-pointer hover:border-primary transition-all hover:shadow-lg"
+                onClick={() => setActiveTab("applications")}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold flex items-center gap-2">
+                    <Users className="w-5 h-5" />
+                    Job Applications
+                  </h3>
+                  {applications.filter(a => a.status === "pending").length > 0 && (
+                    <span className="px-3 py-1 text-sm bg-primary text-primary-foreground rounded-full">
+                      {applications.filter(a => a.status === "pending").length} Pending
+                    </span>
+                  )}
+                </div>
+                <div className="grid grid-cols-4 gap-4 text-center">
+                  <div>
+                    <p className="text-xl font-bold">{applications.length}</p>
+                    <p className="text-xs text-muted-foreground">Total</p>
+                  </div>
+                  <div>
+                    <p className="text-xl font-bold text-yellow-500">{applications.filter(a => a.status === "pending").length}</p>
+                    <p className="text-xs text-muted-foreground">Pending</p>
+                  </div>
+                  <div>
+                    <p className="text-xl font-bold text-green-500">{applications.filter(a => a.status === "shortlisted").length}</p>
+                    <p className="text-xs text-muted-foreground">Shortlisted</p>
+                  </div>
+                  <div>
+                    <p className="text-xl font-bold text-red-500">{applications.filter(a => a.status === "rejected").length}</p>
+                    <p className="text-xs text-muted-foreground">Rejected</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-card rounded-xl border border-border p-6">
+                <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
+                  <TrendingUp className="w-5 h-5" />
+                  Quick Stats
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">Total Projects</span>
+                    <span className="font-semibold">{projects.length}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">Equipment Items</span>
+                    <span className="font-semibold">{equipment.length}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">Active Job Listings</span>
+                    <span className="font-semibold">{careers.filter(c => c.isActive).length}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-muted-foreground">Pending Applications</span>
+                    <span className="font-semibold text-primary">{applications.filter(a => a.status === "pending").length}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {activeTab === "projects" && (
           <div className="grid lg:grid-cols-3 gap-8">
