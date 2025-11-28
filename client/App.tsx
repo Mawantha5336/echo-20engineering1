@@ -22,6 +22,7 @@ const AppRoutes = () => (
   <Routes>
     <Route path="/projects-equipment" element={<ProjectsEquipment />} />
     <Route path="/po-projects" element={<POProjectsView />} />
+    <Route path="/careers" element={<Careers />} />
     <Route element={<Layout />}>
       <Route path="/" element={<Index />} />
       <Route
@@ -33,7 +34,6 @@ const AppRoutes = () => (
         }
       />
       <Route path="/login" element={<Login />} />
-      <Route path="/careers" element={<Careers />} />
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Route>
