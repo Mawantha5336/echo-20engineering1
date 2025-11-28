@@ -33,17 +33,10 @@ export function createServer() {
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
-  // Serve echo folder static assets (css, js, images) at root level for index1.html
-  app.use("/css", express.static(path.join(process.cwd(), "echo", "css")));
-  app.use("/js", express.static(path.join(process.cwd(), "echo", "js")));
-  app.use("/images", express.static(path.join(process.cwd(), "echo", "images")));
+  // Serve public images folder
+  app.use("/images", express.static(path.join(process.cwd(), "public", "images")));
 
-  // Serve index1.html as the landing page
-  app.get("/", (_req, res) => {
-    res.sendFile(path.join(process.cwd(), "echo", "index1.html"));
-  });
-
-  // Serve echo folder statically
+  // Serve echo folder statically for legacy access
   app.use("/echo", express.static(path.join(process.cwd(), "echo")));
 
   // Example API routes
