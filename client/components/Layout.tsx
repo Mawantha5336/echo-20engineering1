@@ -46,6 +46,14 @@ export default function Layout() {
               <Link to="/admin" className="hover:text-primary transition">
                 Admin Panel
               </Link>
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-xs px-3 py-1"
+                onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+              >
+                Contact
+              </Button>
               {isAuthenticated ? (
                 <div className="flex items-center gap-4">
                   <span className="text-sm text-muted-foreground">
@@ -120,6 +128,17 @@ export default function Layout() {
               >
                 Admin Panel
               </Link>
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-xs px-3 py-1 w-fit"
+                onClick={() => {
+                  setMenuOpen(false);
+                  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                }}
+              >
+                Contact
+              </Button>
               {isAuthenticated ? (
                 <>
                   <div className="px-2 py-2 text-sm text-muted-foreground">
