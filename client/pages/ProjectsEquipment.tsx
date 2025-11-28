@@ -84,51 +84,84 @@ export default function ProjectsEquipment() {
   return (
     <div className="min-h-screen relative" style={{ background: 'linear-gradient(180deg, #0a0a0a 0%, #1a0f0a 50%, #0a0a0a 100%)' }}>
       {/* Navigation Header - index1.html style */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a1628]/95 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+      <header className="fixed top-0 left-0 right-0 z-50 shadow-[0_2px_10px_rgba(255,255,255,0.1)]" style={{ backgroundColor: '#030a3a' }}>
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="flex justify-between items-center py-4">
             <a href="/echo/index1.html" className="flex items-center">
-              <img src={logoImage} alt="Eco Engineering Logo" className="h-12 w-auto" />
+              <img src={logoImage} alt="Eco Engineering Logo" className="h-[90px] w-auto" />
             </a>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              <a href="/echo/index1.html" className="text-white/80 hover:text-white transition-colors font-medium">
-                Home
-              </a>
-              <a href="/echo/aboutUs.html" className="text-white/80 hover:text-white transition-colors font-medium">
-                About Us
-              </a>
-              <div className="relative group">
-                <button 
-                  className="flex items-center gap-1 text-white/80 hover:text-white transition-colors font-medium"
-                  onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
-                >
-                  Services <ChevronDown className="w-4 h-4" />
-                </button>
-                <div className="absolute top-full left-0 mt-2 w-72 bg-[#0a1628] border border-white/10 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  <a href="/projects-equipment" className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors border-b border-white/10">
-                    Install & Maintenance Telecommunications Infrastructure System
+            <nav className="hidden md:flex items-center">
+              <ul className="flex">
+                <li className="ml-8">
+                  <a 
+                    href="/echo/index1.html" 
+                    className="text-white font-medium transition-colors duration-300 hover:text-[#4CAF50]"
+                  >
+                    Home
                   </a>
-                  <a href="/echo/Supplying_Testing_Analytical_Instrument.html" className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors border-b border-white/10">
-                    Supplying Testing Analytical Instrument
+                </li>
+                <li className="ml-8">
+                  <a 
+                    href="/echo/aboutUs.html" 
+                    className="text-white font-medium transition-colors duration-300 hover:text-[#4CAF50]"
+                  >
+                    About Us
                   </a>
-                  <a href="/echo/Supply_Telecommunication_Equipment" className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors">
-                    Supply Telecommunication Equipment
+                </li>
+                <li className="ml-8 relative group">
+                  <button 
+                    className="flex items-center gap-1 text-white font-medium transition-colors duration-300 hover:text-[#4CAF50]"
+                  >
+                    Services <ChevronDown className="w-4 h-4" />
+                  </button>
+                  <div 
+                    className="absolute top-full left-0 min-w-[200px] rounded shadow-[0_8px_16px_rgba(255,255,255,0.1)] py-2.5 border border-[#4CAF50] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+                    style={{ backgroundColor: '#030a3a' }}
+                  >
+                    <a 
+                      href="/projects-equipment" 
+                      className="block px-5 py-2.5 text-white transition-all duration-300 hover:bg-[#4CAF50] hover:text-[#030a3a]"
+                    >
+                      Install & Maintenance Telecommunications Infrastructure System
+                    </a>
+                    <a 
+                      href="/echo/Supplying_Testing_Analytical_Instrument.html" 
+                      className="block px-5 py-2.5 text-white transition-all duration-300 hover:bg-[#4CAF50] hover:text-[#030a3a]"
+                    >
+                      Supplying Testing Analytical Instrument
+                    </a>
+                    <a 
+                      href="/echo/Supply_Telecommunication_Equipment" 
+                      className="block px-5 py-2.5 text-white transition-all duration-300 hover:bg-[#4CAF50] hover:text-[#030a3a]"
+                    >
+                      Supply Telecommunication Equipment
+                    </a>
+                  </div>
+                </li>
+                <li className="ml-8">
+                  <a 
+                    href="/echo/projects.html" 
+                    className="text-white font-medium transition-colors duration-300 hover:text-[#4CAF50]"
+                  >
+                    Projects
                   </a>
-                </div>
-              </div>
-              <a href="/echo/projects.html" className="text-white/80 hover:text-white transition-colors font-medium">
-                Projects
-              </a>
-              <a href="/echo/contact.html" className="text-white/80 hover:text-white transition-colors font-medium">
-                Contact
-              </a>
+                </li>
+                <li className="ml-8">
+                  <a 
+                    href="/echo/contact.html" 
+                    className="text-white font-medium transition-colors duration-300 hover:text-[#4CAF50]"
+                  >
+                    Contact
+                  </a>
+                </li>
+              </ul>
             </nav>
 
             {/* Mobile Menu Button */}
             <button 
-              className="md:hidden p-2 text-white"
+              className="md:hidden p-2 text-white text-2xl cursor-pointer"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -137,38 +170,59 @@ export default function ProjectsEquipment() {
 
           {/* Mobile Navigation */}
           {mobileMenuOpen && (
-            <nav className="md:hidden pb-4 border-t border-white/10 pt-4">
-              <a href="/echo/index1.html" className="block py-2 text-white/80 hover:text-white transition-colors">
+            <nav className="md:hidden pb-4 border-t border-[#4CAF50]/30 pt-4">
+              <a 
+                href="/echo/index1.html" 
+                className="block py-3 text-white font-medium transition-colors duration-300 hover:text-[#4CAF50]"
+              >
                 Home
               </a>
-              <a href="/echo/aboutUs.html" className="block py-2 text-white/80 hover:text-white transition-colors">
+              <a 
+                href="/echo/aboutUs.html" 
+                className="block py-3 text-white font-medium transition-colors duration-300 hover:text-[#4CAF50]"
+              >
                 About Us
               </a>
               <div>
                 <button 
-                  className="flex items-center gap-1 py-2 text-white/80 hover:text-white transition-colors w-full"
+                  className="flex items-center gap-2 py-3 text-white font-medium transition-colors duration-300 hover:text-[#4CAF50] w-full"
                   onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
                 >
-                  Services <ChevronDown className={`w-4 h-4 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
+                  Services <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
                 {servicesDropdownOpen && (
-                  <div className="pl-4 border-l border-white/10 ml-2">
-                    <a href="/projects-equipment" className="block py-2 text-white/60 hover:text-white transition-colors text-sm">
+                  <div className="pl-4 border-l-2 border-[#4CAF50] ml-2 mt-1">
+                    <a 
+                      href="/projects-equipment" 
+                      className="block py-2 text-white/80 transition-all duration-300 hover:text-[#4CAF50] text-sm"
+                    >
                       Install & Maintenance Telecommunications
                     </a>
-                    <a href="/echo/Supplying_Testing_Analytical_Instrument.html" className="block py-2 text-white/60 hover:text-white transition-colors text-sm">
+                    <a 
+                      href="/echo/Supplying_Testing_Analytical_Instrument.html" 
+                      className="block py-2 text-white/80 transition-all duration-300 hover:text-[#4CAF50] text-sm"
+                    >
                       Supplying Testing Analytical Instrument
                     </a>
-                    <a href="/echo/Supply_Telecommunication_Equipment" className="block py-2 text-white/60 hover:text-white transition-colors text-sm">
+                    <a 
+                      href="/echo/Supply_Telecommunication_Equipment" 
+                      className="block py-2 text-white/80 transition-all duration-300 hover:text-[#4CAF50] text-sm"
+                    >
                       Supply Telecommunication Equipment
                     </a>
                   </div>
                 )}
               </div>
-              <a href="/echo/projects.html" className="block py-2 text-white/80 hover:text-white transition-colors">
+              <a 
+                href="/echo/projects.html" 
+                className="block py-3 text-white font-medium transition-colors duration-300 hover:text-[#4CAF50]"
+              >
                 Projects
               </a>
-              <a href="/echo/contact.html" className="block py-2 text-white/80 hover:text-white transition-colors">
+              <a 
+                href="/echo/contact.html" 
+                className="block py-3 text-white font-medium transition-colors duration-300 hover:text-[#4CAF50]"
+              >
                 Contact
               </a>
             </nav>
@@ -182,7 +236,7 @@ export default function ProjectsEquipment() {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-500/5 rounded-full blur-[80px]" />
       </div>
 
-      <div className="relative h-[400px] md:h-[500px] overflow-hidden pt-20">
+      <div className="relative h-[400px] md:h-[500px] overflow-hidden pt-32">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
           style={{
@@ -506,22 +560,22 @@ export default function ProjectsEquipment() {
       </div>
 
       {/* Footer - index1.html style */}
-      <footer className="bg-[#0a1628] border-t border-white/10 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <footer style={{ backgroundColor: '#030a3a' }} className="border-t border-[#4CAF50]/20 mt-16">
+        <div className="max-w-[1200px] mx-auto px-5 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-              <img src={logoImage} alt="Eco Engineering Logo" className="h-12 w-auto mb-4" />
-              <p className="text-white/60 text-sm">
+              <img src={logoImage} alt="Eco Engineering Logo" className="h-16 w-auto mb-4" />
+              <p className="text-[#e0e0e0] text-sm leading-relaxed">
                 Innovative engineering solutions with a commitment to sustainability and environmental responsibility.
               </p>
               <div className="flex gap-4 mt-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#4CAF50] transition-colors duration-300">
                   <span className="text-white text-sm">f</span>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#4CAF50] transition-colors duration-300">
                   <span className="text-white text-sm">t</span>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#4CAF50] transition-colors duration-300">
                   <span className="text-white text-sm">in</span>
                 </a>
               </div>
@@ -529,16 +583,16 @@ export default function ProjectsEquipment() {
             <div>
               <h3 className="text-white font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-2">
-                <li><a href="/echo/index1.html" className="text-white/60 hover:text-white transition-colors text-sm">Home</a></li>
-                <li><a href="/echo/aboutUs.html" className="text-white/60 hover:text-white transition-colors text-sm">About Us</a></li>
-                <li><a href="#" className="text-white/60 hover:text-white transition-colors text-sm">Services</a></li>
-                <li><a href="/echo/projects.html" className="text-white/60 hover:text-white transition-colors text-sm">Projects</a></li>
-                <li><a href="/echo/contact.html" className="text-white/60 hover:text-white transition-colors text-sm">Contact</a></li>
+                <li><a href="/echo/index1.html" className="text-[#bbbbbb] hover:text-[#4CAF50] transition-colors duration-300 text-sm">Home</a></li>
+                <li><a href="/echo/aboutUs.html" className="text-[#bbbbbb] hover:text-[#4CAF50] transition-colors duration-300 text-sm">About Us</a></li>
+                <li><a href="#" className="text-[#bbbbbb] hover:text-[#4CAF50] transition-colors duration-300 text-sm">Services</a></li>
+                <li><a href="/echo/projects.html" className="text-[#bbbbbb] hover:text-[#4CAF50] transition-colors duration-300 text-sm">Projects</a></li>
+                <li><a href="/echo/contact.html" className="text-[#bbbbbb] hover:text-[#4CAF50] transition-colors duration-300 text-sm">Contact</a></li>
               </ul>
             </div>
             <div>
               <h3 className="text-white font-semibold mb-4">Contact Us</h3>
-              <ul className="space-y-2 text-white/60 text-sm">
+              <ul className="space-y-2 text-[#bbbbbb] text-sm">
                 <li className="flex items-center gap-2">
                   <span>Waliwita Junction, Kaduwela</span>
                 </li>
@@ -551,8 +605,8 @@ export default function ProjectsEquipment() {
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/10 mt-8 pt-8 text-center">
-            <p className="text-white/40 text-sm">&copy; 2023 Eco Engineering. All Rights Reserved.</p>
+          <div className="border-t border-[#4CAF50]/20 mt-8 pt-8 text-center">
+            <p className="text-[#bbbbbb]/60 text-sm">&copy; 2023 Eco Engineering. All Rights Reserved.</p>
           </div>
         </div>
       </footer>
