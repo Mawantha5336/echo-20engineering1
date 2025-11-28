@@ -45,47 +45,95 @@
         </div>
     </header>
 
-    <!-- Projects Banner Section -->
-    <section class="projects-banner">
+    <!-- Projects Hero Banner -->
+    <section class="projects-banner-unique">
+        <div class="banner-overlay"></div>
+        <div class="floating-gears">
+            <div class="gear gear-1"><i class="fas fa-cog"></i></div>
+            <div class="gear gear-2"><i class="fas fa-cog"></i></div>
+            <div class="gear gear-3"><i class="fas fa-cog"></i></div>
+        </div>
         <div class="container">
-            <h1>Our Projects</h1>
-            <p>Showcasing our sustainable engineering solutions in action</p>
+            <div class="banner-content">
+                <span class="banner-tag">Our Portfolio</span>
+                <h1>Our Projects</h1>
+                <p>Showcasing our sustainable engineering solutions in action</p>
+                <div class="banner-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">150+</span>
+                        <span class="stat-label">Projects</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Cities</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Success</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Projects Filter -->
-    <section class="projects-filter">
+    <section class="projects-filter-unique">
         <div class="container">
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="telecom">Telecommunications</button>
-                <button class="filter-btn" data-filter="energy">Energy Solutions</button>
-                <button class="filter-btn" data-filter="construction">Construction</button>
+            <div class="filter-header">
+                <h2>Explore Our Work</h2>
+                <p>Filter by category to find projects that interest you</p>
+            </div>
+            <div class="filter-buttons-unique">
+                <button class="filter-btn-unique active" data-filter="all">
+                    <i class="fas fa-th-large"></i>
+                    <span>All Projects</span>
+                </button>
+                <button class="filter-btn-unique" data-filter="telecom">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <span>Telecommunications</span>
+                </button>
+                <button class="filter-btn-unique" data-filter="energy">
+                    <i class="fas fa-solar-panel"></i>
+                    <span>Energy Solutions</span>
+                </button>
+                <button class="filter-btn-unique" data-filter="construction">
+                    <i class="fas fa-building"></i>
+                    <span>Construction</span>
+                </button>
             </div>
         </div>
     </section>
 
     <!-- Projects Grid -->
-    <section class="projects-grid-section">
+    <section class="projects-grid-unique">
         <div class="container">
             <div class="projects-grid">
                 <!-- Project 1 -->
-                <div class="project-card" data-category="telecom">
-                    <div class="project-image">
+                <div class="project-card-unique" data-category="telecom">
+                    <div class="project-image-unique">
                         <img src="images/7.jpg" alt="Urban 5G Network">
-                        <div class="project-overlay">
+                        <div class="project-overlay-unique">
                             <div class="overlay-content">
+                                <span class="project-tag">Telecommunications</span>
                                 <h3>Urban 5G Network</h3>
                                 <p>Sustainable 5G deployment in Colombo</p>
-                                <a href="project-details.html" class="btn-view">View Project</a>
+                                <a href="project-details.html" class="btn-view-unique">
+                                    <span>View Project</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Telecommunications</span>
+                    <div class="project-info-unique">
+                        <div class="info-top">
+                            <span class="project-category-unique">Telecommunications</span>
+                            <span class="project-year">2023</span>
+                        </div>
                         <h3>Colombo 5G Network</h3>
                         <p>Deployed energy-efficient 5G infrastructure across Colombo with minimal environmental impact.</p>
-                        <div class="project-stats">
+                        <div class="project-meta">
                             <span><i class="fas fa-calendar-alt"></i> 6 Months</span>
                             <span><i class="fas fa-map-marker-alt"></i> Colombo</span>
                         </div>
@@ -93,22 +141,29 @@
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card" data-category="energy">
-                    <div class="project-image">
+                <div class="project-card-unique" data-category="energy">
+                    <div class="project-image-unique">
                         <img src="images/6.jpeg" alt="Solar Farm">
-                        <div class="project-overlay">
+                        <div class="project-overlay-unique">
                             <div class="overlay-content">
+                                <span class="project-tag">Energy Solutions</span>
                                 <h3>Solar Farm</h3>
                                 <p>10MW renewable energy solution</p>
-                                <a href="project-details.html" class="btn-view">View Project</a>
+                                <a href="project-details.html" class="btn-view-unique">
+                                    <span>View Project</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Energy Solutions</span>
+                    <div class="project-info-unique">
+                        <div class="info-top">
+                            <span class="project-category-unique energy">Energy Solutions</span>
+                            <span class="project-year">2023</span>
+                        </div>
                         <h3>Hambantota Solar Farm</h3>
                         <p>Designed and installed a 10MW solar farm providing clean energy to 8,000 homes.</p>
-                        <div class="project-stats">
+                        <div class="project-meta">
                             <span><i class="fas fa-calendar-alt"></i> 8 Months</span>
                             <span><i class="fas fa-map-marker-alt"></i> Hambantota</span>
                         </div>
@@ -116,22 +171,29 @@
                 </div>
 
                 <!-- Project 3 -->
-                <div class="project-card" data-category="construction">
-                    <div class="project-image">
+                <div class="project-card-unique" data-category="construction">
+                    <div class="project-image-unique">
                         <img src="images/4.jpg" alt="Green Office Complex">
-                        <div class="project-overlay">
+                        <div class="project-overlay-unique">
                             <div class="overlay-content">
+                                <span class="project-tag">Construction</span>
                                 <h3>Green Office Complex</h3>
                                 <p>LEED Platinum certified building</p>
-                                <a href="project-details.html" class="btn-view">View Project</a>
+                                <a href="project-details.html" class="btn-view-unique">
+                                    <span>View Project</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Construction</span>
+                    <div class="project-info-unique">
+                        <div class="info-top">
+                            <span class="project-category-unique construction">Construction</span>
+                            <span class="project-year">2022</span>
+                        </div>
                         <h3>Colombo Green Tower</h3>
                         <p>Sustainable office complex with energy-efficient systems and recycled materials.</p>
-                        <div class="project-stats">
+                        <div class="project-meta">
                             <span><i class="fas fa-calendar-alt"></i> 14 Months</span>
                             <span><i class="fas fa-map-marker-alt"></i> Colombo</span>
                         </div>
@@ -139,22 +201,29 @@
                 </div>
 
                 <!-- Project 4 -->
-                <div class="project-card" data-category="telecom">
-                    <div class="project-image">
+                <div class="project-card-unique" data-category="telecom">
+                    <div class="project-image-unique">
                         <img src="images/1.jpg" alt="Rural Connectivity">
-                        <div class="project-overlay">
+                        <div class="project-overlay-unique">
                             <div class="overlay-content">
+                                <span class="project-tag">Telecommunications</span>
                                 <h3>Rural Connectivity</h3>
                                 <p>Expanding telecom access</p>
-                                <a href="project-details.html" class="btn-view">View Project</a>
+                                <a href="project-details.html" class="btn-view-unique">
+                                    <span>View Project</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Telecommunications</span>
+                    <div class="project-info-unique">
+                        <div class="info-top">
+                            <span class="project-category-unique">Telecommunications</span>
+                            <span class="project-year">2023</span>
+                        </div>
                         <h3>Rural Network Expansion</h3>
                         <p>Extended telecom access to remote areas with solar-powered towers.</p>
-                        <div class="project-stats">
+                        <div class="project-meta">
                             <span><i class="fas fa-calendar-alt"></i> 5 Months</span>
                             <span><i class="fas fa-map-marker-alt"></i> Anuradhapura</span>
                         </div>
@@ -162,22 +231,29 @@
                 </div>
 
                 <!-- Project 5 -->
-                <div class="project-card" data-category="energy">
-                    <div class="project-image">
+                <div class="project-card-unique" data-category="energy">
+                    <div class="project-image-unique">
                         <img src="images/2.jpg" alt="Wind Farm">
-                        <div class="project-overlay">
+                        <div class="project-overlay-unique">
                             <div class="overlay-content">
+                                <span class="project-tag">Energy Solutions</span>
                                 <h3>Wind Farm</h3>
                                 <p>Clean energy generation</p>
-                                <a href="project-details.html" class="btn-view">View Project</a>
+                                <a href="project-details.html" class="btn-view-unique">
+                                    <span>View Project</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Energy Solutions</span>
+                    <div class="project-info-unique">
+                        <div class="info-top">
+                            <span class="project-category-unique energy">Energy Solutions</span>
+                            <span class="project-year">2022</span>
+                        </div>
                         <h3>Mannar Wind Farm</h3>
                         <p>15MW wind energy project providing sustainable power to the region.</p>
-                        <div class="project-stats">
+                        <div class="project-meta">
                             <span><i class="fas fa-calendar-alt"></i> 10 Months</span>
                             <span><i class="fas fa-map-marker-alt"></i> Mannar</span>
                         </div>
@@ -185,22 +261,29 @@
                 </div>
 
                 <!-- Project 6 -->
-                <div class="project-card" data-category="construction">
-                    <div class="project-image">
+                <div class="project-card-unique" data-category="construction">
+                    <div class="project-image-unique">
                         <img src="images/2.jpg" alt="Eco Resort">
-                        <div class="project-overlay">
+                        <div class="project-overlay-unique">
                             <div class="overlay-content">
+                                <span class="project-tag">Construction</span>
                                 <h3>Eco Resort</h3>
                                 <p>Sustainable tourism development</p>
-                                <a href="project-details.html" class="btn-view">View Project</a>
+                                <a href="project-details.html" class="btn-view-unique">
+                                    <span>View Project</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <span class="project-category">Construction</span>
+                    <div class="project-info-unique">
+                        <div class="info-top">
+                            <span class="project-category-unique construction">Construction</span>
+                            <span class="project-year">2021</span>
+                        </div>
                         <h3>Southern Eco Resort</h3>
                         <p>Designed and built a sustainable resort with minimal environmental impact.</p>
-                        <div class="project-stats">
+                        <div class="project-meta">
                             <span><i class="fas fa-calendar-alt"></i> 12 Months</span>
                             <span><i class="fas fa-map-marker-alt"></i> Galle</span>
                         </div>
@@ -208,42 +291,75 @@
                 </div>
             </div>
 
-            <div class="load-more">
-                <button id="loadMore" class="btn">Load More Projects</button>
+            <div class="load-more-unique">
+                <button id="loadMore" class="btn-load-more">
+                    <span>Load More Projects</span>
+                    <i class="fas fa-plus"></i>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Project Stats -->
-    <section class="project-stats">
+    <!-- Achievement Stats -->
+    <section class="achievements-section">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <h3>150+</h3>
-                    <p>Projects Completed</p>
+            <div class="achievements-header">
+                <span class="section-tag">Our Impact</span>
+                <h2>Achievements That Speak</h2>
+                <p>Numbers that reflect our commitment to excellence</p>
+            </div>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="achievement-number" data-count="150">150+</div>
+                    <div class="achievement-label">Projects Completed</div>
+                    <div class="achievement-bar"><span style="width: 95%"></span></div>
                 </div>
-                <div class="stat-card">
-                    <h3>25+</h3>
-                    <p>Cities Covered</p>
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <div class="achievement-number" data-count="25">25+</div>
+                    <div class="achievement-label">Cities Covered</div>
+                    <div class="achievement-bar"><span style="width: 80%"></span></div>
                 </div>
-                <div class="stat-card">
-                    <h3>50MW</h3>
-                    <p>Renewable Energy Installed</p>
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="achievement-number" data-count="50">50MW</div>
+                    <div class="achievement-label">Renewable Energy</div>
+                    <div class="achievement-bar"><span style="width: 70%"></span></div>
                 </div>
-                <div class="stat-card">
-                    <h3>100%</h3>
-                    <p>Client Satisfaction</p>
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="achievement-number" data-count="100">100%</div>
+                    <div class="achievement-label">Client Satisfaction</div>
+                    <div class="achievement-bar"><span style="width: 100%"></span></div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="projects-cta">
+    <section class="projects-cta-unique">
+        <div class="cta-bg-pattern"></div>
         <div class="container">
-            <h2>Have a Project in Mind?</h2>
-            <p>Let's discuss how we can bring sustainable engineering solutions to your next project.</p>
-            <a href="contact.html" class="btn">Get in Touch</a>
+            <div class="cta-content">
+                <div class="cta-text">
+                    <span class="cta-tag">Start Your Project</span>
+                    <h2>Have a Project in Mind?</h2>
+                    <p>Let's discuss how we can bring sustainable engineering solutions to your next project.</p>
+                </div>
+                <a href="contact.html" class="btn-cta">
+                    <span>Get in Touch</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </section>
 
