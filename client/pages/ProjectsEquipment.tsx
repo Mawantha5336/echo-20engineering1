@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { Wrench, Building2, Image as ImageIcon, Loader2, Sparkles, ArrowRight, Zap } from "lucide-react";
+import { Wrench, Building2, Image as ImageIcon, Loader2, Sparkles, ArrowRight, Zap, Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoImage from "@assets/4_1764310807924.png";
 
 interface ProjectData {
   id: string;
@@ -27,6 +28,8 @@ export default function ProjectsEquipment() {
   const [equipment, setEquipment] = useState<EquipmentData[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"projects" | "equipment">("projects");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -80,13 +83,106 @@ export default function ProjectsEquipment() {
 
   return (
     <div className="min-h-screen relative" style={{ background: 'linear-gradient(180deg, #0a0a0a 0%, #1a0f0a 50%, #0a0a0a 100%)' }}>
+      {/* Navigation Header - index1.html style */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a1628]/95 backdrop-blur-md border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            <a href="/echo/index1.html" className="flex items-center">
+              <img src={logoImage} alt="Eco Engineering Logo" className="h-12 w-auto" />
+            </a>
+
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-8">
+              <a href="/echo/index1.html" className="text-white/80 hover:text-white transition-colors font-medium">
+                Home
+              </a>
+              <a href="/echo/aboutUs.html" className="text-white/80 hover:text-white transition-colors font-medium">
+                About Us
+              </a>
+              <div className="relative group">
+                <button 
+                  className="flex items-center gap-1 text-white/80 hover:text-white transition-colors font-medium"
+                  onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                >
+                  Services <ChevronDown className="w-4 h-4" />
+                </button>
+                <div className="absolute top-full left-0 mt-2 w-72 bg-[#0a1628] border border-white/10 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <a href="/projects-equipment" className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors border-b border-white/10">
+                    Install & Maintenance Telecommunications Infrastructure System
+                  </a>
+                  <a href="/echo/Supplying_Testing_Analytical_Instrument.html" className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors border-b border-white/10">
+                    Supplying Testing Analytical Instrument
+                  </a>
+                  <a href="/echo/Supply_Telecommunication_Equipment" className="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-colors">
+                    Supply Telecommunication Equipment
+                  </a>
+                </div>
+              </div>
+              <a href="/echo/projects.html" className="text-white/80 hover:text-white transition-colors font-medium">
+                Projects
+              </a>
+              <a href="/echo/contact.html" className="text-white/80 hover:text-white transition-colors font-medium">
+                Contact
+              </a>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2 text-white"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          {mobileMenuOpen && (
+            <nav className="md:hidden pb-4 border-t border-white/10 pt-4">
+              <a href="/echo/index1.html" className="block py-2 text-white/80 hover:text-white transition-colors">
+                Home
+              </a>
+              <a href="/echo/aboutUs.html" className="block py-2 text-white/80 hover:text-white transition-colors">
+                About Us
+              </a>
+              <div>
+                <button 
+                  className="flex items-center gap-1 py-2 text-white/80 hover:text-white transition-colors w-full"
+                  onClick={() => setServicesDropdownOpen(!servicesDropdownOpen)}
+                >
+                  Services <ChevronDown className={`w-4 h-4 transition-transform ${servicesDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {servicesDropdownOpen && (
+                  <div className="pl-4 border-l border-white/10 ml-2">
+                    <a href="/projects-equipment" className="block py-2 text-white/60 hover:text-white transition-colors text-sm">
+                      Install & Maintenance Telecommunications
+                    </a>
+                    <a href="/echo/Supplying_Testing_Analytical_Instrument.html" className="block py-2 text-white/60 hover:text-white transition-colors text-sm">
+                      Supplying Testing Analytical Instrument
+                    </a>
+                    <a href="/echo/Supply_Telecommunication_Equipment" className="block py-2 text-white/60 hover:text-white transition-colors text-sm">
+                      Supply Telecommunication Equipment
+                    </a>
+                  </div>
+                )}
+              </div>
+              <a href="/echo/projects.html" className="block py-2 text-white/80 hover:text-white transition-colors">
+                Projects
+              </a>
+              <a href="/echo/contact.html" className="block py-2 text-white/80 hover:text-white transition-colors">
+                Contact
+              </a>
+            </nav>
+          )}
+        </div>
+      </header>
+
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
         <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-yellow-600/5 rounded-full blur-[100px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-orange-500/5 rounded-full blur-[80px]" />
       </div>
 
-      <div className="relative h-[400px] md:h-[500px] overflow-hidden">
+      <div className="relative h-[400px] md:h-[500px] overflow-hidden pt-20">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
           style={{
@@ -408,6 +504,58 @@ export default function ProjectsEquipment() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Footer - index1.html style */}
+      <footer className="bg-[#0a1628] border-t border-white/10 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <img src={logoImage} alt="Eco Engineering Logo" className="h-12 w-auto mb-4" />
+              <p className="text-white/60 text-sm">
+                Innovative engineering solutions with a commitment to sustainability and environmental responsibility.
+              </p>
+              <div className="flex gap-4 mt-4">
+                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                  <span className="text-white text-sm">f</span>
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                  <span className="text-white text-sm">t</span>
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors">
+                  <span className="text-white text-sm">in</span>
+                </a>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li><a href="/echo/index1.html" className="text-white/60 hover:text-white transition-colors text-sm">Home</a></li>
+                <li><a href="/echo/aboutUs.html" className="text-white/60 hover:text-white transition-colors text-sm">About Us</a></li>
+                <li><a href="#" className="text-white/60 hover:text-white transition-colors text-sm">Services</a></li>
+                <li><a href="/echo/projects.html" className="text-white/60 hover:text-white transition-colors text-sm">Projects</a></li>
+                <li><a href="/echo/contact.html" className="text-white/60 hover:text-white transition-colors text-sm">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4">Contact Us</h3>
+              <ul className="space-y-2 text-white/60 text-sm">
+                <li className="flex items-center gap-2">
+                  <span>Waliwita Junction, Kaduwela</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span>011 234 5678</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span>ecoengineering@.com</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-white/10 mt-8 pt-8 text-center">
+            <p className="text-white/40 text-sm">&copy; 2023 Eco Engineering. All Rights Reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
