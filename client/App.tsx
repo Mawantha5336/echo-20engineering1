@@ -12,6 +12,11 @@ import NotFound from "./pages/NotFound";
 import ProjectsEquipment from "./pages/ProjectsEquipment";
 import POProjectsView from "./pages/POProjectsView";
 import Careers from "./pages/Careers";
+import AboutUs from "./pages/AboutUs";
+import Contact from "./pages/Contact";
+import Projects from "./pages/Projects";
+import Services from "./pages/Services";
+import SupplyEquipment from "./pages/SupplyEquipment";
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
@@ -23,6 +28,11 @@ const AppRoutes = () => (
     <Route path="/projects-equipment" element={<ProjectsEquipment />} />
     <Route path="/po-projects" element={<POProjectsView />} />
     <Route path="/careers" element={<Careers />} />
+    <Route path="/about" element={<AboutUs />} />
+    <Route path="/contact" element={<Contact />} />
+    <Route path="/projects" element={<Projects />} />
+    <Route path="/services" element={<Services />} />
+    <Route path="/supply-equipment" element={<SupplyEquipment />} />
     <Route element={<Layout />}>
       <Route path="/" element={<Index />} />
       <Route
