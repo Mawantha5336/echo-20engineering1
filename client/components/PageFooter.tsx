@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Facebook, Twitter, Linkedin, Instagram, MapPin, Phone, Mail } from "lucide-react";
 import logoImage from "@assets/echo logo_1764343027663.png";
 
@@ -36,19 +37,19 @@ export default function PageFooter() {
             <h3 className="text-white font-semibold text-lg mb-6">Quick Links</h3>
             <ul className="space-y-3">
               <li>
-                <a href="/" className="text-gray-400 hover:text-[#4CAF50] hover:pl-2 transition-all duration-300">Home</a>
+                <Link to="/" className="text-gray-400 hover:text-[#4CAF50] hover:pl-2 transition-all duration-300">Home</Link>
               </li>
               <li>
-                <a href="/about" className="text-gray-400 hover:text-[#4CAF50] hover:pl-2 transition-all duration-300">About Us</a>
+                <Link to="/about" className="text-gray-400 hover:text-[#4CAF50] hover:pl-2 transition-all duration-300">About Us</Link>
               </li>
               <li>
-                <a href="/services" className="text-gray-400 hover:text-[#4CAF50] hover:pl-2 transition-all duration-300">Services</a>
+                <Link to="/services" className="text-gray-400 hover:text-[#4CAF50] hover:pl-2 transition-all duration-300">Services</Link>
               </li>
               <li>
-                <a href="/projects" className="text-gray-400 hover:text-[#4CAF50] hover:pl-2 transition-all duration-300">Projects</a>
+                <Link to="/projects" className="text-gray-400 hover:text-[#4CAF50] hover:pl-2 transition-all duration-300">Projects</Link>
               </li>
               <li>
-                <a href="/contact" className="text-gray-400 hover:text-[#4CAF50] hover:pl-2 transition-all duration-300">Contact</a>
+                <Link to="/contact" className="text-gray-400 hover:text-[#4CAF50] hover:pl-2 transition-all duration-300">Contact</Link>
               </li>
             </ul>
           </div>
@@ -75,8 +76,8 @@ export default function PageFooter() {
         <div className="pt-8 border-t border-white/10 text-center">
           <p className="text-gray-500">
             &copy; 2024 Eco Engineering. All Rights Reserved. | 
-            <a href="#" className="hover:text-[#4CAF50] transition-colors ml-1">Privacy Policy</a> | 
-            <a href="#" className="hover:text-[#4CAF50] transition-colors ml-1">Terms of Service</a>
+            <span className="hover:text-[#4CAF50] transition-colors ml-1 cursor-pointer">Privacy Policy</span> | 
+            <span className="hover:text-[#4CAF50] transition-colors ml-1 cursor-pointer">Terms of Service</span>
           </p>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Grid3X3, Radio, Sun, Building, Calendar, MapPin, ArrowRight, TrendingUp, Award, Zap, Smile } from "lucide-react";
+import { Sparkles, Grid3X3, Radio, Sun, Building, Calendar, MapPin, ArrowRight, TrendingUp, Zap, Smile } from "lucide-react";
 import PageNavigation from "@/components/PageNavigation";
 import PageFooter from "@/components/PageFooter";
 
@@ -96,7 +97,7 @@ export default function Projects() {
 
   return (
     <div className="min-h-screen relative" style={{ background: 'linear-gradient(180deg, #0a0a0a 0%, #1a0f0a 50%, #0a0a0a 100%)' }}>
-      <PageNavigation activePage="projects" />
+      <PageNavigation />
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
@@ -300,12 +301,12 @@ export default function Projects() {
           <p className="text-gray-400 max-w-2xl mx-auto mb-8">
             Let's discuss how we can bring sustainable engineering solutions to your next project.
           </p>
-          <a 
-            href="/contact"
+          <Link 
+            to="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-yellow-500 text-black font-semibold rounded-xl hover:scale-105 transition-transform duration-300"
           >
             Get in Touch <ArrowRight size={18} />
-          </a>
+          </Link>
         </motion.div>
       </div>
 

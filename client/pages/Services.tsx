@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Sparkles, Radio, Sun, HardHat, Leaf, DollarSign, Award, Lightbulb, Users, Shield, ArrowRight, CheckCircle } from "lucide-react";
 import PageNavigation from "@/components/PageNavigation";
@@ -61,7 +62,7 @@ export default function Services() {
 
   return (
     <div className="min-h-screen relative" style={{ background: 'linear-gradient(180deg, #0a0a0a 0%, #1a0f0a 50%, #0a0a0a 100%)' }}>
-      <PageNavigation activePage="services" />
+      <PageNavigation />
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
@@ -142,12 +143,12 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
-              <a 
-                href={service.link}
+              <Link 
+                to={service.link}
                 className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all duration-300"
               >
                 Explore {service.title} <ArrowRight size={16} />
-              </a>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -226,18 +227,18 @@ export default function Services() {
               </p>
             </div>
             <div className="flex gap-4">
-              <a 
-                href="/contact"
+              <Link 
+                to="/contact"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-yellow-500 text-black font-semibold rounded-xl hover:scale-105 transition-transform duration-300"
               >
                 Get a Consultation
-              </a>
-              <a 
-                href="/projects"
+              </Link>
+              <Link 
+                to="/projects"
                 className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-semibold rounded-xl hover:border-primary/50 hover:bg-white/5 transition-all duration-300"
               >
                 View Our Work
-              </a>
+              </Link>
             </div>
           </div>
         </motion.div>

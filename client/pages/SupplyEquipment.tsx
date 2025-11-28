@@ -52,7 +52,7 @@ export default function SupplyEquipment() {
 
   return (
     <div className="min-h-screen relative" style={{ background: 'linear-gradient(180deg, #0a0a0a 0%, #0a1628 50%, #0a0a0a 100%)' }}>
-      <PageNavigation activePage="services" />
+      <PageNavigation />
 
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
@@ -115,7 +115,7 @@ export default function SupplyEquipment() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {equipmentColumns.map((column, columnIndex) => (
             <motion.div
               key={columnIndex}
@@ -127,13 +127,17 @@ export default function SupplyEquipment() {
             >
               <ul className="space-y-0">
                 {column.map((item, itemIndex) => (
-                  <li
+                  <motion.li
                     key={itemIndex}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: columnIndex * 0.05 + itemIndex * 0.02 }}
                     className="flex items-start gap-3 py-4 border-b border-white/5 last:border-b-0 text-gray-300 text-sm leading-relaxed hover:text-white hover:pl-2 transition-all duration-300 group"
                   >
                     <ChevronRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5 group-hover:text-cyan-400 transition-colors" />
                     {item}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>
