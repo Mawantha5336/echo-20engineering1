@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => ({
       clientPort: 443,
     },
     fs: {
-      allow: ["./client", "./shared", "./attached_assets"],
+      allow: ["./client", "./shared", "./attached_assets", "./echo"],
       deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "server/**"],
     },
   },
