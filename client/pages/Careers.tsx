@@ -314,7 +314,7 @@ export default function Careers() {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-yellow-500/5 rounded-full blur-[80px]" />
       </div>
 
-      <div className="relative h-[400px] md:h-[500px] overflow-hidden pt-32">
+      <div className="relative h-[500px] md:h-[600px] overflow-hidden pt-32">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
           style={{
