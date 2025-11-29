@@ -9,10 +9,18 @@ This is a complete full-stack application featuring:
 - **Backend**: Express server with integrated API
 - **Routing**: React Router 6 (SPA mode)
 - **UI Library**: Radix UI components + Lucide React icons
-- **Data Storage**: File-based JSON storage with persistent data
+- **Data Storage**: Supabase (PostgreSQL) cloud database
 - **Package Manager**: pnpm
 
 ## Recent Changes
+
+### November 29, 2025 - Supabase Database Integration for Netlify Deployment
+- Migrated from file-based JSON storage to Supabase cloud database
+- Created supabase-storage.ts with full CRUD operations for all data types
+- Updated all API routes to use async/await with Supabase
+- Added supabase-schema.sql with database table definitions
+- Updated netlify.toml with SPA routing support
+- All data now persists in cloud database, works with Netlify serverless functions
 
 ### November 28, 2025 - New Landing Page (Home.tsx)
 - Converted index1.html to a React TSX component (Home.tsx)
@@ -94,14 +102,13 @@ server/                  # Express API backend
 ├── routes/             # API route handlers
 │   ├── data.ts         # Projects, equipment, P/O projects endpoints
 │   └── demo.ts         # Demo endpoints
-├── storage.ts          # File-based JSON storage service
+├── supabase-storage.ts # Supabase database storage service
+├── storage.ts          # Legacy file-based storage (deprecated)
 ├── index.ts            # Server setup and configuration
 └── node-build.ts       # Production server entry point
 
-data/                    # Persistent data storage
-├── projects.json       # Projects data
-├── equipment.json      # Equipment data
-└── po-projects.json    # P/O projects data
+netlify/functions/       # Netlify serverless functions
+└── api.ts              # Express server as serverless function
 
 shared/                  # Shared types between client/server
 └── api.ts              # API interfaces
@@ -134,7 +141,7 @@ The application runs on port 5000 in development mode. The workflow "Start appli
 ### Key Features
 - Single-port development (Vite + Express integration)
 - Hot module replacement (HMR) for rapid development
-- File-based persistent data storage
+- Supabase cloud database for persistent storage
 - Client-side authentication with localStorage
 - Protected admin routes
 - Public user interfaces for viewing data
@@ -160,7 +167,7 @@ The application is configured for deployment with:
 - TypeScript throughout for type safety
 - TailwindCSS for styling with custom theme
 - Path aliases: `@/*` for client, `@shared/*` for shared code
-- File-based JSON storage for data persistence (no database required)
+- Supabase cloud database for data persistence
 - JSON body limit set to 50mb to handle base64 image uploads
 
 ## User Preferences
