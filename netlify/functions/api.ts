@@ -1,11 +1,16 @@
 import serverless from "serverless-http";
-import express from "express";
+import express, { Router } from "express";
 import cors from "cors";
 import { createClient } from "@supabase/supabase-js";
 
 const app = express();
+const router = Router();
 
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
@@ -20,11 +25,11 @@ function getSupabaseClient() {
   return createClient(supabaseUrl, supabaseKey);
 }
 
-app.get("/api/ping", (_req, res) => {
+router.get("/ping", (_req, res) => {
   res.json({ message: "pong", env: !!process.env.SUPABASE_URL });
 });
 
-app.get("/api/projects", async (_req, res) => {
+router.get("/projects", async (_req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { data, error } = await supabase
@@ -53,7 +58,7 @@ app.get("/api/projects", async (_req, res) => {
   }
 });
 
-app.post("/api/projects", async (req, res) => {
+router.post("/projects", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { projectName, customer, oem, operator, activity, noOfSites, image } = req.body;
@@ -91,7 +96,7 @@ app.post("/api/projects", async (req, res) => {
   }
 });
 
-app.delete("/api/projects/:id", async (req, res) => {
+router.delete("/projects/:id", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { error } = await supabase
@@ -107,7 +112,7 @@ app.delete("/api/projects/:id", async (req, res) => {
   }
 });
 
-app.get("/api/equipment", async (_req, res) => {
+router.get("/equipment", async (_req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { data, error } = await supabase
@@ -132,7 +137,7 @@ app.get("/api/equipment", async (_req, res) => {
   }
 });
 
-app.post("/api/equipment", async (req, res) => {
+router.post("/equipment", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { title, description, image } = req.body;
@@ -158,7 +163,7 @@ app.post("/api/equipment", async (req, res) => {
   }
 });
 
-app.delete("/api/equipment/:id", async (req, res) => {
+router.delete("/equipment/:id", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { error } = await supabase
@@ -174,7 +179,7 @@ app.delete("/api/equipment/:id", async (req, res) => {
   }
 });
 
-app.get("/api/po-projects", async (_req, res) => {
+router.get("/po-projects", async (_req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { data, error } = await supabase
@@ -200,7 +205,7 @@ app.get("/api/po-projects", async (_req, res) => {
   }
 });
 
-app.post("/api/po-projects", async (req, res) => {
+router.post("/po-projects", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { poDate, client, product, projectStatus } = req.body;
@@ -232,7 +237,7 @@ app.post("/api/po-projects", async (req, res) => {
   }
 });
 
-app.delete("/api/po-projects/:id", async (req, res) => {
+router.delete("/po-projects/:id", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { error } = await supabase
@@ -248,7 +253,7 @@ app.delete("/api/po-projects/:id", async (req, res) => {
   }
 });
 
-app.get("/api/careers", async (_req, res) => {
+router.get("/careers", async (_req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { data, error } = await supabase
@@ -278,7 +283,7 @@ app.get("/api/careers", async (_req, res) => {
   }
 });
 
-app.get("/api/careers/active", async (_req, res) => {
+router.get("/careers/active", async (_req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { data, error } = await supabase
@@ -309,7 +314,7 @@ app.get("/api/careers/active", async (_req, res) => {
   }
 });
 
-app.get("/api/careers/:id", async (req, res) => {
+router.get("/careers/:id", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { data, error } = await supabase
@@ -341,7 +346,7 @@ app.get("/api/careers/:id", async (req, res) => {
   }
 });
 
-app.post("/api/careers", async (req, res) => {
+router.post("/careers", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { jobTitle, department, location, employmentType, description, requirements, salary, isActive } = req.body;
@@ -381,7 +386,7 @@ app.post("/api/careers", async (req, res) => {
   }
 });
 
-app.put("/api/careers/:id", async (req, res) => {
+router.put("/careers/:id", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const updateData: any = {};
@@ -425,7 +430,7 @@ app.put("/api/careers/:id", async (req, res) => {
   }
 });
 
-app.delete("/api/careers/:id", async (req, res) => {
+router.delete("/careers/:id", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { error } = await supabase
@@ -441,7 +446,7 @@ app.delete("/api/careers/:id", async (req, res) => {
   }
 });
 
-app.get("/api/job-applications", async (_req, res) => {
+router.get("/job-applications", async (_req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { data, error } = await supabase
@@ -471,7 +476,7 @@ app.get("/api/job-applications", async (_req, res) => {
   }
 });
 
-app.post("/api/job-applications", async (req, res) => {
+router.post("/job-applications", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { careerId, jobTitle, fullName, email, phone, resume, coverLetter } = req.body;
@@ -511,7 +516,7 @@ app.post("/api/job-applications", async (req, res) => {
   }
 });
 
-app.put("/api/job-applications/:id/status", async (req, res) => {
+router.put("/job-applications/:id/status", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { status } = req.body;
@@ -546,7 +551,7 @@ app.put("/api/job-applications/:id/status", async (req, res) => {
   }
 });
 
-app.delete("/api/job-applications/:id", async (req, res) => {
+router.delete("/job-applications/:id", async (req, res) => {
   try {
     const supabase = getSupabaseClient();
     const { error } = await supabase
@@ -561,5 +566,7 @@ app.delete("/api/job-applications/:id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+app.use("/.netlify/functions/api", router);
 
 export const handler = serverless(app);
