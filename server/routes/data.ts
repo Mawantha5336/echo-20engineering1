@@ -5,18 +5,19 @@ import {
   poProjectsStorage,
   careersStorage,
   jobApplicationsStorage,
-} from "../storage";
+} from "../supabase-storage";
 
-export const getProjects: RequestHandler = (_req, res) => {
+export const getProjects: RequestHandler = async (_req, res) => {
   try {
-    const projects = projectsStorage.getAll();
+    const projects = await projectsStorage.getAll();
     res.json(projects);
   } catch (error) {
+    console.error("Error fetching projects:", error);
     res.status(500).json({ error: "Failed to fetch projects" });
   }
 };
 
-export const addProject: RequestHandler = (req, res) => {
+export const addProject: RequestHandler = async (req, res) => {
   try {
     const { projectName, customer, oem, operator, activity, noOfSites, image } = req.body;
     
@@ -25,7 +26,7 @@ export const addProject: RequestHandler = (req, res) => {
       return;
     }
     
-    const project = projectsStorage.add({
+    const project = await projectsStorage.add({
       projectName,
       customer,
       oem,
@@ -37,35 +38,33 @@ export const addProject: RequestHandler = (req, res) => {
     
     res.status(201).json(project);
   } catch (error) {
+    console.error("Error adding project:", error);
     res.status(500).json({ error: "Failed to add project" });
   }
 };
 
-export const deleteProject: RequestHandler = (req, res) => {
+export const deleteProject: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    const success = projectsStorage.delete(id);
-    
-    if (success) {
-      res.json({ message: "Project deleted" });
-    } else {
-      res.status(404).json({ error: "Project not found" });
-    }
+    await projectsStorage.delete(id);
+    res.json({ message: "Project deleted" });
   } catch (error) {
+    console.error("Error deleting project:", error);
     res.status(500).json({ error: "Failed to delete project" });
   }
 };
 
-export const getEquipment: RequestHandler = (_req, res) => {
+export const getEquipment: RequestHandler = async (_req, res) => {
   try {
-    const equipment = equipmentStorage.getAll();
+    const equipment = await equipmentStorage.getAll();
     res.json(equipment);
   } catch (error) {
+    console.error("Error fetching equipment:", error);
     res.status(500).json({ error: "Failed to fetch equipment" });
   }
 };
 
-export const addEquipment: RequestHandler = (req, res) => {
+export const addEquipment: RequestHandler = async (req, res) => {
   try {
     const { title, description, image } = req.body;
     
@@ -74,7 +73,7 @@ export const addEquipment: RequestHandler = (req, res) => {
       return;
     }
     
-    const equipment = equipmentStorage.add({
+    const equipment = await equipmentStorage.add({
       title,
       description,
       image,
@@ -82,35 +81,33 @@ export const addEquipment: RequestHandler = (req, res) => {
     
     res.status(201).json(equipment);
   } catch (error) {
+    console.error("Error adding equipment:", error);
     res.status(500).json({ error: "Failed to add equipment" });
   }
 };
 
-export const deleteEquipment: RequestHandler = (req, res) => {
+export const deleteEquipment: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    const success = equipmentStorage.delete(id);
-    
-    if (success) {
-      res.json({ message: "Equipment deleted" });
-    } else {
-      res.status(404).json({ error: "Equipment not found" });
-    }
+    await equipmentStorage.delete(id);
+    res.json({ message: "Equipment deleted" });
   } catch (error) {
+    console.error("Error deleting equipment:", error);
     res.status(500).json({ error: "Failed to delete equipment" });
   }
 };
 
-export const getPOProjects: RequestHandler = (_req, res) => {
+export const getPOProjects: RequestHandler = async (_req, res) => {
   try {
-    const projects = poProjectsStorage.getAll();
+    const projects = await poProjectsStorage.getAll();
     res.json(projects);
   } catch (error) {
+    console.error("Error fetching P/O projects:", error);
     res.status(500).json({ error: "Failed to fetch P/O projects" });
   }
 };
 
-export const addPOProject: RequestHandler = (req, res) => {
+export const addPOProject: RequestHandler = async (req, res) => {
   try {
     const { poDate, client, product, projectStatus } = req.body;
     
@@ -119,7 +116,7 @@ export const addPOProject: RequestHandler = (req, res) => {
       return;
     }
     
-    const project = poProjectsStorage.add({
+    const project = await poProjectsStorage.add({
       poDate,
       client,
       product,
@@ -128,58 +125,58 @@ export const addPOProject: RequestHandler = (req, res) => {
     
     res.status(201).json(project);
   } catch (error) {
+    console.error("Error adding P/O project:", error);
     res.status(500).json({ error: "Failed to add P/O project" });
   }
 };
 
-export const deletePOProject: RequestHandler = (req, res) => {
+export const deletePOProject: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    const success = poProjectsStorage.delete(id);
-    
-    if (success) {
-      res.json({ message: "P/O Project deleted" });
-    } else {
-      res.status(404).json({ error: "P/O Project not found" });
-    }
+    await poProjectsStorage.delete(id);
+    res.json({ message: "P/O Project deleted" });
   } catch (error) {
+    console.error("Error deleting P/O project:", error);
     res.status(500).json({ error: "Failed to delete P/O project" });
   }
 };
 
-export const getCareers: RequestHandler = (_req, res) => {
+export const getCareers: RequestHandler = async (_req, res) => {
   try {
-    const careers = careersStorage.getAll();
+    const careers = await careersStorage.getAll();
     res.json(careers);
   } catch (error) {
+    console.error("Error fetching careers:", error);
     res.status(500).json({ error: "Failed to fetch careers" });
   }
 };
 
-export const getActiveCareers: RequestHandler = (_req, res) => {
+export const getActiveCareers: RequestHandler = async (_req, res) => {
   try {
-    const careers = careersStorage.getActive();
+    const careers = await careersStorage.getActive();
     res.json(careers);
   } catch (error) {
+    console.error("Error fetching active careers:", error);
     res.status(500).json({ error: "Failed to fetch active careers" });
   }
 };
 
-export const getCareerById: RequestHandler = (req, res) => {
+export const getCareerById: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    const career = careersStorage.getById(id);
+    const career = await careersStorage.getById(id);
     if (career) {
       res.json(career);
     } else {
       res.status(404).json({ error: "Career not found" });
     }
   } catch (error) {
+    console.error("Error fetching career:", error);
     res.status(500).json({ error: "Failed to fetch career" });
   }
 };
 
-export const addCareer: RequestHandler = (req, res) => {
+export const addCareer: RequestHandler = async (req, res) => {
   try {
     const { jobTitle, department, location, employmentType, description, requirements, salary, isActive } = req.body;
     
@@ -188,7 +185,7 @@ export const addCareer: RequestHandler = (req, res) => {
       return;
     }
     
-    const career = careersStorage.add({
+    const career = await careersStorage.add({
       jobTitle,
       department,
       location,
@@ -201,14 +198,15 @@ export const addCareer: RequestHandler = (req, res) => {
     
     res.status(201).json(career);
   } catch (error) {
+    console.error("Error adding career:", error);
     res.status(500).json({ error: "Failed to add career" });
   }
 };
 
-export const updateCareer: RequestHandler = (req, res) => {
+export const updateCareer: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    const career = careersStorage.update(id, req.body);
+    const career = await careersStorage.update(id, req.body);
     
     if (career) {
       res.json(career);
@@ -216,35 +214,33 @@ export const updateCareer: RequestHandler = (req, res) => {
       res.status(404).json({ error: "Career not found" });
     }
   } catch (error) {
+    console.error("Error updating career:", error);
     res.status(500).json({ error: "Failed to update career" });
   }
 };
 
-export const deleteCareer: RequestHandler = (req, res) => {
+export const deleteCareer: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    const success = careersStorage.delete(id);
-    
-    if (success) {
-      res.json({ message: "Career deleted" });
-    } else {
-      res.status(404).json({ error: "Career not found" });
-    }
+    await careersStorage.delete(id);
+    res.json({ message: "Career deleted" });
   } catch (error) {
+    console.error("Error deleting career:", error);
     res.status(500).json({ error: "Failed to delete career" });
   }
 };
 
-export const getJobApplications: RequestHandler = (_req, res) => {
+export const getJobApplications: RequestHandler = async (_req, res) => {
   try {
-    const applications = jobApplicationsStorage.getAll();
+    const applications = await jobApplicationsStorage.getAll();
     res.json(applications);
   } catch (error) {
+    console.error("Error fetching job applications:", error);
     res.status(500).json({ error: "Failed to fetch job applications" });
   }
 };
 
-export const addJobApplication: RequestHandler = (req, res) => {
+export const addJobApplication: RequestHandler = async (req, res) => {
   try {
     const { careerId, jobTitle, fullName, email, phone, resume, coverLetter } = req.body;
     
@@ -253,7 +249,7 @@ export const addJobApplication: RequestHandler = (req, res) => {
       return;
     }
     
-    const application = jobApplicationsStorage.add({
+    const application = await jobApplicationsStorage.add({
       careerId,
       jobTitle,
       fullName,
@@ -265,11 +261,12 @@ export const addJobApplication: RequestHandler = (req, res) => {
     
     res.status(201).json(application);
   } catch (error) {
+    console.error("Error submitting application:", error);
     res.status(500).json({ error: "Failed to submit application" });
   }
 };
 
-export const updateApplicationStatus: RequestHandler = (req, res) => {
+export const updateApplicationStatus: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
@@ -279,7 +276,7 @@ export const updateApplicationStatus: RequestHandler = (req, res) => {
       return;
     }
     
-    const application = jobApplicationsStorage.updateStatus(id, status);
+    const application = await jobApplicationsStorage.updateStatus(id, status);
     
     if (application) {
       res.json(application);
@@ -287,21 +284,18 @@ export const updateApplicationStatus: RequestHandler = (req, res) => {
       res.status(404).json({ error: "Application not found" });
     }
   } catch (error) {
+    console.error("Error updating application status:", error);
     res.status(500).json({ error: "Failed to update application status" });
   }
 };
 
-export const deleteJobApplication: RequestHandler = (req, res) => {
+export const deleteJobApplication: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    const success = jobApplicationsStorage.delete(id);
-    
-    if (success) {
-      res.json({ message: "Application deleted" });
-    } else {
-      res.status(404).json({ error: "Application not found" });
-    }
+    await jobApplicationsStorage.delete(id);
+    res.json({ message: "Application deleted" });
   } catch (error) {
+    console.error("Error deleting application:", error);
     res.status(500).json({ error: "Failed to delete application" });
   }
 };
