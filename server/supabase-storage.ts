@@ -118,14 +118,15 @@ export const projectsStorage = {
     return toCamelCase(data);
   },
   
-  delete: async (id: string) => {
-    const { error } = await getSupabaseClient()
+  delete: async (id: string): Promise<boolean> => {
+    const { data, error } = await getSupabaseClient()
       .from("projects")
       .delete()
-      .eq("id", id);
+      .eq("id", id)
+      .select();
     
     if (error) throw error;
-    return true;
+    return data && data.length > 0;
   },
   
   update: async (id: string, data: any) => {
@@ -142,11 +143,11 @@ export const projectsStorage = {
       .from("projects")
       .update(updateData)
       .eq("id", id)
-      .select()
-      .single();
+      .select();
     
     if (error) throw error;
-    return toCamelCase(updated);
+    if (!updated || updated.length === 0) return null;
+    return toCamelCase(updated[0]);
   },
 };
 
@@ -184,14 +185,15 @@ export const equipmentStorage = {
     };
   },
   
-  delete: async (id: string) => {
-    const { error } = await getSupabaseClient()
+  delete: async (id: string): Promise<boolean> => {
+    const { data, error } = await getSupabaseClient()
       .from("equipment")
       .delete()
-      .eq("id", id);
+      .eq("id", id)
+      .select();
     
     if (error) throw error;
-    return true;
+    return data && data.length > 0;
   },
   
   update: async (id: string, updateData: Partial<{ title: string; description: string; image?: string }>) => {
@@ -199,16 +201,16 @@ export const equipmentStorage = {
       .from("equipment")
       .update(updateData)
       .eq("id", id)
-      .select()
-      .single();
+      .select();
     
     if (error) throw error;
+    if (!data || data.length === 0) return null;
     return {
-      id: data.id,
-      title: data.title,
-      description: data.description,
-      image: data.image,
-      createdAt: data.created_at,
+      id: data[0].id,
+      title: data[0].title,
+      description: data[0].description,
+      image: data[0].image,
+      createdAt: data[0].created_at,
     };
   },
 };
@@ -254,14 +256,15 @@ export const poProjectsStorage = {
     };
   },
   
-  delete: async (id: string) => {
-    const { error } = await getSupabaseClient()
+  delete: async (id: string): Promise<boolean> => {
+    const { data, error } = await getSupabaseClient()
       .from("po_projects")
       .delete()
-      .eq("id", id);
+      .eq("id", id)
+      .select();
     
     if (error) throw error;
-    return true;
+    return data && data.length > 0;
   },
   
   update: async (id: string, updateData: any) => {
@@ -275,17 +278,17 @@ export const poProjectsStorage = {
       .from("po_projects")
       .update(dbData)
       .eq("id", id)
-      .select()
-      .single();
+      .select();
     
     if (error) throw error;
+    if (!data || data.length === 0) return null;
     return {
-      id: data.id,
-      poDate: data.po_date,
-      client: data.client,
-      product: data.product,
-      projectStatus: data.project_status,
-      createdAt: data.created_at,
+      id: data[0].id,
+      poDate: data[0].po_date,
+      client: data[0].client,
+      product: data[0].product,
+      projectStatus: data[0].project_status,
+      createdAt: data[0].created_at,
     };
   },
 };
@@ -387,14 +390,15 @@ export const careersStorage = {
     };
   },
   
-  delete: async (id: string) => {
-    const { error } = await getSupabaseClient()
+  delete: async (id: string): Promise<boolean> => {
+    const { data, error } = await getSupabaseClient()
       .from("careers")
       .delete()
-      .eq("id", id);
+      .eq("id", id)
+      .select();
     
     if (error) throw error;
-    return true;
+    return data && data.length > 0;
   },
   
   update: async (id: string, updateData: any) => {
@@ -412,21 +416,21 @@ export const careersStorage = {
       .from("careers")
       .update(dbData)
       .eq("id", id)
-      .select()
-      .single();
+      .select();
     
     if (error) throw error;
+    if (!data || data.length === 0) return null;
     return {
-      id: data.id,
-      jobTitle: data.job_title,
-      department: data.department,
-      location: data.location,
-      employmentType: data.employment_type,
-      description: data.description,
-      requirements: data.requirements,
-      salary: data.salary,
-      isActive: data.is_active,
-      createdAt: data.created_at,
+      id: data[0].id,
+      jobTitle: data[0].job_title,
+      department: data[0].department,
+      location: data[0].location,
+      employmentType: data[0].employment_type,
+      description: data[0].description,
+      requirements: data[0].requirements,
+      salary: data[0].salary,
+      isActive: data[0].is_active,
+      createdAt: data[0].created_at,
     };
   },
 };
@@ -506,14 +510,15 @@ export const jobApplicationsStorage = {
     };
   },
   
-  delete: async (id: string) => {
-    const { error } = await getSupabaseClient()
+  delete: async (id: string): Promise<boolean> => {
+    const { data, error } = await getSupabaseClient()
       .from("job_applications")
       .delete()
-      .eq("id", id);
+      .eq("id", id)
+      .select();
     
     if (error) throw error;
-    return true;
+    return data && data.length > 0;
   },
   
   updateStatus: async (id: string, status: "pending" | "reviewed" | "shortlisted" | "rejected") => {
@@ -521,21 +526,21 @@ export const jobApplicationsStorage = {
       .from("job_applications")
       .update({ status })
       .eq("id", id)
-      .select()
-      .single();
+      .select();
     
     if (error) throw error;
+    if (!data || data.length === 0) return null;
     return {
-      id: data.id,
-      careerId: data.career_id,
-      jobTitle: data.job_title,
-      fullName: data.full_name,
-      email: data.email,
-      phone: data.phone,
-      resume: data.resume,
-      coverLetter: data.cover_letter,
-      status: data.status,
-      createdAt: data.created_at,
+      id: data[0].id,
+      careerId: data[0].career_id,
+      jobTitle: data[0].job_title,
+      fullName: data[0].full_name,
+      email: data[0].email,
+      phone: data[0].phone,
+      resume: data[0].resume,
+      coverLetter: data[0].cover_letter,
+      status: data[0].status,
+      createdAt: data[0].created_at,
     };
   },
 };

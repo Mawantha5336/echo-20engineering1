@@ -46,8 +46,13 @@ export const addProject: RequestHandler = async (req, res) => {
 export const deleteProject: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    await projectsStorage.delete(id);
-    res.json({ message: "Project deleted" });
+    const success = await projectsStorage.delete(id);
+    
+    if (success) {
+      res.json({ message: "Project deleted" });
+    } else {
+      res.status(404).json({ error: "Project not found" });
+    }
   } catch (error) {
     console.error("Error deleting project:", error);
     res.status(500).json({ error: "Failed to delete project" });
@@ -89,8 +94,13 @@ export const addEquipment: RequestHandler = async (req, res) => {
 export const deleteEquipment: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    await equipmentStorage.delete(id);
-    res.json({ message: "Equipment deleted" });
+    const success = await equipmentStorage.delete(id);
+    
+    if (success) {
+      res.json({ message: "Equipment deleted" });
+    } else {
+      res.status(404).json({ error: "Equipment not found" });
+    }
   } catch (error) {
     console.error("Error deleting equipment:", error);
     res.status(500).json({ error: "Failed to delete equipment" });
@@ -133,8 +143,13 @@ export const addPOProject: RequestHandler = async (req, res) => {
 export const deletePOProject: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    await poProjectsStorage.delete(id);
-    res.json({ message: "P/O Project deleted" });
+    const success = await poProjectsStorage.delete(id);
+    
+    if (success) {
+      res.json({ message: "P/O Project deleted" });
+    } else {
+      res.status(404).json({ error: "P/O Project not found" });
+    }
   } catch (error) {
     console.error("Error deleting P/O project:", error);
     res.status(500).json({ error: "Failed to delete P/O project" });
@@ -222,8 +237,13 @@ export const updateCareer: RequestHandler = async (req, res) => {
 export const deleteCareer: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    await careersStorage.delete(id);
-    res.json({ message: "Career deleted" });
+    const success = await careersStorage.delete(id);
+    
+    if (success) {
+      res.json({ message: "Career deleted" });
+    } else {
+      res.status(404).json({ error: "Career not found" });
+    }
   } catch (error) {
     console.error("Error deleting career:", error);
     res.status(500).json({ error: "Failed to delete career" });
@@ -292,8 +312,13 @@ export const updateApplicationStatus: RequestHandler = async (req, res) => {
 export const deleteJobApplication: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    await jobApplicationsStorage.delete(id);
-    res.json({ message: "Application deleted" });
+    const success = await jobApplicationsStorage.delete(id);
+    
+    if (success) {
+      res.json({ message: "Application deleted" });
+    } else {
+      res.status(404).json({ error: "Application not found" });
+    }
   } catch (error) {
     console.error("Error deleting application:", error);
     res.status(500).json({ error: "Failed to delete application" });
