@@ -16,7 +16,7 @@ export default function PageNavigation() {
       <div className="max-w-[1200px] mx-auto px-5">
         <div className="flex justify-between items-center py-4">
           <Link to="/" className="flex items-center">
-            <img src={logoImage} alt="Eco Engineering Logo" className="h-[90px] w-auto" />
+            <img src={logoImage} alt="Eco Engineering Logo" className="h-[120px] w-auto" />
           </Link>
 
           <nav className="hidden md:flex items-center">
