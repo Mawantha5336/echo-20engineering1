@@ -817,34 +817,34 @@ export default function Admin() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #0a1628 0%, #1a2d4a 50%, #0d1f3c 100%)' }}>
         <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto mb-4" />
-          <p className="text-muted-foreground">Loading data...</p>
+          <Loader2 className="w-12 h-12 animate-spin text-blue-400 mx-auto mb-4" />
+          <p className="text-blue-200/70">Loading data...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="bg-gradient-to-r from-card to-muted border-b border-border">
+    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #0a1628 0%, #1a2d4a 50%, #0d1f3c 100%)' }}>
+      <div className="bg-gradient-to-r from-[#0d1f3c] via-[#1a365d] to-[#0d1f3c] border-b border-blue-500/20 shadow-lg shadow-blue-900/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h1 className="text-4xl font-bold mb-2">Admin Panel</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-4xl font-bold mb-2 text-white">Admin Panel</h1>
+          <p className="text-blue-200/70">
             Manage projects, equipment, careers, and applications
           </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex gap-4 mb-8 border-b border-border overflow-x-auto">
+        <div className="flex gap-4 mb-8 border-b border-blue-500/20 overflow-x-auto">
           <button
             onClick={() => setActiveTab("welcome")}
             className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
               activeTab === "welcome"
-                ? "border-primary text-primary"
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                ? "border-blue-400 text-blue-400"
+                : "border-transparent text-blue-200/60 hover:text-blue-200"
             }`}
           >
             <LayoutDashboard size={18} />
@@ -854,8 +854,8 @@ export default function Admin() {
             onClick={() => setActiveTab("projects")}
             className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
               activeTab === "projects"
-                ? "border-primary text-primary"
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                ? "border-blue-400 text-blue-400"
+                : "border-transparent text-blue-200/60 hover:text-blue-200"
             }`}
           >
             <FolderKanban size={18} />
@@ -865,8 +865,8 @@ export default function Admin() {
             onClick={() => setActiveTab("equipment")}
             className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
               activeTab === "equipment"
-                ? "border-primary text-primary"
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                ? "border-blue-400 text-blue-400"
+                : "border-transparent text-blue-200/60 hover:text-blue-200"
             }`}
           >
             <Wrench size={18} />
@@ -876,8 +876,8 @@ export default function Admin() {
             onClick={() => setActiveTab("poProjects")}
             className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
               activeTab === "poProjects"
-                ? "border-primary text-primary"
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                ? "border-blue-400 text-blue-400"
+                : "border-transparent text-blue-200/60 hover:text-blue-200"
             }`}
           >
             <ClipboardList size={18} />
@@ -887,8 +887,8 @@ export default function Admin() {
             onClick={() => setActiveTab("careers")}
             className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
               activeTab === "careers"
-                ? "border-primary text-primary"
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                ? "border-blue-400 text-blue-400"
+                : "border-transparent text-blue-200/60 hover:text-blue-200"
             }`}
           >
             <Briefcase size={18} />
@@ -898,14 +898,14 @@ export default function Admin() {
             onClick={() => setActiveTab("applications")}
             className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
               activeTab === "applications"
-                ? "border-primary text-primary"
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                ? "border-blue-400 text-blue-400"
+                : "border-transparent text-blue-200/60 hover:text-blue-200"
             }`}
           >
             <Users size={18} />
             Applications
             {applications.filter(a => a.status === "pending").length > 0 && (
-              <span className="px-2 py-0.5 text-xs bg-primary text-primary-foreground rounded-full">
+              <span className="px-2 py-0.5 text-xs bg-blue-500 text-white rounded-full">
                 {applications.filter(a => a.status === "pending").length}
               </span>
             )}
@@ -915,133 +915,133 @@ export default function Admin() {
         {activeTab === "welcome" && (
           <div className="space-y-8">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-2">Welcome to Admin Dashboard</h2>
-              <p className="text-muted-foreground">Manage your projects, equipment, careers, and applications from here</p>
+              <h2 className="text-3xl font-bold mb-2 text-white">Welcome to Admin Dashboard</h2>
+              <p className="text-blue-200/70">Manage your projects, equipment, careers, and applications from here</p>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div 
-                className="bg-card rounded-xl border border-border p-6 cursor-pointer hover:border-primary transition-all hover:shadow-lg"
+                className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 p-6 cursor-pointer hover:border-blue-400/50 transition-all hover:shadow-lg hover:shadow-blue-900/30"
                 onClick={() => setActiveTab("projects")}
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center">
-                    <FolderKanban className="w-6 h-6 text-blue-500" />
+                  <div className="w-12 h-12 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                    <FolderKanban className="w-6 h-6 text-blue-400" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold">{projects.length}</p>
-                    <p className="text-sm text-muted-foreground">Total Projects</p>
+                    <p className="text-2xl font-bold text-white">{projects.length}</p>
+                    <p className="text-sm text-blue-200/70">Total Projects</p>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground">Click to manage projects</p>
+                <p className="text-xs text-blue-300/50">Click to manage projects</p>
               </div>
               
               <div 
-                className="bg-card rounded-xl border border-border p-6 cursor-pointer hover:border-primary transition-all hover:shadow-lg"
+                className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 p-6 cursor-pointer hover:border-emerald-400/50 transition-all hover:shadow-lg hover:shadow-emerald-900/30"
                 onClick={() => setActiveTab("equipment")}
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center">
-                    <Wrench className="w-6 h-6 text-green-500" />
+                  <div className="w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+                    <Wrench className="w-6 h-6 text-emerald-400" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold">{equipment.length}</p>
-                    <p className="text-sm text-muted-foreground">Equipment Items</p>
+                    <p className="text-2xl font-bold text-white">{equipment.length}</p>
+                    <p className="text-sm text-blue-200/70">Equipment Items</p>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground">Click to manage equipment</p>
+                <p className="text-xs text-blue-300/50">Click to manage equipment</p>
               </div>
               
               <div 
-                className="bg-card rounded-xl border border-border p-6 cursor-pointer hover:border-primary transition-all hover:shadow-lg"
+                className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 p-6 cursor-pointer hover:border-purple-400/50 transition-all hover:shadow-lg hover:shadow-purple-900/30"
                 onClick={() => setActiveTab("poProjects")}
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center">
-                    <ClipboardList className="w-6 h-6 text-purple-500" />
+                  <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                    <ClipboardList className="w-6 h-6 text-purple-400" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold">{poProjects.length}</p>
-                    <p className="text-sm text-muted-foreground">P/O Projects</p>
+                    <p className="text-2xl font-bold text-white">{poProjects.length}</p>
+                    <p className="text-sm text-blue-200/70">P/O Projects</p>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground">Click to manage P/O projects</p>
+                <p className="text-xs text-blue-300/50">Click to manage P/O projects</p>
               </div>
               
               <div 
-                className="bg-card rounded-xl border border-border p-6 cursor-pointer hover:border-primary transition-all hover:shadow-lg"
+                className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 p-6 cursor-pointer hover:border-amber-400/50 transition-all hover:shadow-lg hover:shadow-amber-900/30"
                 onClick={() => setActiveTab("careers")}
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center">
-                    <Briefcase className="w-6 h-6 text-amber-500" />
+                  <div className="w-12 h-12 rounded-lg bg-amber-500/20 flex items-center justify-center">
+                    <Briefcase className="w-6 h-6 text-amber-400" />
                   </div>
                   <div>
-                    <p className="text-2xl font-bold">{careers.filter(c => c.isActive).length}</p>
-                    <p className="text-sm text-muted-foreground">Active Openings</p>
+                    <p className="text-2xl font-bold text-white">{careers.filter(c => c.isActive).length}</p>
+                    <p className="text-sm text-blue-200/70">Active Openings</p>
                   </div>
                 </div>
-                <p className="text-xs text-muted-foreground">Click to manage careers</p>
+                <p className="text-xs text-blue-300/50">Click to manage careers</p>
               </div>
             </div>
             
             <div className="grid md:grid-cols-2 gap-6">
               <div 
-                className="bg-card rounded-xl border border-border p-6 cursor-pointer hover:border-primary transition-all hover:shadow-lg"
+                className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 p-6 cursor-pointer hover:border-blue-400/50 transition-all hover:shadow-lg hover:shadow-blue-900/30"
                 onClick={() => setActiveTab("applications")}
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold flex items-center gap-2">
-                    <Users className="w-5 h-5" />
+                  <h3 className="text-lg font-semibold flex items-center gap-2 text-white">
+                    <Users className="w-5 h-5 text-blue-400" />
                     Job Applications
                   </h3>
                   {applications.filter(a => a.status === "pending").length > 0 && (
-                    <span className="px-3 py-1 text-sm bg-primary text-primary-foreground rounded-full">
+                    <span className="px-3 py-1 text-sm bg-blue-500 text-white rounded-full">
                       {applications.filter(a => a.status === "pending").length} Pending
                     </span>
                   )}
                 </div>
                 <div className="grid grid-cols-4 gap-4 text-center">
                   <div>
-                    <p className="text-xl font-bold">{applications.length}</p>
-                    <p className="text-xs text-muted-foreground">Total</p>
+                    <p className="text-xl font-bold text-white">{applications.length}</p>
+                    <p className="text-xs text-blue-200/70">Total</p>
                   </div>
                   <div>
-                    <p className="text-xl font-bold text-yellow-500">{applications.filter(a => a.status === "pending").length}</p>
-                    <p className="text-xs text-muted-foreground">Pending</p>
+                    <p className="text-xl font-bold text-yellow-400">{applications.filter(a => a.status === "pending").length}</p>
+                    <p className="text-xs text-blue-200/70">Pending</p>
                   </div>
                   <div>
-                    <p className="text-xl font-bold text-green-500">{applications.filter(a => a.status === "shortlisted").length}</p>
-                    <p className="text-xs text-muted-foreground">Shortlisted</p>
+                    <p className="text-xl font-bold text-emerald-400">{applications.filter(a => a.status === "shortlisted").length}</p>
+                    <p className="text-xs text-blue-200/70">Shortlisted</p>
                   </div>
                   <div>
-                    <p className="text-xl font-bold text-red-500">{applications.filter(a => a.status === "rejected").length}</p>
-                    <p className="text-xs text-muted-foreground">Rejected</p>
+                    <p className="text-xl font-bold text-red-400">{applications.filter(a => a.status === "rejected").length}</p>
+                    <p className="text-xs text-blue-200/70">Rejected</p>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-card rounded-xl border border-border p-6">
-                <h3 className="text-lg font-semibold flex items-center gap-2 mb-4">
-                  <TrendingUp className="w-5 h-5" />
+              <div className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 p-6">
+                <h3 className="text-lg font-semibold flex items-center gap-2 mb-4 text-white">
+                  <TrendingUp className="w-5 h-5 text-blue-400" />
                   Quick Stats
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Total Projects</span>
-                    <span className="font-semibold">{projects.length}</span>
+                    <span className="text-blue-200/70">Total Projects</span>
+                    <span className="font-semibold text-white">{projects.length}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Equipment Items</span>
-                    <span className="font-semibold">{equipment.length}</span>
+                    <span className="text-blue-200/70">Equipment Items</span>
+                    <span className="font-semibold text-white">{equipment.length}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Active Job Listings</span>
-                    <span className="font-semibold">{careers.filter(c => c.isActive).length}</span>
+                    <span className="text-blue-200/70">Active Job Listings</span>
+                    <span className="font-semibold text-white">{careers.filter(c => c.isActive).length}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Pending Applications</span>
-                    <span className="font-semibold text-primary">{applications.filter(a => a.status === "pending").length}</span>
+                    <span className="text-blue-200/70">Pending Applications</span>
+                    <span className="font-semibold text-blue-400">{applications.filter(a => a.status === "pending").length}</span>
                   </div>
                 </div>
               </div>
@@ -1052,70 +1052,70 @@ export default function Admin() {
         {activeTab === "projects" && (
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1">
-              <div className="bg-card rounded-xl border border-border p-8 sticky top-20">
-                <h2 className="text-xl font-bold mb-6">Add New Project</h2>
+              <div className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 p-8 sticky top-20">
+                <h2 className="text-xl font-bold mb-6 text-white">Add New Project</h2>
                 <form onSubmit={handleAddProject} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Project Name</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Project Name</label>
                     <Input
                       type="text"
                       placeholder="Enter project name"
                       value={projectForm.projectName}
                       onChange={(e) => setProjectForm({ ...projectForm, projectName: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Customer</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Customer</label>
                     <Input
                       type="text"
                       placeholder="Customer name"
                       value={projectForm.customer}
                       onChange={(e) => setProjectForm({ ...projectForm, customer: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">OEM</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">OEM</label>
                     <Input
                       type="text"
                       placeholder="OEM name"
                       value={projectForm.oem}
                       onChange={(e) => setProjectForm({ ...projectForm, oem: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Operator</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Operator</label>
                     <Input
                       type="text"
                       placeholder="Operator name"
                       value={projectForm.operator}
                       onChange={(e) => setProjectForm({ ...projectForm, operator: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Activity</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Activity</label>
                     <Input
                       type="text"
                       placeholder="e.g., Installation, Maintenance"
                       value={projectForm.activity}
                       onChange={(e) => setProjectForm({ ...projectForm, activity: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">No. of Sites</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">No. of Sites</label>
                     <Input
                       type="number"
                       placeholder="Number of sites"
                       value={projectForm.noOfSites}
                       onChange={(e) => setProjectForm({ ...projectForm, noOfSites: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
-                  <Button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-primary to-accent hover:shadow-lg">
+                  <Button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white hover:shadow-lg hover:shadow-blue-900/30">
                     {submitting ? <Loader2 size={20} className="mr-2 animate-spin" /> : <Plus size={20} className="mr-2" />}
                     Add Project
                   </Button>
@@ -1124,54 +1124,54 @@ export default function Admin() {
             </div>
             <div className="lg:col-span-2">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">Projects List</h2>
+                <h2 className="text-xl font-bold text-white">Projects List</h2>
                 <div className="flex gap-2">
                   <button
                     onClick={generateProjectsPDF}
-                    className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition"
+                    className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"
                     title="Download PDF"
                   >
                     <Download size={18} />
                   </button>
                   <button
                     onClick={printProjects}
-                    className="p-2 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition"
+                    className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"
                     title="Print Report"
                   >
                     <Printer size={18} />
                   </button>
                 </div>
               </div>
-              <div className="bg-card rounded-xl border border-border overflow-hidden">
+              <div className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="border-b border-border bg-muted">
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Project Name</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Customer</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">OEM</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Operator</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Activity</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Sites</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Action</th>
+                      <tr className="border-b border-blue-500/20 bg-[#1a2d4a]/50">
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Project Name</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Customer</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">OEM</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Operator</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Activity</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Sites</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       {projects.length === 0 ? (
                         <tr>
-                          <td colSpan={7} className="px-6 py-8 text-center text-muted-foreground">No projects added yet</td>
+                          <td colSpan={7} className="px-6 py-8 text-center text-blue-200/50">No projects added yet</td>
                         </tr>
                       ) : (
                         projects.map((project) => (
-                          <tr key={project.id} className="border-b border-border hover:bg-muted transition">
-                            <td className="px-6 py-4 text-sm">{project.projectName}</td>
-                            <td className="px-6 py-4 text-sm">{project.customer}</td>
-                            <td className="px-6 py-4 text-sm">{project.oem}</td>
-                            <td className="px-6 py-4 text-sm">{project.operator}</td>
-                            <td className="px-6 py-4 text-sm">{project.activity}</td>
-                            <td className="px-6 py-4 text-sm">{project.noOfSites}</td>
+                          <tr key={project.id} className="border-b border-blue-500/10 hover:bg-[#1a2d4a]/30 transition">
+                            <td className="px-6 py-4 text-sm text-white">{project.projectName}</td>
+                            <td className="px-6 py-4 text-sm text-blue-200/80">{project.customer}</td>
+                            <td className="px-6 py-4 text-sm text-blue-200/80">{project.oem}</td>
+                            <td className="px-6 py-4 text-sm text-blue-200/80">{project.operator}</td>
+                            <td className="px-6 py-4 text-sm text-blue-200/80">{project.activity}</td>
+                            <td className="px-6 py-4 text-sm text-blue-400">{project.noOfSites}</td>
                             <td className="px-6 py-4 text-sm">
-                              <button onClick={() => handleDeleteProject(project.id)} className="text-destructive hover:bg-destructive/10 p-2 rounded transition">
+                              <button onClick={() => handleDeleteProject(project.id)} className="text-red-400 hover:bg-red-500/10 p-2 rounded transition">
                                 <Trash2 size={16} />
                               </button>
                             </td>
@@ -1189,45 +1189,45 @@ export default function Admin() {
         {activeTab === "equipment" && (
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1">
-              <div className="bg-card rounded-xl border border-border p-8 sticky top-20">
-                <h2 className="text-xl font-bold mb-6">Add Equipment</h2>
+              <div className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 p-8 sticky top-20">
+                <h2 className="text-xl font-bold mb-6 text-white">Add Equipment</h2>
                 <form onSubmit={handleAddEquipment} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Title</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Title</label>
                     <Input
                       type="text"
                       placeholder="Equipment title"
                       value={equipmentForm.title}
                       onChange={(e) => setEquipmentForm({ ...equipmentForm, title: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Description</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Description</label>
                     <textarea
                       placeholder="Equipment description"
                       value={equipmentForm.description}
                       onChange={(e) => setEquipmentForm({ ...equipmentForm, description: e.target.value })}
-                      className="w-full px-3 py-2 bg-background border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 bg-[#1a2d4a] border border-blue-500/30 rounded-lg text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-blue-400"
                       rows={4}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Image</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Image</label>
                     <input
                       type="file"
                       accept="image/*"
                       onChange={(e) => handleImageUpload(e, true)}
-                      className="w-full px-3 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
+                      className="w-full px-3 py-2 bg-[#1a2d4a] border border-blue-500/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400 cursor-pointer file:bg-blue-500/20 file:border-0 file:text-blue-200 file:mr-3 file:px-3 file:py-1 file:rounded"
                     />
                     {equipmentForm.image && (
                       <div className="mt-3 relative">
-                        <img src={equipmentForm.image} alt="Preview" className="w-full h-32 object-cover rounded-lg border border-border" />
-                        <button type="button" onClick={() => setEquipmentForm({ ...equipmentForm, image: "" })} className="absolute top-2 right-2 bg-destructive text-white p-1 rounded hover:bg-destructive/80 transition">✕</button>
+                        <img src={equipmentForm.image} alt="Preview" className="w-full h-32 object-cover rounded-lg border border-blue-500/30" />
+                        <button type="button" onClick={() => setEquipmentForm({ ...equipmentForm, image: "" })} className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded hover:bg-red-600 transition">✕</button>
                       </div>
                     )}
                   </div>
-                  <Button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-primary to-accent hover:shadow-lg">
+                  <Button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white hover:shadow-lg hover:shadow-blue-900/30">
                     {submitting ? <Loader2 size={20} className="mr-2 animate-spin" /> : <Plus size={20} className="mr-2" />}
                     Add Equipment
                   </Button>
@@ -1236,18 +1236,18 @@ export default function Admin() {
             </div>
             <div className="lg:col-span-2">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">Equipment List</h2>
+                <h2 className="text-xl font-bold text-white">Equipment List</h2>
                 <div className="flex gap-2">
                   <button
                     onClick={generateEquipmentPDF}
-                    className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition"
+                    className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"
                     title="Download PDF"
                   >
                     <Download size={18} />
                   </button>
                   <button
                     onClick={printEquipment}
-                    className="p-2 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition"
+                    className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"
                     title="Print Report"
                   >
                     <Printer size={18} />
@@ -1256,27 +1256,27 @@ export default function Admin() {
               </div>
               <div className="grid md:grid-cols-2 gap-6">
                 {equipment.length === 0 ? (
-                  <div className="col-span-2 text-center py-16 bg-card rounded-xl border border-border">
-                    <ImageIcon className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                    <p className="text-muted-foreground">No equipment added yet</p>
+                  <div className="col-span-2 text-center py-16 bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20">
+                    <ImageIcon className="w-12 h-12 text-blue-300/50 mx-auto mb-4" />
+                    <p className="text-blue-200/50">No equipment added yet</p>
                   </div>
                 ) : (
                   equipment.map((item) => (
-                    <div key={item.id} className="bg-card rounded-xl border border-border overflow-hidden">
+                    <div key={item.id} className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 overflow-hidden hover:border-blue-400/40 transition">
                       {item.image ? (
                         <img src={item.image} alt={item.title} className="w-full h-40 object-cover" />
                       ) : (
-                        <div className="w-full h-40 bg-muted flex items-center justify-center">
-                          <ImageIcon className="w-12 h-12 text-muted-foreground" />
+                        <div className="w-full h-40 bg-[#1a2d4a]/50 flex items-center justify-center">
+                          <ImageIcon className="w-12 h-12 text-blue-300/50" />
                         </div>
                       )}
                       <div className="p-4">
                         <div className="flex justify-between items-start">
                           <div>
-                            <h3 className="font-bold">{item.title}</h3>
-                            <p className="text-sm text-muted-foreground mt-1">{item.description}</p>
+                            <h3 className="font-bold text-white">{item.title}</h3>
+                            <p className="text-sm text-blue-200/70 mt-1">{item.description}</p>
                           </div>
-                          <button onClick={() => handleDeleteEquipment(item.id)} className="text-destructive hover:bg-destructive/10 p-2 rounded transition">
+                          <button onClick={() => handleDeleteEquipment(item.id)} className="text-red-400 hover:bg-red-500/10 p-2 rounded transition">
                             <Trash2 size={16} />
                           </button>
                         </div>
@@ -1292,50 +1292,50 @@ export default function Admin() {
         {activeTab === "poProjects" && (
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1">
-              <div className="bg-card rounded-xl border border-border p-8 sticky top-20">
-                <h2 className="text-xl font-bold mb-6">Add P/O Project</h2>
+              <div className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 p-8 sticky top-20">
+                <h2 className="text-xl font-bold mb-6 text-white">Add P/O Project</h2>
                 <form onSubmit={handleAddPOProject} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">P/O Date</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">P/O Date</label>
                     <Input
                       type="text"
                       placeholder="e.g., January 2024"
                       value={poProjectForm.poDate}
                       onChange={(e) => setPOProjectForm({ ...poProjectForm, poDate: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Client</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Client</label>
                     <Input
                       type="text"
                       placeholder="Client name"
                       value={poProjectForm.client}
                       onChange={(e) => setPOProjectForm({ ...poProjectForm, client: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Product</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Product</label>
                     <Input
                       type="text"
                       placeholder="Product name"
                       value={poProjectForm.product}
                       onChange={(e) => setPOProjectForm({ ...poProjectForm, product: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Project Status</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Project Status</label>
                     <Input
                       type="text"
                       placeholder="e.g., Completed, In Progress"
                       value={poProjectForm.projectStatus}
                       onChange={(e) => setPOProjectForm({ ...poProjectForm, projectStatus: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
-                  <Button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-primary to-accent hover:shadow-lg">
+                  <Button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white hover:shadow-lg hover:shadow-blue-900/30">
                     {submitting ? <Loader2 size={20} className="mr-2 animate-spin" /> : <Plus size={20} className="mr-2" />}
                     Add P/O Project
                   </Button>
@@ -1344,50 +1344,50 @@ export default function Admin() {
             </div>
             <div className="lg:col-span-2">
               <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">P/O Projects List</h2>
+                <h2 className="text-xl font-bold text-white">P/O Projects List</h2>
                 <div className="flex gap-2">
                   <button
                     onClick={generatePOProjectsPDF}
-                    className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition"
+                    className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"
                     title="Download PDF"
                   >
                     <Download size={18} />
                   </button>
                   <button
                     onClick={printPOProjects}
-                    className="p-2 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition"
+                    className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"
                     title="Print Report"
                   >
                     <Printer size={18} />
                   </button>
                 </div>
               </div>
-              <div className="bg-card rounded-xl border border-border overflow-hidden">
+              <div className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="border-b border-border bg-muted">
-                        <th className="px-6 py-4 text-left text-sm font-semibold">P/O Date</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Client</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Product</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Status</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Action</th>
+                      <tr className="border-b border-blue-500/20 bg-[#1a2d4a]/50">
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">P/O Date</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Client</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Product</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Status</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       {poProjects.length === 0 ? (
                         <tr>
-                          <td colSpan={5} className="px-6 py-8 text-center text-muted-foreground">No P/O projects added yet</td>
+                          <td colSpan={5} className="px-6 py-8 text-center text-blue-200/50">No P/O projects added yet</td>
                         </tr>
                       ) : (
                         poProjects.map((project) => (
-                          <tr key={project.id} className="border-b border-border hover:bg-muted transition">
-                            <td className="px-6 py-4 text-sm">{project.poDate}</td>
-                            <td className="px-6 py-4 text-sm">{project.client}</td>
-                            <td className="px-6 py-4 text-sm">{project.product}</td>
-                            <td className="px-6 py-4 text-sm">{project.projectStatus}</td>
+                          <tr key={project.id} className="border-b border-blue-500/10 hover:bg-[#1a2d4a]/30 transition">
+                            <td className="px-6 py-4 text-sm text-white">{project.poDate}</td>
+                            <td className="px-6 py-4 text-sm text-blue-200/80">{project.client}</td>
+                            <td className="px-6 py-4 text-sm text-blue-200/80">{project.product}</td>
+                            <td className="px-6 py-4 text-sm text-blue-400">{project.projectStatus}</td>
                             <td className="px-6 py-4 text-sm">
-                              <button onClick={() => handleDeletePOProject(project.id)} className="text-destructive hover:bg-destructive/10 p-2 rounded transition">
+                              <button onClick={() => handleDeletePOProject(project.id)} className="text-red-400 hover:bg-red-500/10 p-2 rounded transition">
                                 <Trash2 size={16} />
                               </button>
                             </td>
@@ -1405,80 +1405,80 @@ export default function Admin() {
         {activeTab === "careers" && (
           <div className="grid lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1">
-              <div className="bg-card rounded-xl border border-border p-8 sticky top-20">
-                <h2 className="text-xl font-bold mb-6">Add Job Vacancy</h2>
+              <div className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 p-8 sticky top-20">
+                <h2 className="text-xl font-bold mb-6 text-white">Add Job Vacancy</h2>
                 <form onSubmit={handleAddCareer} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Job Title *</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Job Title *</label>
                     <Input
                       type="text"
                       placeholder="e.g., Senior Engineer"
                       value={careerForm.jobTitle}
                       onChange={(e) => setCareerForm({ ...careerForm, jobTitle: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Department *</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Department *</label>
                     <Input
                       type="text"
                       placeholder="e.g., Engineering"
                       value={careerForm.department}
                       onChange={(e) => setCareerForm({ ...careerForm, department: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Location *</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Location *</label>
                     <Input
                       type="text"
                       placeholder="e.g., Colombo, Sri Lanka"
                       value={careerForm.location}
                       onChange={(e) => setCareerForm({ ...careerForm, location: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Employment Type *</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Employment Type *</label>
                     <select
                       value={careerForm.employmentType}
                       onChange={(e) => setCareerForm({ ...careerForm, employmentType: e.target.value })}
-                      className="w-full px-3 py-2 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 bg-[#1a2d4a] border border-blue-500/30 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-400"
                     >
-                      <option value="">Select type</option>
-                      <option value="Full-time">Full-time</option>
-                      <option value="Part-time">Part-time</option>
-                      <option value="Contract">Contract</option>
-                      <option value="Internship">Internship</option>
+                      <option value="" className="bg-[#1a2d4a]">Select type</option>
+                      <option value="Full-time" className="bg-[#1a2d4a]">Full-time</option>
+                      <option value="Part-time" className="bg-[#1a2d4a]">Part-time</option>
+                      <option value="Contract" className="bg-[#1a2d4a]">Contract</option>
+                      <option value="Internship" className="bg-[#1a2d4a]">Internship</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Salary (Optional)</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Salary (Optional)</label>
                     <Input
                       type="text"
                       placeholder="e.g., $50,000 - $70,000"
                       value={careerForm.salary}
                       onChange={(e) => setCareerForm({ ...careerForm, salary: e.target.value })}
-                      className="bg-background border-border"
+                      className="bg-[#1a2d4a] border-blue-500/30 text-white placeholder:text-blue-300/40 focus:border-blue-400"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Description *</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Description *</label>
                     <textarea
                       placeholder="Job description..."
                       value={careerForm.description}
                       onChange={(e) => setCareerForm({ ...careerForm, description: e.target.value })}
-                      className="w-full px-3 py-2 bg-background border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 bg-[#1a2d4a] border border-blue-500/30 rounded-lg text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-blue-400"
                       rows={3}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Requirements *</label>
+                    <label className="block text-sm font-medium mb-2 text-blue-200">Requirements *</label>
                     <textarea
                       placeholder="Job requirements (one per line)..."
                       value={careerForm.requirements}
                       onChange={(e) => setCareerForm({ ...careerForm, requirements: e.target.value })}
-                      className="w-full px-3 py-2 bg-background border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full px-3 py-2 bg-[#1a2d4a] border border-blue-500/30 rounded-lg text-white placeholder-blue-300/40 focus:outline-none focus:ring-2 focus:ring-blue-400"
                       rows={4}
                     />
                   </div>
@@ -1488,11 +1488,11 @@ export default function Admin() {
                       id="isActive"
                       checked={careerForm.isActive}
                       onChange={(e) => setCareerForm({ ...careerForm, isActive: e.target.checked })}
-                      className="w-4 h-4 rounded border-border"
+                      className="w-4 h-4 rounded border-blue-500/30 bg-[#1a2d4a]"
                     />
-                    <label htmlFor="isActive" className="text-sm">Active (visible to candidates)</label>
+                    <label htmlFor="isActive" className="text-sm text-blue-200">Active (visible to candidates)</label>
                   </div>
-                  <Button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-primary to-accent hover:shadow-lg">
+                  <Button type="submit" disabled={submitting} className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white hover:shadow-lg hover:shadow-blue-900/30">
                     {submitting ? <Loader2 size={20} className="mr-2 animate-spin" /> : <Plus size={20} className="mr-2" />}
                     Add Job Vacancy
                   </Button>
@@ -1502,40 +1502,40 @@ export default function Admin() {
             <div className="lg:col-span-2">
               <div className="space-y-4">
                 {careers.length === 0 ? (
-                  <div className="text-center py-16 bg-card rounded-xl border border-border">
-                    <Briefcase className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                    <p className="text-muted-foreground">No job vacancies added yet</p>
+                  <div className="text-center py-16 bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20">
+                    <Briefcase className="w-12 h-12 text-blue-300/50 mx-auto mb-4" />
+                    <p className="text-blue-200/50">No job vacancies added yet</p>
                   </div>
                 ) : (
                   careers.map((career) => (
-                    <div key={career.id} className="bg-card rounded-xl border border-border p-6">
+                    <div key={career.id} className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 p-6 hover:border-blue-400/40 transition">
                       <div className="flex justify-between items-start mb-4">
                         <div>
                           <div className="flex items-center gap-3">
-                            <h3 className="font-bold text-lg">{career.jobTitle}</h3>
-                            <span className={`px-2 py-1 text-xs rounded-full ${career.isActive ? "bg-green-500/10 text-green-500" : "bg-gray-500/10 text-gray-500"}`}>
+                            <h3 className="font-bold text-lg text-white">{career.jobTitle}</h3>
+                            <span className={`px-2 py-1 text-xs rounded-full ${career.isActive ? "bg-emerald-500/20 text-emerald-400" : "bg-gray-500/20 text-gray-400"}`}>
                               {career.isActive ? "Active" : "Inactive"}
                             </span>
                           </div>
-                          <p className="text-sm text-muted-foreground mt-1">
+                          <p className="text-sm text-blue-200/70 mt-1">
                             {career.department} • {career.location} • {career.employmentType}
                           </p>
                         </div>
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => handleToggleCareerStatus(career.id, career.isActive)}
-                            className={`p-2 rounded transition ${career.isActive ? "hover:bg-yellow-500/10 text-yellow-500" : "hover:bg-green-500/10 text-green-500"}`}
+                            className={`p-2 rounded transition ${career.isActive ? "hover:bg-yellow-500/10 text-yellow-400" : "hover:bg-emerald-500/10 text-emerald-400"}`}
                             title={career.isActive ? "Deactivate" : "Activate"}
                           >
                             {career.isActive ? <EyeOff size={16} /> : <Eye size={16} />}
                           </button>
-                          <button onClick={() => handleDeleteCareer(career.id)} className="text-destructive hover:bg-destructive/10 p-2 rounded transition">
+                          <button onClick={() => handleDeleteCareer(career.id)} className="text-red-400 hover:bg-red-500/10 p-2 rounded transition">
                             <Trash2 size={16} />
                           </button>
                         </div>
                       </div>
-                      <p className="text-sm text-muted-foreground mb-2">{career.description}</p>
-                      {career.salary && <p className="text-sm font-medium text-primary">Salary: {career.salary}</p>}
+                      <p className="text-sm text-blue-200/70 mb-2">{career.description}</p>
+                      {career.salary && <p className="text-sm font-medium text-blue-400">Salary: {career.salary}</p>}
                     </div>
                   ))
                 )}
@@ -1547,18 +1547,18 @@ export default function Admin() {
         {activeTab === "applications" && (
           <div>
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">Job Applications</h2>
+              <h2 className="text-xl font-bold text-white">Job Applications</h2>
               <div className="flex gap-2">
                 <button
                   onClick={generateApplicationsPDF}
-                  className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition"
+                  className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"
                   title="Download PDF"
                 >
                   <Download size={18} />
                 </button>
                 <button
                   onClick={printApplications}
-                  className="p-2 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition"
+                  className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"
                   title="Print Report"
                 >
                   <Printer size={18} />
@@ -1566,39 +1566,39 @@ export default function Admin() {
               </div>
             </div>
             {applications.length === 0 ? (
-              <div className="text-center py-16 bg-card rounded-xl border border-border">
-                <Users className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                <p className="text-muted-foreground">No applications received yet</p>
+              <div className="text-center py-16 bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20">
+                <Users className="w-12 h-12 text-blue-300/50 mx-auto mb-4" />
+                <p className="text-blue-200/50">No applications received yet</p>
               </div>
             ) : (
-              <div className="bg-card rounded-xl border border-border overflow-hidden">
+              <div className="bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20 overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="border-b border-border bg-muted">
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Applicant</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Position</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Contact</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">CV/Resume</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Status</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Applied</th>
-                        <th className="px-6 py-4 text-left text-sm font-semibold">Actions</th>
+                      <tr className="border-b border-blue-500/20 bg-[#1a2d4a]/50">
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Applicant</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Position</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Contact</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">CV/Resume</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Status</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Applied</th>
+                        <th className="px-6 py-4 text-left text-sm font-semibold text-blue-200">Actions</th>
                       </tr>
                     </thead>
                     <tbody>
                       {applications.map((application) => (
-                        <tr key={application.id} className="border-b border-border hover:bg-muted transition">
+                        <tr key={application.id} className="border-b border-blue-500/10 hover:bg-[#1a2d4a]/30 transition">
                           <td className="px-6 py-4">
-                            <div className="font-medium">{application.fullName}</div>
+                            <div className="font-medium text-white">{application.fullName}</div>
                           </td>
-                          <td className="px-6 py-4 text-sm">{application.jobTitle}</td>
+                          <td className="px-6 py-4 text-sm text-blue-200/80">{application.jobTitle}</td>
                           <td className="px-6 py-4 text-sm">
-                            <div className="flex items-center gap-1.5 mb-1">
-                              <Mail size={14} className="text-muted-foreground" />
+                            <div className="flex items-center gap-1.5 mb-1 text-blue-200/80">
+                              <Mail size={14} className="text-blue-400" />
                               <span>{application.email}</span>
                             </div>
-                            <div className="flex items-center gap-1.5 text-muted-foreground">
-                              <Phone size={14} />
+                            <div className="flex items-center gap-1.5 text-blue-200/60">
+                              <Phone size={14} className="text-blue-400" />
                               <span>{application.phone}</span>
                             </div>
                           </td>
@@ -1608,7 +1608,7 @@ export default function Admin() {
                                 <a
                                   href={application.resume}
                                   download={`CV_${application.fullName.replace(/\s+/g, '_')}.pdf`}
-                                  className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition"
+                                  className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"
                                   title="Download CV"
                                 >
                                   <Download size={16} />
@@ -1627,33 +1627,33 @@ export default function Admin() {
                                       `);
                                     }
                                   }}
-                                  className="p-2 rounded-lg bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition"
+                                  className="p-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"
                                   title="View CV"
                                 >
                                   <FileText size={16} />
                                 </button>
                               </div>
                             ) : (
-                              <span className="text-muted-foreground text-sm">No CV uploaded</span>
+                              <span className="text-blue-200/50 text-sm">No CV uploaded</span>
                             )}
                           </td>
                           <td className="px-6 py-4">
                             <select
                               value={application.status}
                               onChange={(e) => handleUpdateApplicationStatus(application.id, e.target.value as JobApplicationData["status"])}
-                              className={`px-3 py-1.5 rounded-full text-sm border ${getStatusColor(application.status)} bg-transparent focus:outline-none cursor-pointer`}
+                              className={`px-3 py-1.5 rounded-full text-sm border ${getStatusColor(application.status)} bg-[#1a2d4a] focus:outline-none cursor-pointer`}
                             >
-                              <option value="pending">Pending</option>
-                              <option value="reviewed">Reviewed</option>
-                              <option value="shortlisted">Shortlisted</option>
-                              <option value="rejected">Rejected</option>
+                              <option value="pending" className="bg-[#1a2d4a]">Pending</option>
+                              <option value="reviewed" className="bg-[#1a2d4a]">Reviewed</option>
+                              <option value="shortlisted" className="bg-[#1a2d4a]">Shortlisted</option>
+                              <option value="rejected" className="bg-[#1a2d4a]">Rejected</option>
                             </select>
                           </td>
-                          <td className="px-6 py-4 text-sm text-muted-foreground">
+                          <td className="px-6 py-4 text-sm text-blue-200/60">
                             {new Date(application.createdAt).toLocaleDateString()}
                           </td>
                           <td className="px-6 py-4 text-sm">
-                            <button onClick={() => handleDeleteApplication(application.id)} className="text-destructive hover:bg-destructive/10 p-2 rounded transition">
+                            <button onClick={() => handleDeleteApplication(application.id)} className="text-red-400 hover:bg-red-500/10 p-2 rounded transition">
                               <Trash2 size={16} />
                             </button>
                           </td>

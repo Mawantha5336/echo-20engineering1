@@ -14,6 +14,18 @@ This is a complete full-stack application featuring:
 
 ## Recent Changes
 
+### November 30, 2025 - Admin Panel Dark Blue Theme
+- Applied beautiful dark blue color scheme to entire Admin panel
+- Background: Deep navy blue gradient (#0a1628 to #1a2d4a to #0d1f3c)
+- Cards: Semi-transparent with backdrop blur effects (bg-[#0d1f3c]/80)
+- Borders: Blue-tinted borders (border-blue-500/20)
+- Text: White for primary content, blue-200 tints for secondary text
+- Forms: Dark blue inputs with blue accent borders
+- Tables: Blue-themed headers and rows with hover effects
+- Buttons: Blue gradient buttons with glowing hover shadows
+- All tabs updated: Dashboard, Projects, Equipment, P/O Projects, Careers, Applications
+- Consistent styling across all admin panel sections
+
 ### November 30, 2025 - Fixed Navigation in Service Pages
 - Fixed ProjectsEquipment.tsx and POProjectsView.tsx navigation bars
 - Replaced inline navigation with incorrect HTML file links (e.g., /echo/index1.html) with shared PageNavigation component
@@ -182,4 +194,4 @@ The application is configured for deployment with:
 - Package manager: pnpm (preferred)
 - Component library: Radix UI with TailwindCSS
 - Testing: Vitest
-- Admin panel UI should not be modified, only data handling logic
+- Admin panel uses dark blue theme with gradient backgrounds and blue accents
