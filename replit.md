@@ -14,6 +14,13 @@ This is a complete full-stack application featuring:
 
 ## Recent Changes
 
+### November 30, 2025 - Fixed Navigation in Service Pages
+- Fixed ProjectsEquipment.tsx and POProjectsView.tsx navigation bars
+- Replaced inline navigation with incorrect HTML file links (e.g., /echo/index1.html) with shared PageNavigation component
+- Replaced inline footers with shared PageFooter component
+- All service pages now use consistent React Router navigation
+- Services dropdown menu now correctly links to: /services, /projects-equipment, /po-projects, /supply-equipment
+
 ### November 29, 2025 - Supabase Database Integration for Netlify Deployment
 - Migrated from file-based JSON storage to Supabase cloud database
 - Created supabase-storage.ts with full CRUD operations for all data types
