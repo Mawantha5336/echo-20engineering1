@@ -78,7 +78,27 @@ CREATE POLICY "Allow all operations on po_projects" ON po_projects FOR ALL USING
 CREATE POLICY "Allow all operations on careers" ON careers FOR ALL USING (true) WITH CHECK (true);
 CREATE POLICY "Allow all operations on job_applications" ON job_applications FOR ALL USING (true) WITH CHECK (true);
 
+-- Contact Messages table
+CREATE TABLE IF NOT EXISTS contact_messages (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT,
+  subject TEXT NOT NULL,
+  message TEXT NOT NULL,
+  status TEXT DEFAULT 'unread' CHECK (status IN ('unread', 'read', 'replied')),
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Enable Row Level Security for contact_messages
+ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
+
+-- Create policy for contact_messages
+CREATE POLICY "Allow all operations on contact_messages" ON contact_messages FOR ALL USING (true) WITH CHECK (true);
+
 -- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_careers_is_active ON careers(is_active);
 CREATE INDEX IF NOT EXISTS idx_job_applications_career_id ON job_applications(career_id);
 CREATE INDEX IF NOT EXISTS idx_job_applications_status ON job_applications(status);
+CREATE INDEX IF NOT EXISTS idx_contact_messages_status ON contact_messages(status);
