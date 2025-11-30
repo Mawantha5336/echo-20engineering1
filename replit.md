@@ -14,6 +14,15 @@ This is a complete full-stack application featuring:
 
 ## Recent Changes
 
+### November 30, 2025 - Contact Messages Management System
+- Added contact messages storage and CRUD operations in Supabase (contact_messages table)
+- Created API endpoints for contact messages: GET, POST, PUT (status update), DELETE
+- Updated Contact page form to submit messages to the API with loading states and success notifications
+- Added Messages tab in Admin panel for viewing and managing contact messages
+- Message features: status management (unread/read/replied), delete functionality, reply via email button
+- Messages are NOT shown on the dashboard welcome section (as requested)
+- Dark blue themed UI matching the rest of the admin panel
+
 ### November 30, 2025 - Admin Panel Dark Blue Theme
 - Applied beautiful dark blue color scheme to entire Admin panel
 - Background: Deep navy blue gradient (#0a1628 to #1a2d4a to #0d1f3c)
