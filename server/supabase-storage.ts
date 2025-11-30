@@ -70,6 +70,18 @@ export interface JobApplication {
   created_at: string;
 }
 
+export interface ContactMessage {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone?: string;
+  subject: string;
+  message: string;
+  status: "unread" | "read" | "replied";
+  created_at: string;
+}
+
 function toCamelCase(project: Project) {
   return {
     id: project.id,
@@ -539,6 +551,90 @@ export const jobApplicationsStorage = {
       phone: data[0].phone,
       resume: data[0].resume,
       coverLetter: data[0].cover_letter,
+      status: data[0].status,
+      createdAt: data[0].created_at,
+    };
+  },
+};
+
+export const contactMessagesStorage = {
+  getAll: async () => {
+    const { data, error } = await getSupabaseClient()
+      .from("contact_messages")
+      .select("*")
+      .order("created_at", { ascending: false });
+    
+    if (error) throw error;
+    return (data || []).map((m: ContactMessage) => ({
+      id: m.id,
+      firstName: m.first_name,
+      lastName: m.last_name,
+      email: m.email,
+      phone: m.phone,
+      subject: m.subject,
+      message: m.message,
+      status: m.status,
+      createdAt: m.created_at,
+    }));
+  },
+  
+  add: async (message: { firstName: string; lastName: string; email: string; phone?: string; subject: string; message: string }) => {
+    const { data, error } = await getSupabaseClient()
+      .from("contact_messages")
+      .insert([{
+        first_name: message.firstName,
+        last_name: message.lastName,
+        email: message.email,
+        phone: message.phone,
+        subject: message.subject,
+        message: message.message,
+        status: "unread",
+      }])
+      .select()
+      .single();
+    
+    if (error) throw error;
+    return {
+      id: data.id,
+      firstName: data.first_name,
+      lastName: data.last_name,
+      email: data.email,
+      phone: data.phone,
+      subject: data.subject,
+      message: data.message,
+      status: data.status,
+      createdAt: data.created_at,
+    };
+  },
+  
+  delete: async (id: string): Promise<boolean> => {
+    const { data, error } = await getSupabaseClient()
+      .from("contact_messages")
+      .delete()
+      .eq("id", id)
+      .select();
+    
+    if (error) throw error;
+    return data && data.length > 0;
+  },
+  
+  updateStatus: async (id: string, status: "unread" | "read" | "replied") => {
+    const { data, error } = await getSupabaseClient()
+      .from("contact_messages")
+      .update({ status })
+      .eq("id", id)
+      .select();
+    
+    if (error) throw error;
+    if (!data || data.length === 0) return null;
+    return {
+      id: data[0].id,
+      firstName: data[0].first_name,
+      lastName: data[0].last_name,
+      email: data[0].email,
+      phone: data[0].phone,
+      subject: data[0].subject,
+      message: data[0].message,
       status: data[0].status,
       createdAt: data[0].created_at,
     };

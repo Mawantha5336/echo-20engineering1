@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Sparkles, MapPin, Phone, Mail, Clock, Send, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Sparkles, MapPin, Phone, Mail, Clock, Send, Facebook, Twitter, Linkedin, Instagram, Loader2, CheckCircle } from "lucide-react";
 import PageNavigation from "@/components/PageNavigation";
 import PageFooter from "@/components/PageFooter";
+import { toast } from "sonner";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,10 +15,46 @@ export default function Contact() {
     subject: "",
     message: ""
   });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.subject || !formData.message) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const response = await fetch("/api/contact-messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+        toast.success("Message sent successfully!");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: ""
+        });
+        setTimeout(() => setSubmitted(false), 3000);
+      } else {
+        toast.error("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting message:", error);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -229,10 +266,29 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-yellow-500 text-black font-semibold flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform duration-300"
+                disabled={submitting || submitted}
+                className={`w-full py-4 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all duration-300 ${
+                  submitted 
+                    ? "bg-green-500 text-white" 
+                    : "bg-gradient-to-r from-primary to-yellow-500 text-black hover:scale-[1.02]"
+                } ${submitting ? "opacity-80 cursor-not-allowed" : ""}`}
               >
-                <span>Send Message</span>
-                <Send size={18} />
+                {submitting ? (
+                  <>
+                    <Loader2 size={18} className="animate-spin" />
+                    <span>Sending...</span>
+                  </>
+                ) : submitted ? (
+                  <>
+                    <CheckCircle size={18} />
+                    <span>Message Sent!</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <Send size={18} />
+                  </>
+                )}
               </button>
             </form>
           </motion.div>

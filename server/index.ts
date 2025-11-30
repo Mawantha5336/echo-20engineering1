@@ -23,6 +23,10 @@ import {
   addJobApplication,
   updateApplicationStatus,
   deleteJobApplication,
+  getContactMessages,
+  addContactMessage,
+  updateContactMessageStatus,
+  deleteContactMessage,
 } from "./routes/data";
 
 export function createServer() {
@@ -75,6 +79,12 @@ export function createServer() {
   app.post("/api/job-applications", addJobApplication);
   app.put("/api/job-applications/:id/status", updateApplicationStatus);
   app.delete("/api/job-applications/:id", deleteJobApplication);
+
+  // Contact Messages API
+  app.get("/api/contact-messages", getContactMessages);
+  app.post("/api/contact-messages", addContactMessage);
+  app.put("/api/contact-messages/:id/status", updateContactMessageStatus);
+  app.delete("/api/contact-messages/:id", deleteContactMessage);
 
   return app;
 }

@@ -5,6 +5,7 @@ import {
   poProjectsStorage,
   careersStorage,
   jobApplicationsStorage,
+  contactMessagesStorage,
 } from "../supabase-storage";
 
 export const getProjects: RequestHandler = async (_req, res) => {
@@ -322,5 +323,79 @@ export const deleteJobApplication: RequestHandler = async (req, res) => {
   } catch (error) {
     console.error("Error deleting application:", error);
     res.status(500).json({ error: "Failed to delete application" });
+  }
+};
+
+export const getContactMessages: RequestHandler = async (_req, res) => {
+  try {
+    const messages = await contactMessagesStorage.getAll();
+    res.json(messages);
+  } catch (error) {
+    console.error("Error fetching contact messages:", error);
+    res.status(500).json({ error: "Failed to fetch contact messages" });
+  }
+};
+
+export const addContactMessage: RequestHandler = async (req, res) => {
+  try {
+    const { firstName, lastName, email, phone, subject, message } = req.body;
+    
+    if (!firstName || !lastName || !email || !subject || !message) {
+      res.status(400).json({ error: "Missing required fields" });
+      return;
+    }
+    
+    const contactMessage = await contactMessagesStorage.add({
+      firstName,
+      lastName,
+      email,
+      phone,
+      subject,
+      message,
+    });
+    
+    res.status(201).json(contactMessage);
+  } catch (error) {
+    console.error("Error adding contact message:", error);
+    res.status(500).json({ error: "Failed to submit message" });
+  }
+};
+
+export const updateContactMessageStatus: RequestHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    
+    if (!status) {
+      res.status(400).json({ error: "Status is required" });
+      return;
+    }
+    
+    const message = await contactMessagesStorage.updateStatus(id, status);
+    
+    if (message) {
+      res.json(message);
+    } else {
+      res.status(404).json({ error: "Message not found" });
+    }
+  } catch (error) {
+    console.error("Error updating message status:", error);
+    res.status(500).json({ error: "Failed to update message status" });
+  }
+};
+
+export const deleteContactMessage: RequestHandler = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const success = await contactMessagesStorage.delete(id);
+    
+    if (success) {
+      res.json({ message: "Message deleted" });
+    } else {
+      res.status(404).json({ error: "Message not found" });
+    }
+  } catch (error) {
+    console.error("Error deleting message:", error);
+    res.status(500).json({ error: "Failed to delete message" });
   }
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, Trash2, Image as ImageIcon, Loader2, Briefcase, Eye, EyeOff, Users, FileText, Download, Mail, Phone, Printer, LayoutDashboard, FolderKanban, Wrench, ClipboardList, TrendingUp, Home } from "lucide-react";
+import { Plus, Trash2, Image as ImageIcon, Loader2, Briefcase, Eye, EyeOff, Users, FileText, Download, Mail, Phone, Printer, LayoutDashboard, FolderKanban, Wrench, ClipboardList, TrendingUp, Home, MessageSquare, MailOpen, Reply } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -58,17 +58,30 @@ interface JobApplicationData {
   createdAt: string;
 }
 
+interface ContactMessageData {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  subject: string;
+  message: string;
+  status: "unread" | "read" | "replied";
+  createdAt: string;
+}
+
 export default function Admin() {
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [equipment, setEquipment] = useState<EquipmentData[]>([]);
   const [poProjects, setPOProjects] = useState<POProjectData[]>([]);
   const [careers, setCareers] = useState<CareerData[]>([]);
   const [applications, setApplications] = useState<JobApplicationData[]>([]);
+  const [contactMessages, setContactMessages] = useState<ContactMessageData[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
   const [activeTab, setActiveTab] = useState<
-    "welcome" | "projects" | "equipment" | "poProjects" | "careers" | "applications"
+    "welcome" | "projects" | "equipment" | "poProjects" | "careers" | "applications" | "messages"
   >("welcome");
   
   const [projectForm, setProjectForm] = useState({
@@ -111,12 +124,13 @@ export default function Admin() {
   const fetchAllData = async () => {
     setLoading(true);
     try {
-      const [projectsRes, equipmentRes, poProjectsRes, careersRes, applicationsRes] = await Promise.all([
+      const [projectsRes, equipmentRes, poProjectsRes, careersRes, applicationsRes, messagesRes] = await Promise.all([
         fetch("/api/projects"),
         fetch("/api/equipment"),
         fetch("/api/po-projects"),
         fetch("/api/careers"),
         fetch("/api/job-applications"),
+        fetch("/api/contact-messages"),
       ]);
 
       if (projectsRes.ok) {
@@ -142,6 +156,11 @@ export default function Admin() {
       if (applicationsRes.ok) {
         const data = await applicationsRes.json();
         setApplications(data);
+      }
+
+      if (messagesRes.ok) {
+        const data = await messagesRes.json();
+        setContactMessages(data);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -503,6 +522,70 @@ export default function Admin() {
       default:
         return "bg-gray-500/10 text-gray-500 border-gray-500/20";
     }
+  };
+
+  const getMessageStatusColor = (status: ContactMessageData["status"]) => {
+    switch (status) {
+      case "unread":
+        return "bg-yellow-500/10 text-yellow-500 border-yellow-500/20";
+      case "read":
+        return "bg-blue-500/10 text-blue-500 border-blue-500/20";
+      case "replied":
+        return "bg-green-500/10 text-green-500 border-green-500/20";
+      default:
+        return "bg-gray-500/10 text-gray-500 border-gray-500/20";
+    }
+  };
+
+  const handleUpdateMessageStatus = async (id: string, status: ContactMessageData["status"]) => {
+    try {
+      const response = await fetch(`/api/contact-messages/${id}/status`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status }),
+      });
+
+      if (response.ok) {
+        setContactMessages(contactMessages.map((m) => 
+          m.id === id ? { ...m, status } : m
+        ));
+        toast.success("Message status updated");
+      } else {
+        toast.error("Failed to update message status");
+      }
+    } catch (error) {
+      console.error("Error updating message:", error);
+      toast.error("Failed to update message status");
+    }
+  };
+
+  const handleDeleteMessage = async (id: string) => {
+    try {
+      const response = await fetch(`/api/contact-messages/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setContactMessages(contactMessages.filter((m) => m.id !== id));
+        toast.success("Message deleted");
+      } else {
+        toast.error("Failed to delete message");
+      }
+    } catch (error) {
+      console.error("Error deleting message:", error);
+      toast.error("Failed to delete message");
+    }
+  };
+
+  const getSubjectLabel = (subject: string) => {
+    const labels: Record<string, string> = {
+      general: "General Inquiry",
+      quote: "Request a Quote",
+      support: "Technical Support",
+      partnership: "Partnership",
+      careers: "Careers",
+    };
+    return labels[subject] || subject;
   };
 
   const generateProjectsPDF = () => {
@@ -907,6 +990,22 @@ export default function Admin() {
             {applications.filter(a => a.status === "pending").length > 0 && (
               <span className="px-2 py-0.5 text-xs bg-blue-500 text-white rounded-full">
                 {applications.filter(a => a.status === "pending").length}
+              </span>
+            )}
+          </button>
+          <button
+            onClick={() => setActiveTab("messages")}
+            className={`px-4 py-3 font-semibold transition border-b-2 whitespace-nowrap flex items-center gap-2 ${
+              activeTab === "messages"
+                ? "border-blue-400 text-blue-400"
+                : "border-transparent text-blue-200/60 hover:text-blue-200"
+            }`}
+          >
+            <MessageSquare size={18} />
+            Messages
+            {contactMessages.filter(m => m.status === "unread").length > 0 && (
+              <span className="px-2 py-0.5 text-xs bg-blue-500 text-white rounded-full">
+                {contactMessages.filter(m => m.status === "unread").length}
               </span>
             )}
           </button>
@@ -1662,6 +1761,114 @@ export default function Admin() {
                     </tbody>
                   </table>
                 </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === "messages" && (
+          <div>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold text-white">Contact Messages</h2>
+              <div className="flex gap-4 text-sm">
+                <span className="text-blue-200/70">
+                  Total: <span className="text-white font-semibold">{contactMessages.length}</span>
+                </span>
+                <span className="text-yellow-400">
+                  Unread: <span className="font-semibold">{contactMessages.filter(m => m.status === "unread").length}</span>
+                </span>
+              </div>
+            </div>
+            {contactMessages.length === 0 ? (
+              <div className="text-center py-16 bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border border-blue-500/20">
+                <MessageSquare className="w-12 h-12 text-blue-300/50 mx-auto mb-4" />
+                <p className="text-blue-200/50">No messages received yet</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {contactMessages.map((message) => (
+                  <div 
+                    key={message.id} 
+                    className={`bg-[#0d1f3c]/80 backdrop-blur-sm rounded-xl border p-6 transition-all ${
+                      message.status === "unread" 
+                        ? "border-yellow-500/40 shadow-lg shadow-yellow-900/10" 
+                        : "border-blue-500/20"
+                    }`}
+                  >
+                    <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-4 mb-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-2">
+                          <h3 className="text-lg font-semibold text-white">
+                            {message.firstName} {message.lastName}
+                          </h3>
+                          <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getMessageStatusColor(message.status)}`}>
+                            {message.status === "unread" ? "Unread" : message.status === "read" ? "Read" : "Replied"}
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap gap-4 text-sm text-blue-200/70">
+                          <div className="flex items-center gap-1.5">
+                            <Mail size={14} className="text-blue-400" />
+                            <a href={`mailto:${message.email}`} className="hover:text-blue-400 transition">
+                              {message.email}
+                            </a>
+                          </div>
+                          {message.phone && (
+                            <div className="flex items-center gap-1.5">
+                              <Phone size={14} className="text-blue-400" />
+                              <a href={`tel:${message.phone}`} className="hover:text-blue-400 transition">
+                                {message.phone}
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <select
+                          value={message.status}
+                          onChange={(e) => handleUpdateMessageStatus(message.id, e.target.value as ContactMessageData["status"])}
+                          className={`px-3 py-1.5 rounded-lg text-sm border ${getMessageStatusColor(message.status)} bg-[#1a2d4a] focus:outline-none cursor-pointer`}
+                        >
+                          <option value="unread" className="bg-[#1a2d4a]">Unread</option>
+                          <option value="read" className="bg-[#1a2d4a]">Read</option>
+                          <option value="replied" className="bg-[#1a2d4a]">Replied</option>
+                        </select>
+                        <button 
+                          onClick={() => handleDeleteMessage(message.id)} 
+                          className="text-red-400 hover:bg-red-500/10 p-2 rounded-lg transition"
+                          title="Delete message"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div className="mb-4">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-blue-500/10 text-blue-400 text-sm mb-3">
+                        <span className="font-medium">Subject:</span>
+                        <span>{getSubjectLabel(message.subject)}</span>
+                      </div>
+                      <div className="bg-[#1a2d4a]/50 rounded-lg p-4 border border-blue-500/10">
+                        <p className="text-blue-200/90 whitespace-pre-wrap">{message.message}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center justify-between text-sm text-blue-200/50">
+                      <span>Received: {new Date(message.createdAt).toLocaleDateString()} at {new Date(message.createdAt).toLocaleTimeString()}</span>
+                      <a 
+                        href={`mailto:${message.email}?subject=Re: ${getSubjectLabel(message.subject)}`}
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 transition"
+                        onClick={() => {
+                          if (message.status !== "replied") {
+                            handleUpdateMessageStatus(message.id, "replied");
+                          }
+                        }}
+                      >
+                        <Reply size={16} />
+                        <span>Reply via Email</span>
+                      </a>
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
           </div>
