@@ -484,6 +484,108 @@ const handler: Handler = async (event: HandlerEvent, _context: HandlerContext) =
       return jsonResponse(200, { success: true });
     }
 
+    if (path === "/contact-messages" && method === "GET") {
+      const supabase = getSupabaseClient();
+      const { data, error } = await supabase
+        .from("contact_messages")
+        .select("*")
+        .order("created_at", { ascending: false });
+      
+      if (error) throw error;
+      
+      const messages = (data || []).map((m: any) => ({
+        id: m.id,
+        firstName: m.first_name,
+        lastName: m.last_name,
+        email: m.email,
+        phone: m.phone,
+        subject: m.subject,
+        message: m.message,
+        status: m.status,
+        createdAt: m.created_at,
+      }));
+      
+      return jsonResponse(200, messages);
+    }
+
+    if (path === "/contact-messages" && method === "POST") {
+      const supabase = getSupabaseClient();
+      const body = JSON.parse(event.body || "{}");
+      const { firstName, lastName, email, phone, subject, message } = body;
+      
+      if (!firstName || !lastName || !email || !subject || !message) {
+        return jsonResponse(400, { error: "Missing required fields" });
+      }
+      
+      const { data, error } = await supabase
+        .from("contact_messages")
+        .insert([{
+          first_name: firstName,
+          last_name: lastName,
+          email,
+          phone,
+          subject,
+          message,
+          status: "unread",
+        }])
+        .select()
+        .single();
+      
+      if (error) throw error;
+      
+      return jsonResponse(200, {
+        id: data.id,
+        firstName: data.first_name,
+        lastName: data.last_name,
+        email: data.email,
+        phone: data.phone,
+        subject: data.subject,
+        message: data.message,
+        status: data.status,
+        createdAt: data.created_at,
+      });
+    }
+
+    if (path.match(/^\/contact-messages\/[^/]+\/status$/) && method === "PUT") {
+      const supabase = getSupabaseClient();
+      const id = path.replace("/contact-messages/", "").replace("/status", "");
+      const body = JSON.parse(event.body || "{}");
+      const { status } = body;
+      
+      const { data, error } = await supabase
+        .from("contact_messages")
+        .update({ status })
+        .eq("id", id)
+        .select();
+      
+      if (error) throw error;
+      if (!data || data.length === 0) {
+        return jsonResponse(404, { error: "Message not found" });
+      }
+      
+      return jsonResponse(200, {
+        id: data[0].id,
+        firstName: data[0].first_name,
+        lastName: data[0].last_name,
+        email: data[0].email,
+        phone: data[0].phone,
+        subject: data[0].subject,
+        message: data[0].message,
+        status: data[0].status,
+        createdAt: data[0].created_at,
+      });
+    }
+
+    if (path.match(/^\/contact-messages\/[^/]+$/) && method === "DELETE") {
+      const supabase = getSupabaseClient();
+      const id = path.replace("/contact-messages/", "");
+      
+      const { error } = await supabase.from("contact_messages").delete().eq("id", id);
+      if (error) throw error;
+      
+      return jsonResponse(200, { success: true });
+    }
+
     return jsonResponse(404, { error: "Not found", path, method });
     
   } catch (error: any) {
